@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import 'modern-normalize';
+import 'normalize.css';
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -27,10 +27,10 @@ ul {
 }
 
 img {
-    display: block;
-    height: auto;
-    margin: 0 auto;
-    max-width: 100%;
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
 }
 `;
 

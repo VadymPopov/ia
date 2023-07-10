@@ -17,7 +17,3 @@ export const LayoutContainer = styled.div`
 //   margin-bottom: 20px;
 // `;
 
-export const Section = styled.section`
-    text-align: center;
-    padding: 190px 20px;
-`;

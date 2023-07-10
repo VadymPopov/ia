@@ -1,9 +1,10 @@
-import { Container, Item, List, Description, Title, Text } from "./About.styled";
+import { Container, Item, List, Description, Title, Text, Section } from "./About.styled";
 import { Suptitle } from "./Home.styled.js";
 import Button from "components/Button/Button";
 
 export default function About() {
     return (
+        <Section>
     <Container>
        <List>
         <Item><img src="https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRRv9ICxXjK-LVFv-lKRId6gB45BFoNCLsZ4dk7bZpYGblPLPG-9aYss0Z0wt2PmWDb" alt="" width={270}/></Item>
@@ -17,5 +18,6 @@ export default function About() {
        <Button>Online-Booking</Button>
        </Description>
     </Container>
+    </Section>
     );
 }

@@ -1,11 +1,15 @@
-import { Link, List, Nav,LogoLink } from './Navigation.styled';
+import { Link, List, Nav,LogoLink, Logo } from './Navigation.styled';
+import logo from '../../images/logo.png';
+import logoCopy from '../../images/logo-copy.png';
 
 const Navigation = () => {
 
   return (
     <Nav>
       <LogoLink to="/">
-        Home IA Logo
+        {/* <Logo src={logo} alt="logo" />
+         */}
+         <Logo src={logoCopy} alt="logo" />
       </LogoLink>
 
       <List>

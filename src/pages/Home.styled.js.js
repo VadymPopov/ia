@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import background from '../images/background.webp'
 
 export const Suptitle = styled.p`
     display: flex;
@@ -28,7 +29,7 @@ export const MainTitle = styled.h1`
     line-height: 1.1805555556;
     letter-spacing: .05em;
     margin-bottom: 20px;
-    color: black;
+    color: white;
 
 `;
 
@@ -40,3 +41,8 @@ export const Description = styled.p`
     color: gray;
 `;
 
+export const Section = styled.section`
+    padding: 190px 20px;
+    background-image: linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)), url(${background});
+    background-size: cover;
+`;

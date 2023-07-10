@@ -1,6 +1,7 @@
 import { useEffect, lazy } from "react";
 import Layout  from "./Layout";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { GlobalStyle } from "../components/GlobalStyles";
 
 const AboutPage = lazy(() => import('../pages/About'));
 const AftercarePage = lazy(() => import('../pages/Aftercare'));
@@ -10,8 +11,12 @@ const ServicesPage = lazy(() => import('../pages/Services'));
 const WaiverformPage = lazy(() => import('../pages/Waiverform'));
 const BookingPage = lazy(() => import('../pages/Booking'));
 
+
 export const App = () => {
   return (
+    <>
+    <GlobalStyle/>
+
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<HomePage/>}/>
@@ -24,5 +29,8 @@ export const App = () => {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
+
+    </>
+   
   );
 };

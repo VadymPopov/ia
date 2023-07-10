@@ -48,3 +48,9 @@ export const LogoLink = styled(NavLink)`
     border-radius: 8px;
   }
 `;
+
+export const Logo = styled.img`
+width: 60px;
+height: 60px;
+border-radius: 50%;
+`
