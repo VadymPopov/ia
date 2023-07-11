@@ -1,5 +1,4 @@
 import Button from 'components/Button/Button';
-import lips from '../images/lips.jpg';
 import { Card, Image, Item } from './Services.styled';
 
 import smallTattoo from '../images/small-tattoo.jpg';

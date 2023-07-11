@@ -15,15 +15,16 @@ export const SwiperWrapper = styled(Swiper)`
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #007bff;
-    color: #111;
+    background-color: #555555;
+    
     display:flex;
     align-items: center;
     justify-content: center;
 
     &::after {
-        color: orange;
-        font-size: 16px;
+      /* color: #303030; */
+      color: #fff;
+      font-size: 32px;
     }
 }
 `;
@@ -35,13 +36,6 @@ export const Slide = styled(SwiperSlide)`
   max-height: 400px;
   border-radius: 10px;
   overflow: hidden;
-
-&.swiper-button-next,
-&.swiper-button-prev {
-  background-color: #007bff;
-  color: #fff;
-  /* Additional styles */
-}
 
   img {
   display: block;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
   display: flex;
-  /* position: fixed; */
   justify-content: space-between;
   width: 100%;
   padding-top: 32px;
@@ -14,9 +13,8 @@ export const Link = styled.a`
 display: flex;
 justify-content: center;
 align-items: center; 
-/* display: inline-block; */
-background-color: blue;
-color:black;
+background-color: gray;
+color:#303030;
 border-radius: 50%;
 width: 44px;
 height: 44px;

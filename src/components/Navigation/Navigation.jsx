@@ -1,15 +1,15 @@
 import { Link, List, Nav,LogoLink, Logo } from './Navigation.styled';
-import logo from '../../images/logo.png';
-import logoCopy from '../../images/logo-copy.png';
+// import logo from '../../images/logo.png';
+// import logoCopy from '../../images/logo-copy.png';
+
+import logo from '../../images/logo-circle.svg';
 
 const Navigation = () => {
 
   return (
     <Nav>
       <LogoLink to="/">
-        {/* <Logo src={logo} alt="logo" />
-         */}
-         <Logo src={logoCopy} alt="logo" />
+         <Logo src={logo} alt="logo" />
       </LogoLink>
 
       <List>
@@ -29,7 +29,7 @@ const Navigation = () => {
         Waiverform
       </Link></li>
       <li><Link to="/booking">
-        Online-Booking
+        Booking
       </Link></li>
       </List>
     </Nav>
