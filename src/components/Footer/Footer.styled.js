@@ -11,8 +11,17 @@ export const FooterContainer = styled.footer`
 
 
 export const Link = styled.a`
+display: flex;
+justify-content: center;
+align-items: center; 
+/* display: inline-block; */
+background-color: blue;
+color:black;
+border-radius: 50%;
+width: 44px;
+height: 44px;
+transition: color 250ms linear;
 text-decoration: none;
-color: black;
 
 &:hover{
 color: orange;

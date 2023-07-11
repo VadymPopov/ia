@@ -2,13 +2,16 @@ import { Container, Item, List, Description, Title, Text, Section } from "./Abou
 import { Suptitle } from "./Home.styled.js";
 import Button from "components/Button/Button";
 
+import aboutMe from '../images/about-me-one.jpg';
+import aboutMeTwo from '../images/about-me-two.jpg'
+
 export default function About() {
     return (
         <Section>
     <Container>
        <List>
-        <Item><img src="https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRRv9ICxXjK-LVFv-lKRId6gB45BFoNCLsZ4dk7bZpYGblPLPG-9aYss0Z0wt2PmWDb" alt="" width={270}/></Item>
-        <Item><img src="https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=1xw:0.84415xh;center,top" alt="" width={270}/></Item>
+        <Item><img src={aboutMe} alt="about-me-one" width={270}/></Item>
+        <Item><img src={aboutMeTwo} alt="about-me-two" width={270}/></Item>
        </List>
 
        <Description>

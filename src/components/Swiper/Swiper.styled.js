@@ -9,32 +9,32 @@ export const SwiperWrapper = styled(Swiper)`
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
+    margin-bottom: 100px;
 
-    .swiper-button-next {
+    .swiper-button-next,.swiper-button-prev {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: #007bff;
     color: #111;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 
     &::after {
         color: orange;
         font-size: 16px;
     }
 }
-
-.swiper-button-prev {
-    background-color: #007bff;
-  color: #fff;
-}
-
 `;
 
 export const Slide = styled(SwiperSlide)`
-    background-position: center;
-    background-size: cover;
-    max-width: 300px;
-    max-height: 300px;
-    border-radius: 10px;
-    overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  max-width: 300px;
+  max-height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
 
 &.swiper-button-next,
 &.swiper-button-prev {
@@ -43,12 +43,12 @@ export const Slide = styled(SwiperSlide)`
   /* Additional styles */
 }
 
-    img {
-    display: block;
-    width: 100%; 
-    border-radius: 10px;
-    overflow: hidden;
-    }
+  img {
+  display: block;
+  width: 100%; 
+  border-radius: 10px;
+  overflow: hidden;
+  }
 `;
 
 export const SwiperPagination = styled.div`
@@ -66,7 +66,7 @@ export const SwiperPagination = styled.div`
   }
 
   .swiper-pagination-bullet-active {
-    background-color: orange;
+    background-color: #007bff;
   }
 `;
 

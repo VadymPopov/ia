@@ -43,5 +43,5 @@ export const Text = styled.p`
 
 
 export const Section = styled.section`
-    padding: 190px 20px;
+    padding: 20px 20px;
 `;
