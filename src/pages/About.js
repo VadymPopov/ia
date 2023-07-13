@@ -1,5 +1,5 @@
-import { Container, Item, List, Description, Title, Text, Section } from "./About.styled";
-import { Suptitle } from "./Home.styled.js";
+import {  Item, List, Description } from "./About.styled";
+import { Container, Text, Title, Suptitle, Section } from "components/CommonStyles";
 import Button from "components/Button/Button";
 
 import aboutMe from '../images/about-me-one.jpg';
@@ -7,7 +7,7 @@ import aboutMeTwo from '../images/about-me-two.jpg'
 
 export default function About() {
     return (
-        <Section>
+        <Section primary>
     <Container>
        <List>
         <Item><img src={aboutMe} alt="about-me-one" width={270}/></Item>
@@ -15,9 +15,9 @@ export default function About() {
        </List>
 
        <Description>
-       <Suptitle>About me</Suptitle>
+       <Suptitle primary>About me</Suptitle>
        <Title>Best tattoo artist in your city</Title>
-       <Text>You have chosen a tattoo artist who goes beyond the ordinary. By coming here, you are stepping into a world of transformation and artistic magic. I am about energy, change and a new way. On this site you can explore my portfolio and schedule the most convenient time for our meeting. Welcome! With each step, you are drawing closer to embracing a new reality tailored specifically for you.</Text>
+       <Text primary main>You have chosen a tattoo artist who goes beyond the ordinary. By coming here, you are stepping into a world of transformation and artistic magic. I am about energy, change and a new way. On this site you can explore my portfolio and schedule the most convenient time for our meeting. Welcome! With each step, you are drawing closer to embracing a new reality tailored specifically for you.</Text>
        <Button>Online-Booking</Button>
        </Description>
     </Container>

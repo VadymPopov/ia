@@ -3,17 +3,17 @@ import { Toaster } from 'react-hot-toast';
 import  AppBar  from '../AppBar';
 import Footer from 'components/Footer/Footer';
 import { Suspense } from 'react';
-import { LayoutContainer} from './Layout.styled';
+import { LayoutContainer, Main} from './Layout.styled';
 
 const Layout = () => {
     return (
         <LayoutContainer>
             <AppBar/>
-            <main>
+            <Main>
                 <Suspense fallback={null}>
                   <Outlet />
                 </Suspense>
-            </main>
+            </Main>
             <Footer/>
             
             <Toaster position="top-right" reverseOrder={false} />

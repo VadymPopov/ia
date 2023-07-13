@@ -1,5 +1,5 @@
-import { Section } from "./Services.styled";
-import { Title } from "./About.styled";
+import { Section, Title } from "components/CommonStyles";
+
 import Swiper from "components/Swiper/Swiper";
 import { Slide } from "components/Swiper/Swiper.styled";
 import { permanentArray } from "images/permanent";

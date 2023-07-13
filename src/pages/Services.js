@@ -1,6 +1,6 @@
 import Button from 'components/Button/Button';
-import { Card, Image, Item, Description, CardTitle,CardFooter, Text } from './Services.styled';
-import { Title } from './About.styled';
+import { Card, Image, Item, Description, CardTitle,CardFooter } from './Services.styled';
+import { Title, Text } from 'components/CommonStyles';
 
 import smallTattoo from '../images/small-tattoo.jpg';
 import largeTattoo from '../images/large-tattoo.jpg';
@@ -25,10 +25,10 @@ export default function Services() {
             </Card>
             <div>
                 <Title>Small Tattoo</Title>
-            <Text>
+            <Text primary>
             A small tattoo is a delicate and intimate form of body art. For instance, it can be a meaningful phrase written in the handwriting of a loved one or a paw print to commemorate a beloved pet. It could also be a flower symbolizing your birthdate. However, there are no limitations on choosing something adorable, like a heart, butterflies, or stars. After all, a small tattoo is your opportunity to express your creativity. These tattoos typically range from 1 to 12 cm in size, featuring minimal details and requiring a session duration of up to 80 minutes. 
             </Text>
-            <Text>It's important to note that if a reservation is canceled with less than 48 hours' notice, the deposit is non-refundable.</Text>
+            <Text primary>It's important to note that if a reservation is canceled with less than 48 hours' notice, the deposit is non-refundable.</Text>
 
             </div>
             
@@ -67,14 +67,14 @@ export default function Services() {
             <div>
                 <div>
                 <Title>Consultation/Touch-up</Title>
-                <Text>
+                <Text primary>
             The consultation process occurs online, where you will be required to describe your tattoo idea and share a relevant photo through Instagram. This initial step allows me to understand your vision and discuss the design possibilities before proceeding further. However, in unique situations, a personal meeting can be arranged, especially when the client wishes to create a custom and intricate design.
             </Text>
 
-            <Text>
+            <Text primary>
             It's important to note that tattoo corrections are provided free of charge for a period of six months following the initial procedure. However, if a client fails to show up for two scheduled appointments, the opportunity for a free correction is forfeited. In addition, it is important to note that tattoo corrections are typically limited to the works created by the original tattoo artist.
             </Text>
-            <Text>
+            <Text primary>
             Typically, when it comes to correcting a permanent tattoo, a separate fee is charged. For more detailed information about the correction process and associated costs, it is best to consult directly with your tattoo artist. 
             </Text>
                 </div>

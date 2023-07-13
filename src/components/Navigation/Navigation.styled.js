@@ -1,25 +1,28 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { colors } from 'components/theme';
 
 export const Link = styled(NavLink)`
   display: block;
-  color: black;
+  color: ${colors.cardColor};
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.33;
   letter-spacing: .1em;
   white-space: nowrap;
   transition: color 250ms linear;
   text-decoration: none;
   margin-right: 30px;
+  padding: 5px 10px;
   
   
   &.active{
     border-radius: 8px;
-    border: 1px solid black;
+    border: 1px solid ${colors.textColorDarkBg};
+    background-color: ${colors.backgroundColor};
   }
   &:focus, &:hover{
-   color: rgba(255, 108, 0, 1);
+   color: ${colors.accentColor};
   }
 `;
 
@@ -34,13 +37,11 @@ export const Nav = styled.nav`
 display: flex;
 column-gap: 30px;
 align-items: center;
-`
+`;
 
 export const LogoLink = styled(NavLink)`
   display: inline-block;
   text-decoration: none;
-  text-transform: uppercase;
-  padding: 10px 16px;
   font-weight: 700;
   margin-right: 70px;
   
@@ -50,7 +51,7 @@ export const LogoLink = styled(NavLink)`
 `;
 
 export const Logo = styled.img`
-width: 60px;
-height: 60px;
+max-width: 60px;
+max-height: 60px;
 border-radius: 50%;
 `
