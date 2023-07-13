@@ -40,6 +40,7 @@ export const Text = styled.p`
     letter-spacing: .02em;
     color: gray;
     text-align: justify;
+    text-indent: 30px;
 `;
 
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import background from '../images/background.webp'
+import background from '../images/hero-bg.jpg'
 
 export const Suptitle = styled.p`
     display: flex;
@@ -37,12 +37,18 @@ export const Description = styled.p`
     font-size: 18px;
     font-weight: 400;
     line-height: 1.6666666667;
-    width: 360px;
+    width: 300px;
     color: gray;
 `;
 
 export const Section = styled.section`
     padding: 190px 20px;
-    background-image: linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)), url(${background});
-    background-size: cover;
+    /* background-image: linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)), url(${background}); */
+    background-image: url(${background});
+    /* background-size: contain; */
+    /* filter: brightness(150%); */
+    background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+
 `;

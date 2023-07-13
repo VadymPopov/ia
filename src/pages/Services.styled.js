@@ -2,20 +2,27 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
    display: flex;
+   margin-bottom: 30px;
+   padding: 20px;
+   
+   &:nth-of-type(2n){
+    background-color: #f7f7f7;
+   }
 `;
 
 export const Image = styled.img`
    border-radius: 5px;
+   max-width: 320px;
 `;
 
 export const Card = styled.div`
-  width: 300px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   margin-right: 50px;
+  background-color: black;
+  color: white;
 `;
-
 
 export const Suptitle = styled.p`
     display: flex;
@@ -37,26 +44,39 @@ export const Suptitle = styled.p`
     }
 `;
 
-
-export const MainTitle = styled.h1`
-    font-size: 72px;
-    font-weight: 700;
-    font-family: "Raleway", sans-serif;
-    line-height: 1.1805555556;
-    letter-spacing: .05em;
-    margin-bottom: 20px;
-    color: white;
-
-`;
-
-export const Description = styled.p`
+export const Description = styled.div`
     font-size: 18px;
     font-weight: 400;
-    line-height: 1.6666666667;
-    width: 360px;
-    color: gray;
+    letter-spacing: .02em;
+    line-height: 1.3;
+    color: white;
+    margin-top: 16px;
+    padding: 10px;
+    text-align: start;
 `;
 
 export const Section = styled.section`
     padding: 20px 20px;
+`;
+
+export const CardTitle = styled.p`
+    font-size: 24px;
+    font-weight: 600;
+    color: gray;
+    margin-bottom: 10px;
+    text-align: center;
+`;
+
+export const CardFooter = styled.div`
+   text-align: center;
+`;
+
+
+export const Text = styled.p`
+    font-size: 18px;
+    line-height: 1.67;
+    letter-spacing: .02em;
+    color: gray;
+    text-align: justify;
+    text-indent: 30px;
 `;

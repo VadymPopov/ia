@@ -7,15 +7,17 @@ export const ButtonStyled = styled.button`
   line-height: 1.33;
   text-transform: uppercase;
   width: 160px;
-  border: 1px solid orange;
+  border: 1px solid rgba(255, 108, 0, 1);
   border-radius: 25px;
-  background-color: rgba(0,0,0,0);
+  background: transparent;
   transition: background-color 250ms linear;
   cursor: pointer;
+  color: ${props => props.primary ? '#fff':'#000'};
 
   &:hover {
-    background-color: orange;
+    background-color: rgba(255, 108, 0, 1);
     box-shadow: black 0px 0px 5px 2px;
+    color: ${props => props.primary ? '#000' : '#fff'};
   }
 
   &:disabled {

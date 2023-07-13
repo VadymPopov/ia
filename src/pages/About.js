@@ -17,7 +17,7 @@ export default function About() {
        <Description>
        <Suptitle>About me</Suptitle>
        <Title>Best tattoo artist in your city</Title>
-       <Text>You chose not just an ordinary tattoo artist, if you came here, we will do the magic of transformation. I am about energy, change and a new way. On this site you can learn more about my work and book the most convenient time for our meeting. Welcome, you are one step closer to a new reality!</Text>
+       <Text>You have chosen a tattoo artist who goes beyond the ordinary. By coming here, you are stepping into a world of transformation and artistic magic. I am about energy, change and a new way. On this site you can explore my portfolio and schedule the most convenient time for our meeting. Welcome! With each step, you are drawing closer to embracing a new reality tailored specifically for you.</Text>
        <Button>Online-Booking</Button>
        </Description>
     </Container>

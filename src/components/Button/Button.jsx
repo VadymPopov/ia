@@ -4,10 +4,11 @@ import { ButtonStyled } from "./Button.styled";
 const Button = ({
     type = "button",
     children,
+    primary,
     ...otherProps
   }) => {
     return (
-      <ButtonStyled type={type}
+      <ButtonStyled primary={primary} type={type}
         {...otherProps}
       >
         {children}
