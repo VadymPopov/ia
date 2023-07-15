@@ -29,6 +29,12 @@ const Navigation = () => {
       <li><Link to="/booking">
         Booking
       </Link></li>
+      <li><Link to="/booking">
+        FAQ
+      </Link></li>
+      <li><Link to="/booking">
+        Contact
+      </Link></li>
       </List>
     </Nav>
   );
