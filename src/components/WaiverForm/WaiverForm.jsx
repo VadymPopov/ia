@@ -4,20 +4,105 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
+
 import SignatureCanvas from 'react-signature-canvas';
+
 // import { Notify } from "notiflix";
-import { FormWrapper, InputContainer, Input, CustomDatePicker, ClientInfo, Title, InputLabel, FlexContainer, Text, CheckboxLabel } from "./WaiverForm.styled";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, ClientInfo, Title, InputLabel, FlexContainer, Text, CheckboxLabel, SignaturePlaceholder, SignatureContainer, ClearBtn } from "./WaiverForm.styled";
 import  Button  from "components/Button";
 import {nameRegExp, phoneRegExp,emailRegExp, governmentId, FormError} from 'utils/formik';
 import styleDatepicker from './datepicker.css';
-import NumberFormat from 'react-number-format';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().min(3).matches(nameRegExp, 'Enter valid name').required(),
-  email: Yup.string().min(10).matches(emailRegExp,'Enter valid email').required(),
-  phone: Yup.string().matches(phoneRegExp,'Enter valid number').required(),
-  governmentId: Yup.string().matches(governmentId,'Enter valid government issue ID number').required(),
+  name: Yup.string().min(3).matches(nameRegExp, 'Enter a valid name').required('Name is a required field'),
+  email: Yup.string().email(emailRegExp,'Enter a valid email').required('Email is a required field'),
+  phone: Yup.string().matches(phoneRegExp, 'Enter a valid phone number').required('Phone number is a required field'),
+  governmentId: Yup.string().matches(governmentId, 'Enter a valid government-issued ID number').required('Government ID is a required field'),
+  dob: Yup.string().required('Birthday date is a required field'),
+  address: Yup.string().required('Address is a required field'),
+  bodyPart: Yup.string().required('Body part is a required field'),
+  design: Yup.string().required('Design is a required field'),
+  date: Yup.string().required('Date is a required field'),
+  waveRelease: Yup.boolean().oneOf([true], 'Please accept the Wave Release field').required('Wave Release is a required field'),
+  pain: Yup.boolean().oneOf([true], 'Please accept the Pain field').required('Pain is a required field'),
+  infection: Yup.boolean().oneOf([true], 'Please accept the Infection field').required('Infection is a required field'),
+  healing: Yup.boolean().oneOf([true], 'Please accept the Healing field').required('Healing is a required field'),
+  outcome: Yup.boolean().oneOf([true], 'Please accept the Outcome field').required('Outcome is a required field'),
+  refund: Yup.boolean().oneOf([true], 'Please accept the Refund field').required('Refund is a required field'),
+  permanentChange: Yup.boolean().oneOf([true], 'Please accept the Permanent Change field').required('Permanent Change is a required field'),
+  media: Yup.boolean().oneOf([true], 'Please accept the Media field').required('Media is a required field'),
+  age: Yup.boolean().oneOf([true], 'Please accept the Age field').required('Age is a required field'),
+  agreement: Yup.boolean().oneOf([true], 'Please accept the Agreement field').required('Agreement is a required field'),
+  drugs: Yup.boolean().oneOf([true], 'Please accept the Drugs field').required('Drugs is a required field'),
+  disease: Yup.boolean().oneOf([true], 'Please accept the Disease field').required('Disease is a required field'),
+  medication: Yup.boolean().oneOf([true], 'Please accept the Medication field').required('Medication is a required field'),
+  skin: Yup.boolean().oneOf([true], 'Please accept the Skin field').required('Skin is a required field'),
+  recipientOrgan: Yup.boolean().oneOf([true], 'Please accept the Recipient Organ field').required('Recipient Organ is a required field'),
+  pregnancy: Yup.boolean().oneOf([true], 'Please accept the Pregnancy field').required('Pregnancy is a required field'),
+  lot: Yup.string().required('Lot is a required field'),
 });
+
+
+// const validationSchema = Yup.object().shape({
+//   name: Yup.string().min(3).matches(nameRegExp, 'Enter valid name').required(),
+//   email: Yup.string().min(10).matches(emailRegExp,'Enter valid email').required(),
+//   phone: Yup.string().matches(phoneRegExp,'Enter valid number').required(),
+//   governmentId: Yup.string().matches(governmentId,'Enter valid government issue ID number').required('government ID is a required field'),
+//   dob: Yup.string().required('birthday date is a required field'),
+//   address: Yup.string().required(),
+//   bodyPart: Yup.string().required('required field'),
+//   design: Yup.string().required('required field'),
+//   date: Yup.string().required('required field'),
+//   waveRelease: Yup.boolean()
+//     .oneOf([true], 'required field')
+//     .required('required field'),
+//   pain: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   infection: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   healing: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   outcome: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   refund: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   permanentChange: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   media: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   age: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   agreement: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   drugs: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   desease: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   medication: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   skin: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   recipientOrgan: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   pregnancy: Yup.boolean()
+//   .oneOf([true], 'required field')
+//   .required('required field'),
+//   lot: Yup.string().required(),
+// });
 
 const WaiverForm = ()=> {
   // const dispatch = useDispatch();
@@ -25,7 +110,7 @@ const WaiverForm = ()=> {
   const [isSignatureEmpty, setIsSignatureEmpty] = useState(true);
 
   // Reference to the signature canvas
-  const signatureRef = React.useRef(null);
+  const signatureRef = useRef(null);
 
   // Clear the signature canvas
   const clearSignature = () => {
@@ -53,12 +138,13 @@ const WaiverForm = ()=> {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) =>{
-            actions.resetForm();
+          actions.resetForm();
+          console.log(values);
         }}
       > 
 
         <FormWrapper autoComplete="off"> 
-        <Title>Client Information</Title>
+        <Title>Client Information:</Title>
 
         <ClientInfo>
           <FlexContainer>
@@ -153,6 +239,7 @@ const WaiverForm = ()=> {
             {({ field, form }) => (
               <CustomDatePicker
                 {...field}
+                showIcon
                 selected={field.value}
                 onChange={(date) => form.setFieldValue(field.name, date)}
                 minDate={new Date()}
@@ -285,11 +372,11 @@ const WaiverForm = ()=> {
 
             
             <InputContainer>
-              <CheckboxLabel htmlFor="medication">
-              <Input name="medication" type="checkbox" placeholder="medication" />
+              <CheckboxLabel htmlFor="skin">
+              <Input name="skin" type="checkbox" placeholder="skin" />
               I confirm that I do not have any other medical or skin conditions that could potentially interfere with the procedure, application, or healing of the tattoo, including active infections, open wounds, skin disorders, or a compromised immune system.
               </CheckboxLabel>
-              <FormError name="medication" component='span' />
+              <FormError name="skin" component='span' />
             </InputContainer>
 
             <InputContainer>
@@ -310,49 +397,28 @@ const WaiverForm = ()=> {
           </div>
           <Text>If single-use presterilized equipment is used please provide Lot/ID number</Text>
           <InputContainer>
-              <InputLabel htmlFor="Lot">Lot/ID #:</InputLabel>
-              <Input name="Lot" type="text" placeholder="Lot/ID" />
-              <FormError name="Lot" component='span' />
+              <InputLabel htmlFor="lot">lot/ID #:</InputLabel>
+              <Input name="lot" type="text" placeholder="Lot/ID" />
+              <FormError name="lot" component='span' />
           </InputContainer>
 
-          
 
-          
-
-<div style={{ position: 'relative' }} onClick={()=>setIsSignatureEmpty(false)}>
-          {isSignatureEmpty && (
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '14px',
-                color: 'gray',
-              }}
-            >
-              Click here to start signing
-            </div>
+          <Title>Client Signature</Title>
+          <SignatureContainer onClick={()=>setIsSignatureEmpty(false)}> {isSignatureEmpty && (
+            <SignaturePlaceholder>Click here to start signing</SignaturePlaceholder>
           )}
           <SignatureCanvas
-           canvasProps={{ width: 500, height: 200 }}
+           canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px'}}}
             ref={signatureRef}
             onEnd={handleCanvasChange}
             onBegin={()=>console.log('working...')}
             velocityFilterWeight={0.7}
             penWidth={2}
-            style={{ border: '1px solid #CCC' }}
-          />
-        </div>
-        <button type="button" onClick={clearSignature}>Clear Signature</button>
+          /></SignatureContainer>
+        <ClearBtn type="button" onClick={clearSignature}>Clear Signature</ClearBtn>
 
 
-        FOR CLIENTS UNDER 18
-
+        <Text>FOR CLIENTS UNDER 18</Text>
         <Title>Parental/Guardian Consent:</Title>
 
         <InputContainer>
@@ -368,10 +434,5 @@ const WaiverForm = ()=> {
       </Formik>
     );
 };
-
-// WaiverForm.propTypes = {
-//   onSubmit: PropTypes.func,
-//   contacts: PropTypes.array,
-// }
 
 export default WaiverForm;
