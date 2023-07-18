@@ -38,9 +38,26 @@ export const Input = styled(Field)`
     width: 20px;
     height: 20px;
     margin-right: 20px;
-
   }
 `;
+
+export const StyledSelect = styled.select`
+  font-size: 20px;
+  padding: 10px 15px;
+  border: 2px solid ${colors.textColorDarkBg};
+  border-radius: 10px;
+  outline: none;
+
+  &:focus {
+    border-color: ${colors.accentColor};
+    /* box-shadow: ${colors.accentColor} 0px 0px 5px 2px; */
+  }
+
+  &:hover {
+    border-color: ${colors.accentColor};
+  }
+`;
+
 
 export const CustomDatePicker = styled(DatePicker)`
 background-color: #f0f0f0;
