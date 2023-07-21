@@ -128,7 +128,7 @@ export const CheckboxLabel = styled.label`
 
 
 export const FlexContainer = styled.div`
- display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
@@ -157,29 +157,34 @@ export const SignaturePlaceholder = styled.div`
 `;
 
 export const SignatureContainer = styled.div`
-position: relative;
-margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 10px;
+`;
+
+export const Container = styled.div`
+ margin-top: 20px;
 `;
 
 
 export const ClearBtn = styled.button`
   padding: 6px 10px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
-  border: 1px solid rgba(255, 108, 0, 1);
+  border: 1px solid  ${colors.accentColor};
   border-radius: 25px;
   background: transparent;
   transition: background-color 250ms linear;
   cursor: pointer;
-  color:#fff;
-  background-color: rgba(255, 108, 0, 1);
+  color: ${colors.mainLightColor};
+  background-color:  ${colors.accentColor};
 
-  &:hover {
-    background-color: rgba(255, 108, 0, 1);
-    /* box-shadow: black 0px 0px 5px 2px; */
-    /* color: ${props => props.primary ? '#000' : '#fff'}; */
+  &:hover, &:focus {
+    border: 1px solid ${colors.textColorDarkBg};
+    background-color: ${colors.backgroundColor};
+    color: ${colors.accentColor};
+    border-radius: 25px;
   }
 
   &:disabled {
@@ -187,4 +192,42 @@ export const ClearBtn = styled.button`
     box-shadow: none;
     cursor: not-allowed;
   }
+`;
+
+export const ModalFormText = styled.p`
+  margin: 10px;
+  font-size: 18px;
+  line-height: 1.67;
+  letter-spacing: .02em;
+  color: ${colors.mainDarkColor};
+  text-align: justify;
+`;
+
+export const CloseBtn = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.33;
+  padding: 6px 10px;
+  color: ${colors.mainLightColor};
+  transition: background-color 250ms linear;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 25px;
+  border: 1px solid  ${colors.accentColor};
+  background-color:  ${colors.accentColor};
+
+  &:hover, &:focus {
+    border: 1px solid ${colors.textColorDarkBg};
+    background-color: ${colors.backgroundColor};
+    color: ${colors.accentColor};
+  }
+`;
+
+export const ModalFlex = styled.div`
+ display: flex;
+ align-items: center;
+ padding: 10px;
 `;

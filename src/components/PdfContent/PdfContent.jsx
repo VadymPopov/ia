@@ -143,7 +143,7 @@ const PdfContent = ({ values, isClientUnder18 }) => {
 const PdfPreview = ({ values, isClientUnder18 }) => {
 
   return (
-    <PDFViewer width="1000" height="600">
+    <PDFViewer width="800" height="500">
       <PdfContent values={values} isClientUnder18={isClientUnder18}></PdfContent>
     </PDFViewer>
   );

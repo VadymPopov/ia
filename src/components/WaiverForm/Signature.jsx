@@ -41,10 +41,10 @@ import { useField } from 'formik';
             {...props}
           />
         </SignatureContainer>
+        <FormError name={props.name} component="span" />
         <ClearBtn type="button" onClick={clearSignature}>
           Clear Signature
         </ClearBtn>
-        <FormError name={props.name} component="span" />
         </>
     );
   };

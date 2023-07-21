@@ -1,22 +1,40 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
 
 import SignatureField from "./Signature";
 
-import { FormWrapper, InputContainer, Input, CustomDatePicker, ClientInfo, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect } from "./WaiverForm.styled";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, ClientInfo, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container } from "./WaiverForm.styled";
 import  Button  from "components/Button";
 import {nameRegExp, phoneRegExp,emailRegExp, governmentId, FormError} from 'utils/formik';
 import styleDatepicker from './datepicker.css';
 import PdfPreview from "components/PdfContent/PdfContent";
 import { verifyClientLegalAge } from "./ageVerification";
-
+import Modal from "components/Modal/Modal";
 
 
 const WaiverForm = ()=> {
-  const [showPdfPreview, setShowPdfPreview] = useState(false);
+  // const [showPdfPreview, setShowPdfPreview] = useState(false);
   const [formValues, setFormValues] = useState(null);
   const [isClientUnder18, setIsClientUnder18] = useState(false);
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  useEffect(() => {
+    if (isOpenModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpenModal]);
+
+  const closeModal=()=> {
+      setIsOpenModal(false)
+    };
+  
+  const openModal = () => {
+      setIsOpenModal(true)
+    };
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().min(3).matches(nameRegExp, 'Enter a valid name').required('Name is a required field'),
@@ -78,7 +96,8 @@ const WaiverForm = ()=> {
     console.log(values);
     // actions.resetForm();
     setFormValues(values)
-    setShowPdfPreview(true);
+    // setShowPdfPreview(true);
+    openModal();
   };
 
   const initialValues = {
@@ -459,12 +478,24 @@ const WaiverForm = ()=> {
         <Title>Parental/Guardian Signature:</Title>
         <SignatureField  canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px'}}} label="parentalSignatureField" name="parentalSignatureField"/> 
         </>  
-        }      
+        }
 
-        <Button type="submit">Submit</Button> 
+        <Container>
+        <Button type="submit">Next</Button> 
+        </Container>
+        
         </FormWrapper>
       </Formik>
-      {showPdfPreview && <PdfPreview values={formValues} isClientUnder18={isClientUnder18} />}
+
+      {/* {showPdfPreview && <Modal onClose={closeModal}><PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>} */}
+
+      {isOpenModal && <Modal onClose={closeModal}>
+        <ModalFlex>
+          <ModalFormText>Double check the information and</ModalFormText>
+          <Button>Submit</Button>
+        </ModalFlex>
+        <CloseBtn onClick={closeModal}>Close</CloseBtn>
+        <PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>}
       </>
     );
 };
