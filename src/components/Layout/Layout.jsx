@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
 import  AppBar  from '../AppBar';
 import Footer from 'components/Footer/Footer';
 import { Suspense } from 'react';
@@ -15,8 +14,6 @@ const Layout = () => {
                 </Suspense>
             </Main>
             <Footer/>
-            
-            <Toaster position="top-right" reverseOrder={false} />
         </LayoutContainer>
      
     );
