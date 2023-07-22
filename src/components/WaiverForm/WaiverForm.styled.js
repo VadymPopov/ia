@@ -96,9 +96,7 @@ export const ButtonText = styled.div`
   gap: 5px;
 `;
 
-export const ClientInfo = styled.div`
- 
-`;
+
 
 export const Title = styled.h3`
   margin:20px 0;
@@ -230,4 +228,18 @@ export const ModalFlex = styled.div`
  display: flex;
  align-items: center;
  padding: 10px;
+`;
+
+export const Legend = styled.legend`
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.16;
+  letter-spacing: .05em;
+  color: ${colors.mainDarkColor};
+  text-align: start;
+`;
+
+export const FieldSet = styled.fieldset`
+ margin: 20px 0 ;
 `;

@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
 
 import SignatureField from "./Signature";
 
-import { FormWrapper, InputContainer, Input, CustomDatePicker, ClientInfo, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container } from "./WaiverForm.styled";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet } from "./WaiverForm.styled";
 import  Button  from "components/Button";
 import {nameRegExp, phoneRegExp,emailRegExp, governmentId, FormError} from 'utils/formik';
 import styleDatepicker from './datepicker.css';
@@ -12,12 +12,9 @@ import PdfPreview from "components/PdfContent/PdfContent";
 import { verifyClientLegalAge } from "./ageVerification";
 import Modal from "components/Modal/Modal";
 
-
 const WaiverForm = ()=> {
-  // const [showPdfPreview, setShowPdfPreview] = useState(false);
   const [formValues, setFormValues] = useState(null);
   const [isClientUnder18, setIsClientUnder18] = useState(false);
-
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
@@ -36,7 +33,8 @@ const WaiverForm = ()=> {
       setIsOpenModal(true)
     };
 
-  const validationSchema = Yup.object().shape({
+  const validationSchema = useMemo(() => {
+    return Yup.object().shape({
     name: Yup.string().min(3).matches(nameRegExp, 'Enter a valid name').required('Name is a required field'),
     email: Yup.string().matches(emailRegExp,'Enter a valid email').required('Email is a required field'),
     phone: Yup.string().matches(phoneRegExp, 'Enter a valid phone number').required('Phone number is a required field'),
@@ -89,18 +87,17 @@ const WaiverForm = ()=> {
       is: ()=> isClientUnder18 === true,
       then: (schema) => schema.matches(governmentId, 'Enter a valid government-issued ID number').required('Parental/Guardian Government ID is required.'),
       otherwise: (schema) => schema}
-      ),
-  });
+    ),
+  })}, [isClientUnder18]);
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
     // actions.resetForm();
     setFormValues(values)
-    // setShowPdfPreview(true);
     openModal();
   };
 
-  const initialValues = {
+  const initialValues =  useMemo(() => {
+  return {
     name:'Vadym',
     email: 'mailto@gmail.com',
     phone: '123456789',
@@ -132,7 +129,7 @@ const WaiverForm = ()=> {
     parentalName: '',
     parentGovernmentId: '',
     parentalSignatureField: '',
-  }
+  }},[]);
 
   // const initialValues = {
   //   name:'',
@@ -165,12 +162,6 @@ const WaiverForm = ()=> {
   //   signatureField: '',
   // }
 
-  // const generatePdfAndPreview = (values) => {
-  //   const pdfContent = <PdfContent values={values} />;
-  //   const pdfBlob = new Blob([pdfContent], { type: "application/pdf" });
-  //   const pdfUrl = URL.createObjectURL(pdfBlob);
-  //   window.open(pdfUrl, "_blank");
-  // };
 
     return (
       <>
@@ -181,9 +172,10 @@ const WaiverForm = ()=> {
       > 
 
         <FormWrapper autoComplete="off"> 
-        <Title>Client Information:</Title>
+        {/* <Title>Client Information:</Title> */}
 
-        <ClientInfo> 
+        <FieldSet> 
+        <Legend>Client Information:</Legend>
           <FlexContainer> 
          <InputContainer>
             <InputLabel htmlFor="name">Full Name</InputLabel>
@@ -243,10 +235,10 @@ const WaiverForm = ()=> {
               <FormError name="governmentId" component='span' />
           </InputContainer>
           </FlexContainer>  
-         </ClientInfo>
+         </FieldSet>
 
-          <Title>Description of Activity:</Title> 
-
+          <FieldSet>
+          <Legend>Description of Activity:</Legend> 
        <FlexContainer> 
          <InputContainer>
           <InputLabel>What service are you receiving ?</InputLabel>
@@ -288,19 +280,24 @@ const WaiverForm = ()=> {
           <FormError name="date" component="span" />
         </InputContainer>
         </FlexContainer> 
+        </FieldSet>
 
       <Text>In consideration of receiving a tattoo/permanent makeup (hereinafter referred to as the "tattoo") from ALINA IVENKO (hereinafter referred to as the "Tattoo Artist"), I voluntarily agree to the following terms and conditions. I acknowledge that the tattooing process involves inherent risks, uncertainties, and potential discomfort.</Text>
 
-        <Title>Waiver and Release:</Title>
+    
+        <FieldSet> 
+        <Legend>Waiver and Release:</Legend>
         <InputContainer>
               <CheckboxLabel htmlFor="waveRelease">
               <Input name="waveRelease" type="checkbox" id="waveRelease" />
               I WAIVE AND RELEASE to the fullest extent permitted by law the Tattoo Artist from all claims, demands, or liabilities arising from the tattooing process, including personal injury or any direct and/or consequential damages resulting from the application of my tattoo. This waiver includes any negligence or fault on the part of the Tattoo Artist.
               </CheckboxLabel>
               <FormError name="waveRelease" component='span' />
-          </InputContainer>  
+          </InputContainer>
+        </FieldSet>   
 
-         <Title>Assumption of Risk:</Title>
+        <FieldSet>
+        <Legend>Assumption of Risk</Legend>
         <Text> I have been fully informed of the inherent risks associated with getting a tattoo. Therefore, I fully understand and accept the potential risks, both known and unknown, involved in the tattooing process, including but are not limited to:</Text>
 
         <Title>Pain and Discomfort:</Title>
@@ -338,8 +335,10 @@ const WaiverForm = ()=> {
               </CheckboxLabel>
               <FormError name="outcome" component='span' />
           </InputContainer> 
+          </FieldSet>
 
-         <Title>No Refunds:</Title>
+        <FieldSet> 
+        <Legend>No Refunds:</Legend>
           <InputContainer>
               <CheckboxLabel htmlFor="refund">
               <Input name="refund" type="checkbox" id="refund" />
@@ -347,8 +346,10 @@ const WaiverForm = ()=> {
               </CheckboxLabel>
               <FormError name="refund" component='span' />
           </InputContainer> 
+        </FieldSet> 
 
-         <Title>Acknowledgement of Permanent Change:</Title>
+        <FieldSet> 
+        <Legend>Acknowledgement of Permanent Change:</Legend>
           <InputContainer>
               <CheckboxLabel htmlFor="permanentChange">
               <Input name="permanentChange" type="checkbox" id="permanentChange" />
@@ -356,8 +357,10 @@ const WaiverForm = ()=> {
               </CheckboxLabel>
               <FormError name="permanentChange" component='span' />
           </InputContainer> 
+          </FieldSet> 
 
-         <Title>Media Consent:</Title>
+          <FieldSet> 
+        <Legend>Media Consent:</Legend>
           <InputContainer>
               <CheckboxLabel htmlFor="media">
               <Input name="media" type="checkbox" id="media" />
@@ -365,8 +368,10 @@ const WaiverForm = ()=> {
               </CheckboxLabel>
               <FormError name="media" component='span' />
           </InputContainer> 
+          </FieldSet> 
 
-         <Title>Age and Identification:</Title>
+          <FieldSet> 
+        <Legend>Age and Identification:</Legend>
           <InputContainer>
               <CheckboxLabel htmlFor="age">
               <Input name="age" type="checkbox" id="age" />
@@ -374,8 +379,10 @@ const WaiverForm = ()=> {
               </CheckboxLabel>
               <FormError name="age" component='span' />
           </InputContainer> 
+          </FieldSet> 
 
-         <Title>Acknowledgement of Agreement:</Title>
+           <FieldSet> 
+        <Legend>Acknowledgement of Agreement:</Legend>
           <InputContainer>
               <CheckboxLabel htmlFor="agreement">
               <Input name="agreement" type="checkbox" id="agreement" />
@@ -383,9 +390,10 @@ const WaiverForm = ()=> {
               </CheckboxLabel>
               <FormError name="agreement" component='span' />
           </InputContainer> 
+          </FieldSet> 
 
-         <Title> Drugs/Alcohol and Medical Conditions:</Title>
-          <div>
+          <FieldSet>
+          <Legend> Drugs/Alcohol and Medical Conditions:</Legend>
             <InputContainer>
               <CheckboxLabel htmlFor="drugs">
               <Input name="drugs" type="checkbox" id="drugs" />
@@ -434,7 +442,7 @@ const WaiverForm = ()=> {
               </CheckboxLabel>
               <FormError name="pregnancy" component='span' />
             </InputContainer>
-          </div> 
+          </FieldSet> 
  
           <Text>If single-use presterilized equipment is used please provide Lot/ID number</Text>
           <InputContainer>
@@ -443,16 +451,15 @@ const WaiverForm = ()=> {
               <FormError name="lot" component='span' />
           </InputContainer> 
 
-          {!isClientUnder18 && <>
-          <Title>Client Signature:</Title>
+          {!isClientUnder18 && <FieldSet>
+          <Legend>Client Signature:</Legend>
           <SignatureField  canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px'}}} label="signatureField" name="signatureField"/>
-          </> }
+          </FieldSet> }
  
           {isClientUnder18 && 
-        <>
-       <Text style={{marginTop: 20}}>FOR CLIENTS UNDER 18</Text>
+        <FieldSet>
+       <Legend>FOR CLIENTS UNDER 18</Legend>
         <Title>Parental/Guardian Consent:</Title>
-
         <InputContainer>
               <CheckboxLabel htmlFor="parentalConsent">
               <Input name="parentalConsent" type="checkbox" id="parentalConsent" />
@@ -477,7 +484,7 @@ const WaiverForm = ()=> {
 
         <Title>Parental/Guardian Signature:</Title>
         <SignatureField  canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px'}}} label="parentalSignatureField" name="parentalSignatureField"/> 
-        </>  
+        </FieldSet>  
         }
 
         <Container>
@@ -486,8 +493,6 @@ const WaiverForm = ()=> {
         
         </FormWrapper>
       </Formik>
-
-      {/* {showPdfPreview && <Modal onClose={closeModal}><PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>} */}
 
       {isOpenModal && <Modal onClose={closeModal}>
         <ModalFlex>
