@@ -29,10 +29,10 @@ const Navigation = () => {
       <li><Link to="/booking">
         Booking
       </Link></li>
-      <li><Link to="/booking">
+      <li><Link to="/faq">
         FAQ
       </Link></li>
-      <li><Link to="/booking">
+      <li><Link to="/contact">
         Contact
       </Link></li>
       </List>

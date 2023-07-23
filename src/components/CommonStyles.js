@@ -50,3 +50,4 @@ export const Suptitle = styled.p`
 export const Container = styled.div`
     display: flex;
 `;
+

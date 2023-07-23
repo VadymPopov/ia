@@ -10,7 +10,8 @@ const PortfolioPage = lazy(() => import('../pages/Portfolio'));
 const ServicesPage = lazy(() => import('../pages/Services'));
 const WaiverformPage = lazy(() => import('../pages/Waiverform'));
 const BookingPage = lazy(() => import('../pages/Booking'));
-
+const FAQPage = lazy(() => import('../pages/FAQ'));
+const ContactPage = lazy(() => import('../pages/Contact'));
 
 export const App = () => {
   return (
@@ -26,6 +27,8 @@ export const App = () => {
         <Route path='/services'   element={<ServicesPage/>}/>
         <Route path='/waiverform'   element={<WaiverformPage/>}/>
         <Route path='/booking'   element={<BookingPage/>}/>
+        <Route path='/faq'   element={<FAQPage/>}/>
+        <Route path='/contact'   element={<ContactPage/>}/>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

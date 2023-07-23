@@ -2,15 +2,16 @@ import React, {useState, useEffect, useMemo} from "react";
 import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
 
-import SignatureField from "./Signature";
-
-import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet } from "./WaiverForm.styled";
+import SignatureField from "components/Signature";
 import  Button  from "components/Button";
+import PdfPreview from "components/PdfContent";
+import Modal from "components/Modal";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet } from "./WaiverForm.styled";
+
 import {nameRegExp, phoneRegExp,emailRegExp, governmentId, FormError} from 'utils/formik';
 import styleDatepicker from './datepicker.css';
-import PdfPreview from "components/PdfContent/PdfContent";
 import { verifyClientLegalAge } from "./ageVerification";
-import Modal from "components/Modal/Modal";
+
 
 const WaiverForm = ()=> {
   const [formValues, setFormValues] = useState(null);
@@ -170,10 +171,7 @@ const WaiverForm = ()=> {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       > 
-
         <FormWrapper autoComplete="off"> 
-        {/* <Title>Client Information:</Title> */}
-
         <FieldSet> 
         <Legend>Client Information:</Legend>
           <FlexContainer> 
@@ -451,13 +449,13 @@ const WaiverForm = ()=> {
               <FormError name="lot" component='span' />
           </InputContainer> 
 
-          {!isClientUnder18 && <FieldSet>
+        {!isClientUnder18 && <FieldSet>
           <Legend>Client Signature:</Legend>
           <SignatureField  canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px'}}} label="signatureField" name="signatureField"/>
-          </FieldSet> }
+          </FieldSet>}
  
-          {isClientUnder18 && 
-        <FieldSet>
+        {isClientUnder18 && 
+       <FieldSet>
        <Legend>FOR CLIENTS UNDER 18</Legend>
         <Title>Parental/Guardian Consent:</Title>
         <InputContainer>

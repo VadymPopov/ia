@@ -96,13 +96,11 @@ export const ButtonText = styled.div`
   gap: 5px;
 `;
 
-
-
 export const Title = styled.h3`
   margin:20px 0;
   font-family: "Raleway", sans-serif;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.16;
   letter-spacing: .05em;
   color: ${colors.mainDarkColor};
@@ -141,55 +139,8 @@ export const Text = styled.p`
   text-align: justify;
 `;
 
-export const SignaturePlaceholder = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: ${colors.textColorDarkBg};
-`;
-
-export const SignatureContainer = styled.div`
-  position: relative;
-  margin-bottom: 10px;
-`;
-
 export const Container = styled.div`
  margin-top: 20px;
-`;
-
-
-export const ClearBtn = styled.button`
-  padding: 6px 10px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 1.33;
-  text-transform: uppercase;
-  border: 1px solid  ${colors.accentColor};
-  border-radius: 25px;
-  background: transparent;
-  transition: background-color 250ms linear;
-  cursor: pointer;
-  color: ${colors.mainLightColor};
-  background-color:  ${colors.accentColor};
-
-  &:hover, &:focus {
-    border: 1px solid ${colors.textColorDarkBg};
-    background-color: ${colors.backgroundColor};
-    color: ${colors.accentColor};
-    border-radius: 25px;
-  }
-
-  &:disabled {
-    background: #dddddd;
-    box-shadow: none;
-    cursor: not-allowed;
-  }
 `;
 
 export const ModalFormText = styled.p`
@@ -242,4 +193,6 @@ export const Legend = styled.legend`
 
 export const FieldSet = styled.fieldset`
  margin: 20px 0 ;
+ border-radius: 20px;
+ border: 2px solid ${colors.textColorDarkBg};
 `;
