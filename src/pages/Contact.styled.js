@@ -30,3 +30,8 @@ export const Link = styled.a`
   letter-spacing: .02em;
   text-align: justify;
 `;
+
+export const FlexItem = styled.div`
+  flex: 1;
+`;
+

@@ -4,19 +4,24 @@ import * as Yup from 'yup';
 
 import SignatureField from "components/Signature";
 import  Button  from "components/Button";
-import PdfPreview from "components/PdfContent";
+import PdfPreview from "components/PdfPreview";
 import Modal from "components/Modal";
 import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet } from "./WaiverForm.styled";
 
 import {nameRegExp, phoneRegExp,emailRegExp, governmentId, FormError} from 'utils/formik';
 import styleDatepicker from './datepicker.css';
 import { verifyClientLegalAge } from "./ageVerification";
+import PdfContent from "components/PdfContent";
+import { usePDF } from '@react-pdf/renderer';
+import { sendFileToBackend } from "./sendAxios";
+
 
 
 const WaiverForm = ()=> {
   const [formValues, setFormValues] = useState(null);
   const [isClientUnder18, setIsClientUnder18] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [instance, update] = usePDF({ });
 
   useEffect(() => {
     if (isOpenModal) {
@@ -91,9 +96,10 @@ const WaiverForm = ()=> {
     ),
   })}, [isClientUnder18]);
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     // actions.resetForm();
-    setFormValues(values)
+    setFormValues(values);
+    update(<PdfContent values={values} isClientUnder18={isClientUnder18}/>)
     openModal();
   };
 
@@ -103,7 +109,7 @@ const WaiverForm = ()=> {
     email: 'mailto@gmail.com',
     phone: '123456789',
     governmentId: '123456789',
-    dob:"",
+    dob:new Date(1995,4,15),
     address: '123 Main street',
     service:'Tattoo',
     bodyPart: 'hand',
@@ -131,38 +137,6 @@ const WaiverForm = ()=> {
     parentGovernmentId: '',
     parentalSignatureField: '',
   }},[]);
-
-  // const initialValues = {
-  //   name:'',
-  //   email: '',
-  //   phone: '',
-  //   governmentId: '',
-  //   dob: '',
-  //   address: '',
-  //   service:'',
-  //   bodyPart: '',
-  //   design:'',
-  //   date: new Date(),
-  //   waveRelease: false,
-  //   pain: false,
-  //   infection: false,
-  //   healing: false,
-  //   outcome: false,
-  //   refund: false,
-  //   permanentChange: false,
-  //   media: false,
-  //   age: false,
-  //   agreement: false,
-  //   drugs: false,
-  //   desease: false,
-  //   medication: false,
-  //   skin: false,
-  //   recipientOrgan: false,
-  //   pregnancy: false,
-  //   lot: '',
-  //   signatureField: '',
-  // }
-
 
     return (
       <>
@@ -495,7 +469,7 @@ const WaiverForm = ()=> {
       {isOpenModal && <Modal onClose={closeModal}>
         <ModalFlex>
           <ModalFormText>Double check the information and</ModalFormText>
-          <Button>Submit</Button>
+          <Button onClick={()=>sendFileToBackend({file: instance.blob, email:formValues.email, name:formValues.name, phone:formValues.phone, address:formValues.address})}>Submit</Button>
         </ModalFlex>
         <CloseBtn onClick={closeModal}>Close</CloseBtn>
         <PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>}

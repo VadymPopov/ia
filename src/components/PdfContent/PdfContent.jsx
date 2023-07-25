@@ -1,6 +1,6 @@
 import React from "react";
-import { Page, Document, Text, View, Image, PDFViewer  } from "@react-pdf/renderer";
-import {styles} from './PdfContent.stylesheet'
+import { Page, Document, Text, View, Image  } from "@react-pdf/renderer";
+import {styles} from './PdfContent.stylesheet';
 import { format } from 'date-fns';
 
 const PdfContent = ({ values, isClientUnder18 }) => {
@@ -140,13 +140,12 @@ const PdfContent = ({ values, isClientUnder18 }) => {
   );
 };
 
-const PdfPreview = ({ values, isClientUnder18 }) => {
+// const PdfPreview = ({ values, isClientUnder18 }) => {
+//   return (
+//     <PDFViewer width="800" height="500">
+//       <PdfContent values={values} isClientUnder18={isClientUnder18}></PdfContent>
+//     </PDFViewer>
+//   );
+// };
 
-  return (
-    <PDFViewer width="800" height="500">
-      <PdfContent values={values} isClientUnder18={isClientUnder18}></PdfContent>
-    </PDFViewer>
-  );
-};
-
-export default PdfPreview;
+export default PdfContent;
