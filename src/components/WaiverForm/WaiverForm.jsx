@@ -15,8 +15,6 @@ import PdfContent from "components/PdfContent";
 import { usePDF } from '@react-pdf/renderer';
 import { sendFileToBackend } from "./sendAxios";
 
-
-
 const WaiverForm = ()=> {
   const [formValues, setFormValues] = useState(null);
   const [isClientUnder18, setIsClientUnder18] = useState(false);

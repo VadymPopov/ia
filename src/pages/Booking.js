@@ -1,7 +1,8 @@
+import BookingForm from "components/BookingForm/BookingForm";
 export default function Booking() {
     return (
     <>
-       <p>Booking</p>
+    <BookingForm/>
     </>
     );
 }
