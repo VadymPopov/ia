@@ -26,7 +26,7 @@ const Navigation = () => {
       <li><Link to="/waiverform">
         Waiverform
       </Link></li>
-      <li><Link to="/booking">
+      <li><Link to="/booking/small-tattoo">
         Booking
       </Link></li>
       <li><Link to="/faq">

@@ -1,6 +1,7 @@
 import Button from 'components/Button/Button';
 import { Card, Image, Item, Description, CardTitle,CardFooter } from './Services.styled';
 import { Title, Text } from 'components/CommonStyles';
+import { useNavigate } from "react-router-dom";
 
 import smallTattoo from '../images/small-tattoo.jpg';
 import largeTattoo from '../images/large-tattoo.jpg';
@@ -8,6 +9,8 @@ import permanent from '../images/permanent.jpg';
 import touchUp from '../images/touch-up.jpg';
 
 export default function Services() {
+    const navigate = useNavigate();
+
     return (
     <ul>
         <Item>
@@ -20,7 +23,7 @@ export default function Services() {
                         <p>Size: up to 12 cm</p>
                         <p>Duration: 1.2h</p>
                     </Description>
-                    <Button primary>Book now</Button>
+                    <Button primary onClick={()=>navigate('/booking/small-tattoo')}>Book now</Button>
                 </CardFooter>
             </Card>
             <div>
@@ -43,7 +46,7 @@ export default function Services() {
                     <p>Size: more than 12 cm and detailed</p>
                     <p>Duration: 3h</p>
                 </Description>
-                <Button primary>Book now</Button>
+                <Button primary onClick={()=>navigate('/booking/large-tattoo')}>Book now</Button>
                 </CardFooter>
             </Card>
             <div>
@@ -62,7 +65,7 @@ export default function Services() {
                     <CardTitle>Consultation/Touch-up</CardTitle>
                     <p>Duration: 30min</p>
                 </Description>
-                <Button primary>Book now</Button></CardFooter>
+                <Button primary onClick={()=>navigate('/booking/consultation-touch-up')}>Book now</Button></CardFooter>
             </Card>
             <div>
                 <div>
@@ -91,7 +94,7 @@ export default function Services() {
                     <p>Price is fixed CA$280</p>
                     <p>Duration: 1h-3h</p>
                 </Description>
-                <Button primary>Book now</Button>
+                <Button primary onClick={()=>navigate('/booking/permanent')}>Book now</Button>
                 </CardFooter>
             </Card>
             <div>

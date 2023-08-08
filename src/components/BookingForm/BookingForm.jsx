@@ -3,19 +3,38 @@ import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
 
 import  Button  from "components/Button";
-import { FormWrapper, InputContainer, Input,  Title, InputLabel, FlexContainer, Text,  StyledSelect, Container, Legend, FieldSet } from "./BookingForm.styled";
-import { CustomDatePicker } from 'components/WaiverForm/WaiverForm.styled';
+import { FormWrapper, SlotBtn, GridContainer, CustomDatePicker, ServiceContainer } from "./BookingForm.styled";
+import {  InputContainer, Input,  Title, InputLabel, FlexContainer, Text,  StyledSelect, Container, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
 
 import {nameRegExp, phoneRegExp, emailRegExp, FormError} from 'utils/formik';
+import styleDatepickerBooking from './datepicker-book.css';
 
-import {SlotBtn, GridContainer} from '../Booking/Booking.styled';
-import styleDatepicker from '../WaiverForm/datepicker.css';
+import { format } from 'date-fns';
+import { useParams } from "react-router-dom";
 
 const BookingForm = ()=> {
   const [formValues, setFormValues] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
-const [activeButtonIndex, setActiveButtonIndex] = useState(null);
-const [selectedDate, setSelectedDate] = useState(null);
+  const [activeButtonIndex, setActiveButtonIndex] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const initialService = (selectedService)=> {
+    switch (selectedService) {
+      case 'small-tattoo':
+        return "Small Tattoo";
+      case 'large-tattoo':
+        return "Large Tattoo";
+      case 'permanent':
+        return "Permanent Makeup";
+      case 'consultation-touch-up':
+       return "Consultation/Touch-up"
+      default:
+        return "Small Tattoo";
+    }
+  }
+
+  const [selectedService, setSelectedService] = useState(initialService);
+  const { serviceName } = useParams();
 
   const validationSchema = () => {
     return Yup.object().shape({
@@ -25,6 +44,34 @@ const [selectedDate, setSelectedDate] = useState(null);
     service: Yup.string().required("Service is required"),
     })
   };
+
+  
+  const calculatePrice = (selectedProcedure)=> {
+    let price;
+
+    switch (selectedProcedure) {
+      case 'Small Tattoo':
+        price = 100;
+        break;
+      case 'Large Tattoo':
+        price = 120;
+        break;
+      case 'Permanent Makeup':
+        price = 100;
+        break;
+      case 'Consultation/Touch-up':
+        price = 0;
+        break;
+      default:
+      price = 0;
+    }
+  
+    return price;
+  }
+
+  const price = calculatePrice(selectedService) || 0;
+  const tax = Number((price*0.13).toFixed(2)) || 0;
+  const totalPrice = price + tax;
 
   const timeSlots = [
     '11:00am',
@@ -53,7 +100,7 @@ const [selectedDate, setSelectedDate] = useState(null);
       setSelectedSlot(null);
     } else {
       setActiveButtonIndex(index);
-      setSelectedSlot(index);
+      setSelectedSlot(slot);
       form.setFieldValue(field.name, slot)
     }
   };
@@ -63,9 +110,10 @@ const [selectedDate, setSelectedDate] = useState(null);
     name:'Dope',
     email: 'mail@dope.com',
     phone: '123456789',
-    service:'Small Tattoo',
+    service: initialService(serviceName),
     date: new Date(),
-  }},[]);
+    slot: '', 
+  }},[serviceName]);
 
     return (
       <>
@@ -75,6 +123,7 @@ const [selectedDate, setSelectedDate] = useState(null);
         onSubmit={handleSubmit}
       > 
         <FormWrapper autoComplete="off"> 
+        <div>
         <FieldSet> 
         <Legend>Fill out your information:</Legend>
 
@@ -84,23 +133,22 @@ const [selectedDate, setSelectedDate] = useState(null);
               <Input name="name" type="text"  placeholder="John Doe" title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan" />
               <FormError name="name" component='span' />
           </InputContainer>
-      </FlexContainer>  
-
-      <FlexContainer>
-        <InputContainer>
-        <InputLabel>Phone number</InputLabel>
-              <Input name="phone" type="tel" placeholder="5551234567"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +" />
-              <FormError name="phone" component='span'/>
-          </InputContainer>
 
           <InputContainer>
           <InputLabel>Email</InputLabel>
               <Input name="email" type="email" placeholder="john.doe@example.com" title="Email must contain an “@” symbol before the domain" />
               <FormError name="email" component='span'/>
           </InputContainer>
-                    
-      </FlexContainer>   
+      </FlexContainer>  
+
+      {/* <FlexContainer> */}
+        <InputContainer>
+        <InputLabel>Phone number</InputLabel>
+              <Input name="phone" type="tel" placeholder="5551234567"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +" />
+              <FormError name="phone" component='span'/>
+          </InputContainer>     
+      {/* </FlexContainer>    */}
       </FieldSet>
 
       <FieldSet>
@@ -108,11 +156,14 @@ const [selectedDate, setSelectedDate] = useState(null);
        <FlexContainer> 
          <InputContainer>
           <InputLabel>What service are you receiving ?</InputLabel>
-              <Field name="service" as={StyledSelect}>
+              <Field name="service" as={StyledSelect} onChange={(e) => {
+              const selectedValue = e.target.value;
+              setSelectedService(selectedValue)
+            }}>
                 <option value="">Select a service</option>
                 <option value="Small Tattoo">Small Tattoo</option>
                 <option value="Large Tattoo">Large Tattoo</option>
-                <option value="Permanent Makeup (Cosmetic Tattoo)">Permanent Makeup (Cosmetic Tattoo)</option>
+                <option value="Permanent Makeup">Permanent Makeup (Cosmetic Tattoo)</option>
                 <option value="Consultation/Touch-up">Consultation/Touch-up</option>
               </Field>
               <FormError name="service" component='span' />
@@ -120,7 +171,9 @@ const [selectedDate, setSelectedDate] = useState(null);
          </FlexContainer> 
       </FieldSet>
 
-<InputLabel>Date</InputLabel>
+      <FieldSet> 
+        <Legend>Choose a time:</Legend>
+      {/* <InputLabel>Date</InputLabel> */}
           <Input name="date">
             {({ field, form }) => (
               <CustomDatePicker
@@ -131,30 +184,49 @@ const [selectedDate, setSelectedDate] = useState(null);
                 minDate={new Date()}
                 maxDate={maxDate}
                 dateFormat="dd/MM/yyyy"
-                className={styleDatepicker}
+                className={styleDatepickerBooking}
                 inline
               />
             )}
           </Input>
           <FormError name="date" component="span" />
 
-<InputLabel>Time slot</InputLabel>
+        {/* <InputLabel>{selectedDate && format(selectedDate, 'MMMM dd, yyyy')}</InputLabel> */}
+
+        <p>{selectedDate && format(selectedDate, 'MMMM dd, yyyy')}</p>
           <Input name="slot">
             {({ field, form }) => (
               <GridContainer>
               {selectedDate && timeSlots.map((slot, index) => (
-                    <SlotBtn type='button' key={index} onClick={()=>handleButtonClick(slot, form, index, field)} active={activeButtonIndex === index ? index : null}>
-                      {slot}
+                    <SlotBtn type='button' key={index} onClick={()=>handleButtonClick(slot, form, index, field)} active={activeButtonIndex === index ? index.toString() : null}>
+                    {slot}
                     </SlotBtn>
                   ))} 
               </GridContainer>
             )}
           </Input>
           <FormError name="slot" component="span" />
-        <Container>
+
+          </FieldSet>
+          </div>
+
+          <ServiceContainer>
+            <p>Service Details</p>
+            {selectedService && <p>{selectedService} Appointment Deposit</p> }
+     
+            <p>{selectedSlot && format(selectedDate, 'MMMM dd, yyyy')} {selectedSlot && <span>at {selectedSlot}</span>}</p>
+
+            <p>Payment Details</p>
+            <p>Subtotal</p>
+            <p>{price}</p>
+            <p>Tax</p>
+            <p>{tax}</p>
+            <p>Total</p>
+            <p>{totalPrice}</p>
+            <Container>
         <Button type="submit">Next</Button> 
         </Container>
-        
+          </ServiceContainer>
         </FormWrapper>
       </Formik>
       </>

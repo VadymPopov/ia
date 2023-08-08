@@ -26,7 +26,7 @@ export const App = () => {
         <Route path='/portfolio'  element={<PortfolioPage/>}/>
         <Route path='/services'   element={<ServicesPage/>}/>
         <Route path='/waiverform'   element={<WaiverformPage/>}/>
-        <Route path='/booking'   element={<BookingPage/>}/>
+        <Route path='/booking/:serviceName'   element={<BookingPage/>}/>
         <Route path='/faq'   element={<FAQPage/>}/>
         <Route path='/contact'   element={<ContactPage/>}/>
         <Route path="*" element={<Navigate to="/" replace />} />

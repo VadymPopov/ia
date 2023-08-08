@@ -1,5 +1,5 @@
 import { Text, Title, Section } from "components/CommonStyles";
-import {  Item, List, Question,LinkTo } from "pages/FAQ.styled";
+import {  Item, List, Question, LinkTo } from "pages/FAQ.styled";
 
 
 export default function FAQ() {
