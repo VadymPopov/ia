@@ -10,13 +10,14 @@ import {nameRegExp, phoneRegExp, emailRegExp, FormError} from 'utils/formik';
 import styleDatepickerBooking from './datepicker-book.css';
 
 import { format } from 'date-fns';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const BookingForm = ()=> {
   const [formValues, setFormValues] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+  const navigate = useNavigate();
 
   const initialService = (selectedService)=> {
     switch (selectedService) {
@@ -33,8 +34,25 @@ const BookingForm = ()=> {
     }
   }
 
-  const [selectedService, setSelectedService] = useState(initialService);
+  const serviceToURL = (selectedService)=> {
+    switch (selectedService) {
+      case "Small Tattoo":
+        return 'small-tattoo';
+      case "Large Tattoo":
+        return 'large-tattoo';
+      case "Permanent Makeup":
+        return 'permanent';
+      case "Consultation/Touch-up":
+        return 'consultation-touch-up'
+      default:
+        return 'small-tattoo';
+    }
+  }
+
   const { serviceName } = useParams();
+
+  const [selectedService, setSelectedService] = useState(initialService(serviceName));
+
 
   const validationSchema = () => {
     return Yup.object().shape({
@@ -101,7 +119,7 @@ const BookingForm = ()=> {
     } else {
       setActiveButtonIndex(index);
       setSelectedSlot(slot);
-      form.setFieldValue(field.name, slot)
+      form.setFieldValue(field.name, slot);
     }
   };
 
@@ -111,6 +129,7 @@ const BookingForm = ()=> {
     email: 'mail@dope.com',
     phone: '123456789',
     service: initialService(serviceName),
+    // service: '',
     date: new Date(),
     slot: '', 
   }},[serviceName]);
@@ -156,11 +175,12 @@ const BookingForm = ()=> {
        <FlexContainer> 
          <InputContainer>
           <InputLabel>What service are you receiving ?</InputLabel>
-              <Field name="service" as={StyledSelect} onChange={(e) => {
+              <Field name="service" value={selectedService} as={StyledSelect} onChange={(e) => {
               const selectedValue = e.target.value;
-              setSelectedService(selectedValue)
+              setSelectedService(selectedValue);
+              navigate(`/booking/${serviceToURL(selectedValue)}`);
             }}>
-                <option value="">Select a service</option>
+                {/* <option value="">Select a service</option> */}
                 <option value="Small Tattoo">Small Tattoo</option>
                 <option value="Large Tattoo">Large Tattoo</option>
                 <option value="Permanent Makeup">Permanent Makeup (Cosmetic Tattoo)</option>
@@ -173,7 +193,6 @@ const BookingForm = ()=> {
 
       <FieldSet> 
         <Legend>Choose a time:</Legend>
-      {/* <InputLabel>Date</InputLabel> */}
           <Input name="date">
             {({ field, form }) => (
               <CustomDatePicker
@@ -190,8 +209,6 @@ const BookingForm = ()=> {
             )}
           </Input>
           <FormError name="date" component="span" />
-
-        {/* <InputLabel>{selectedDate && format(selectedDate, 'MMMM dd, yyyy')}</InputLabel> */}
 
         <p>{selectedDate && format(selectedDate, 'MMMM dd, yyyy')}</p>
           <Input name="slot">
@@ -212,17 +229,20 @@ const BookingForm = ()=> {
 
           <ServiceContainer>
             <p>Service Details</p>
-            {selectedService && <p>{selectedService} Appointment Deposit</p> }
+            {selectedService && <p>{selectedService} Appointment {selectedService === "Consultation/Touch-up" ? '' : "Deposit"}</p>}
      
             <p>{selectedSlot && format(selectedDate, 'MMMM dd, yyyy')} {selectedSlot && <span>at {selectedSlot}</span>}</p>
 
-            <p>Payment Details</p>
-            <p>Subtotal</p>
-            <p>{price}</p>
-            <p>Tax</p>
-            <p>{tax}</p>
-            <p>Total</p>
-            <p>{totalPrice}</p>
+           {selectedService !== "Consultation/Touch-up" && <div>
+              <p>Payment Details</p>
+              <p>Subtotal</p>
+              <p>{price}</p>
+              <p>Tax</p>
+              <p>{tax}</p>
+              <p>Total</p>
+              <p>{totalPrice}</p>
+            </div>}
+           
             <Container>
         <Button type="submit">Next</Button> 
         </Container>

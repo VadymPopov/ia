@@ -2,6 +2,7 @@ import { useEffect, lazy } from "react";
 import Layout  from "./Layout";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { GlobalStyle } from "../components/GlobalStyles";
+import ScrollToTop from "./ScrollToTop/ScrollToTop";
 
 const AboutPage = lazy(() => import('../pages/About'));
 const AftercarePage = lazy(() => import('../pages/Aftercare'));
@@ -17,8 +18,9 @@ export const App = () => {
   return (
     <>
     <GlobalStyle/>
-
+    <ScrollToTop></ScrollToTop>
     <Routes>
+      
       <Route path='/' element={<Layout/>}>
         <Route index element={<HomePage/>}/>
         <Route path='/about'  element={<AboutPage/>}/>

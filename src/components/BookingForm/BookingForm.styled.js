@@ -18,6 +18,7 @@ export const CustomDatePicker = styled(DatePicker)`
   border: 2px solid ${colors.textColorDarkBg};
   border-radius: 10px;
   outline: none;
+  min-width: 430px;
 `;
 
 export const SlotBtn = styled.button`
@@ -49,9 +50,11 @@ export const SlotBtn = styled.button`
 export  const GridContainer = styled.div`
   display: grid;
   width: 400px;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
+  grid-template-columns: 90px 90px 90px 90px;
+  gap: 13px;
+  margin: 0 auto;
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const ServiceContainer = styled.div`

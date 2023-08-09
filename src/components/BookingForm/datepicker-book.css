@@ -1,6 +1,5 @@
 .react-datepicker {
     background-color:#fff;
-    width: 400px;
     font-family: inherit;
     border: transparent ;
     border-radius: 8px;
@@ -91,6 +90,8 @@
     color: rgba(255, 108, 0, 1);
     font-weight: 700;
     background-color: transparent;
+    border: 1px solid #303030;
+    border-radius: 50%;
 }
 
 .react-datepicker__day--keyboard-selected {
