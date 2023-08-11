@@ -14,7 +14,7 @@ export default function Contact() {
     <FlexItem>
       <Flex>
       <StyledIcon as={FiMapPin}/>
-      <Label>240 Queen St W 3rd floor, Toronto, ON M5V 1Z7</Label> 
+      <Label>309 King St W 2rd floor, Toronto, ON M5V 1J5</Label> 
       </Flex>
        <Flex>
        <StyledIcon as={FiPhone}/><Link href="tel:+14372541559">(437) 254-1559</Link>
@@ -25,7 +25,7 @@ export default function Contact() {
       </Flex>
       <Flex>
       <StyledIcon as={TfiTime}/>
-      <Label>Mon - Sat: 1PM - 8PM</Label>
+      <Label>Mon - Sat: 12PM - 6PM</Label>
       </Flex>
     </FlexItem>
     <FlexItem><EmbeddedMap/></FlexItem>

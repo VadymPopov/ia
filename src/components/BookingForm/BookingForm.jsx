@@ -3,8 +3,8 @@ import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
 
 import  Button  from "components/Button";
-import { FormWrapper, SlotBtn, GridContainer, CustomDatePicker, ServiceContainer } from "./BookingForm.styled";
-import {  InputContainer, Input,  Title, InputLabel, FlexContainer, Text,  StyledSelect, Container, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
+import { FormWrapper, SlotBtn, GridContainer, CustomDatePicker, ServiceContainer, ServiceTitle,ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider } from "./BookingForm.styled";
+import {  InputContainer, Input, InputLabel, FlexContainer,  StyledSelect, Container, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
 
 import {nameRegExp, phoneRegExp, emailRegExp, FormError} from 'utils/formik';
 import styleDatepickerBooking from './datepicker-book.css';
@@ -60,6 +60,7 @@ const BookingForm = ()=> {
     email: Yup.string().matches(emailRegExp,'Enter a valid email').required('Email is a required field'),
     phone: Yup.string().matches(phoneRegExp, 'Enter a valid phone number').required('Phone number is a required field'),
     service: Yup.string().required("Service is required"),
+    slot: Yup.string().required("Date and Time is required"),
     })
   };
 
@@ -129,7 +130,6 @@ const BookingForm = ()=> {
     email: 'mail@dope.com',
     phone: '123456789',
     service: initialService(serviceName),
-    // service: '',
     date: new Date(),
     slot: '', 
   }},[serviceName]);
@@ -228,22 +228,33 @@ const BookingForm = ()=> {
           </div>
 
           <ServiceContainer>
-            <p>Service Details</p>
-            {selectedService && <p>{selectedService} Appointment {selectedService === "Consultation/Touch-up" ? '' : "Deposit"}</p>}
+            <ServiceTitle>Service Details</ServiceTitle>
+            <ServiceDivider>
+            {selectedService && <ServiceText>{selectedService} Appointment {selectedService === "Consultation/Touch-up" ? '' : "Deposit"}</ServiceText>}
      
-            <p>{selectedSlot && format(selectedDate, 'MMMM dd, yyyy')} {selectedSlot && <span>at {selectedSlot}</span>}</p>
+            <ServiceText>{selectedSlot && format(selectedDate, 'MMMM dd, yyyy')} {selectedSlot && <span>at {selectedSlot}</span>}</ServiceText>
+            </ServiceDivider>
 
-           {selectedService !== "Consultation/Touch-up" && <div>
-              <p>Payment Details</p>
-              <p>Subtotal</p>
-              <p>{price}</p>
-              <p>Tax</p>
-              <p>{tax}</p>
+           {selectedService !== "Consultation/Touch-up" && <PaymentContainer>
+            <ServiceTitle>Payment Details</ServiceTitle>
+            <PaymentDivider>
+            <PriceContainer>
+              <ServiceText>Subtotal</ServiceText>
+              <ServiceText>CA${price}</ServiceText>
+            </PriceContainer>
+            <PriceContainer>
+              <ServiceText>Tax</ServiceText>
+              <ServiceText>CA${tax}</ServiceText>
+            </PriceContainer>
+            </PaymentDivider>
+      
+            <PriceContainer>
               <p>Total</p>
-              <p>{totalPrice}</p>
-            </div>}
-           
+              <p>CA${totalPrice}</p>
+            </PriceContainer>
+            </PaymentContainer>}
             <Container>
+              
         <Button type="submit">Next</Button> 
         </Container>
           </ServiceContainer>
