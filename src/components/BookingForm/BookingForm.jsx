@@ -1,69 +1,25 @@
-import React, {useState, useEffect, useMemo} from "react";
+import React, {useState, useEffect} from "react";
 import {Formik, Field} from 'formik';
-import * as Yup from 'yup';
+import { format } from 'date-fns';
+import { useNavigate, useLocation } from "react-router-dom";
+import { bookAppointment } from "api";
+import {validationSchemaBooking, FormError} from 'utils/formik';
 
 import  Button  from "components/Button";
 import { FormWrapper, SlotBtn, GridContainer, CustomDatePicker, ServiceContainer, ServiceTitle,ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider } from "./BookingForm.styled";
 import {  InputContainer, Input, InputLabel, FlexContainer,  StyledSelect, Container, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
-
-import {nameRegExp, phoneRegExp, emailRegExp, FormError} from 'utils/formik';
+import Payment from "components/Payment/Payment";
 import styleDatepickerBooking from './datepicker-book.css';
 
-import { format } from 'date-fns';
-import { useParams, useNavigate } from "react-router-dom";
-
 const BookingForm = ()=> {
-  const [formValues, setFormValues] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const initialService = (selectedService)=> {
-    switch (selectedService) {
-      case 'small-tattoo':
-        return "Small Tattoo";
-      case 'large-tattoo':
-        return "Large Tattoo";
-      case 'permanent':
-        return "Permanent Makeup";
-      case 'consultation-touch-up':
-       return "Consultation/Touch-up"
-      default:
-        return "Small Tattoo";
-    }
-  }
-
-  const serviceToURL = (selectedService)=> {
-    switch (selectedService) {
-      case "Small Tattoo":
-        return 'small-tattoo';
-      case "Large Tattoo":
-        return 'large-tattoo';
-      case "Permanent Makeup":
-        return 'permanent';
-      case "Consultation/Touch-up":
-        return 'consultation-touch-up'
-      default:
-        return 'small-tattoo';
-    }
-  }
-
-  const { serviceName } = useParams();
-
-  const [selectedService, setSelectedService] = useState(initialService(serviceName));
-
-
-  const validationSchema = () => {
-    return Yup.object().shape({
-    name: Yup.string().min(3).matches(nameRegExp, 'Enter a valid name').required('Name is a required field'),
-    email: Yup.string().matches(emailRegExp,'Enter a valid email').required('Email is a required field'),
-    phone: Yup.string().matches(phoneRegExp, 'Enter a valid phone number').required('Phone number is a required field'),
-    service: Yup.string().required("Service is required"),
-    slot: Yup.string().required("Date and Time is required"),
-    })
-  };
-
+  const [selectedService, setSelectedService] = useState(location.state);
+  console.log(selectedService);
   
   const calculatePrice = (selectedProcedure)=> {
     let price;
@@ -88,6 +44,29 @@ const BookingForm = ()=> {
     return price;
   }
 
+  const pickDuration = (selectedProcedure)=> {
+    let duration;
+
+    switch (selectedProcedure) {
+      case 'Small Tattoo':
+        duration = 2;
+        break;
+      case 'Large Tattoo':
+        duration = 4;
+        break;
+      case 'Permanent Makeup':
+        duration = 2;
+        break;
+      case 'Consultation/Touch-up':
+        duration = 1;
+        break;
+      default:
+      duration = 2;
+    }
+  
+    return duration;
+  }
+
   const price = calculatePrice(selectedService) || 0;
   const tax = Number((price*0.13).toFixed(2)) || 0;
   const totalPrice = price + tax;
@@ -105,9 +84,22 @@ const BookingForm = ()=> {
     '8:00pm'
   ];
 
-  const handleSubmit = async (values, actions) => {
-    setFormValues(values);
-    console.log(values);
+  const handleSubmit = (values, actions) => {
+    const duration = pickDuration(values.service);
+
+    const appointmentInfo = {
+      name: values.name,
+      email: values.email,
+      phone: values.phone,
+      service: selectedService,
+      date: format(values.date, 'MM.dd.yyyy'),
+      slot: values.slot,
+      duration: duration,
+    };
+
+    bookAppointment(appointmentInfo)
+    
+    console.log(appointmentInfo);
   };
 
   const maxDate = new Date();
@@ -124,21 +116,20 @@ const BookingForm = ()=> {
     }
   };
 
-  const initialValues =  useMemo(() => {
-  return {
-    name:'Dope',
-    email: 'mail@dope.com',
-    phone: '123456789',
-    service: initialService(serviceName),
-    date: new Date(),
-    slot: '', 
-  }},[serviceName]);
+  const initialValues =  {
+      name:'Dope',
+      email: 'mail@dope.com',
+      phone: '123456789',
+      service: selectedService,
+      date: new Date(),
+      slot: '', 
+    };
 
     return (
       <>
         <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        validationSchema={validationSchemaBooking}
         onSubmit={handleSubmit}
       > 
         <FormWrapper autoComplete="off"> 
@@ -175,11 +166,8 @@ const BookingForm = ()=> {
        <FlexContainer> 
          <InputContainer>
           <InputLabel>What service are you receiving ?</InputLabel>
-              <Field name="service" value={selectedService} as={StyledSelect} onChange={(e) => {
-              const selectedValue = e.target.value;
-              setSelectedService(selectedValue);
-              navigate(`/booking/${serviceToURL(selectedValue)}`);
-            }}>
+
+        <Field name="service" value={selectedService} as={StyledSelect} onChange={(e)=>setSelectedService(e.target.value)}>
                 {/* <option value="">Select a service</option> */}
                 <option value="Small Tattoo">Small Tattoo</option>
                 <option value="Large Tattoo">Large Tattoo</option>
@@ -249,13 +237,14 @@ const BookingForm = ()=> {
             </PaymentDivider>
       
             <PriceContainer>
-              <p>Total</p>
+              <ServiceTitle>Total</ServiceTitle>
               <p>CA${totalPrice}</p>
             </PriceContainer>
             </PaymentContainer>}
             <Container>
               
         <Button type="submit">Next</Button> 
+        <Payment></Payment>
         </Container>
           </ServiceContainer>
         </FormWrapper>

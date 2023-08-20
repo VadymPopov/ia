@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useMemo} from "react";
 import {Formik, Field} from 'formik';
-import * as Yup from 'yup';
 
 import SignatureField from "components/Signature";
 import  Button  from "components/Button";
@@ -8,12 +7,12 @@ import PdfPreview from "components/PdfPreview";
 import Modal from "components/Modal";
 import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet } from "./WaiverForm.styled";
 
-import {nameRegExp, phoneRegExp,emailRegExp, governmentId, FormError} from 'utils/formik';
+import {validationSchemaWaiverForm, FormError} from 'utils/formik';
 import styleDatepicker from './datepicker.css';
 import { verifyClientLegalAge } from "./ageVerification";
 import PdfContent from "components/PdfContent";
 import { usePDF } from '@react-pdf/renderer';
-import { sendFileToBackend } from "./sendAxios";
+import { sendFileToBackend } from "../../api";
 
 const WaiverForm = ()=> {
   const [formValues, setFormValues] = useState(null);
@@ -31,75 +30,22 @@ const WaiverForm = ()=> {
 
   const closeModal=()=> {
       setIsOpenModal(false)
-    };
+  };
   
   const openModal = () => {
-      setIsOpenModal(true)
-    };
-
-  const validationSchema = useMemo(() => {
-    return Yup.object().shape({
-    name: Yup.string().min(3).matches(nameRegExp, 'Enter a valid name').required('Name is a required field'),
-    email: Yup.string().matches(emailRegExp,'Enter a valid email').required('Email is a required field'),
-    phone: Yup.string().matches(phoneRegExp, 'Enter a valid phone number').required('Phone number is a required field'),
-    governmentId: Yup.string().matches(governmentId, 'Enter a valid government-issued ID number').required('Government ID is a required field'),
-    dob: Yup.string().required('Birthday date is a required field'),
-    address: Yup.string().required('Address is a required field'),
-    bodyPart: Yup.string().required('Body part is a required field'),
-    design: Yup.string().required('Design is a required field'),
-    service: Yup.string().required("Service is required"),
-    date: Yup.string().required('Date is a required field'),
-    waveRelease: Yup.boolean().oneOf([true], 'Please accept the Wave Release field').required('Wave Release is a required field'),
-    pain: Yup.boolean().oneOf([true], 'Please accept the Pain field').required('Pain is a required field'),
-    infection: Yup.boolean().oneOf([true], 'Please accept the Infection field').required('Infection is a required field'),
-    healing: Yup.boolean().oneOf([true], 'Please accept the Healing field').required('Healing is a required field'),
-    outcome: Yup.boolean().oneOf([true], 'Please accept the Outcome field').required('Outcome is a required field'),
-    refund: Yup.boolean().oneOf([true], 'Please accept the Refund field').required('Refund is a required field'),
-    permanentChange: Yup.boolean().oneOf([true], 'Please accept the Permanent Change field').required('Permanent Change is a required field'),
-    media: Yup.boolean().oneOf([true], 'Please accept the Media field').required('Media is a required field'),
-    age: Yup.boolean().oneOf([true], 'Please accept the Age field').required('Age is a required field'),
-    agreement: Yup.boolean().oneOf([true], 'Please accept the Agreement field').required('Agreement is a required field'),
-    drugs: Yup.boolean().oneOf([true], 'Please accept the Drugs field').required('Drugs is a required field'),
-    desease: Yup.boolean().oneOf([true], 'Please accept the Disease field').required('Disease is a required field'),
-    medication: Yup.boolean().oneOf([true], 'Please accept the Medication field').required('Medication is a required field'),
-    skin: Yup.boolean().oneOf([true], 'Please accept the Skin field').required('Skin is a required field'),
-    recipientOrgan: Yup.boolean().oneOf([true], 'Please accept the Recipient Organ field').required('Recipient Organ is a required field'),
-    lot: Yup.string().required('Lot is a required field'),
-    signatureField: Yup.string().when([],{
-      is: ()=> isClientUnder18 === false,
-      then: (schema) => schema.required('Please provide a signature'),
-      otherwise: (schema) => schema
-    }),
-    parentalSignatureField: Yup.string().when([], {
-      is: ()=> isClientUnder18 === true,
-      then: (schema) => schema.required('Please provide a signature'),
-      otherwise: (schema) => schema}
-    ),
-    parentalConsent: Yup.boolean().when([], {
-      is: ()=> isClientUnder18 === true,
-      then: (schema) => schema.oneOf([true], "Please accept the Consent field").required('Parental/Guardian consent is required for minors.'),
-      otherwise: (schema) => schema}
-    ),
-    parentalName: Yup.string().when([],
-    {
-      is: ()=> isClientUnder18 === true,
-      then: (schema) => schema.min(3).matches(nameRegExp, 'Enter a valid name').required('Parental/Guardian name is required.'),
-      otherwise: (schema) => schema}
-    ),
-    parentGovernmentId: Yup.string().when([],
-    {
-      is: ()=> isClientUnder18 === true,
-      then: (schema) => schema.matches(governmentId, 'Enter a valid government-issued ID number').required('Parental/Guardian Government ID is required.'),
-      otherwise: (schema) => schema}
-    ),
-  })}, [isClientUnder18]);
+     setIsOpenModal(true)
+  };
 
   const handleSubmit = async (values, actions) => {
-    // actions.resetForm();
     setFormValues(values);
     update(<PdfContent values={values} isClientUnder18={isClientUnder18}/>)
     openModal();
   };
+
+  const handleSendFileToBackend = () => {
+    sendFileToBackend({file: instance.blob, email:formValues.email, name:formValues.name, phone:formValues.phone, address:formValues.address});
+    closeModal();
+  }
 
   const initialValues =  useMemo(() => {
   return {
@@ -140,7 +86,7 @@ const WaiverForm = ()=> {
       <>
         <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        validationSchema={validationSchemaWaiverForm(isClientUnder18)}
         onSubmit={handleSubmit}
       > 
         <FormWrapper autoComplete="off"> 
@@ -467,7 +413,7 @@ const WaiverForm = ()=> {
       {isOpenModal && <Modal onClose={closeModal}>
         <ModalFlex>
           <ModalFormText>Double check the information and</ModalFormText>
-          <Button onClick={()=>sendFileToBackend({file: instance.blob, email:formValues.email, name:formValues.name, phone:formValues.phone, address:formValues.address})}>Submit</Button>
+          <Button onClick={handleSendFileToBackend}>Submit</Button>
         </ModalFlex>
         <CloseBtn onClick={closeModal}>Close</CloseBtn>
         <PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>}

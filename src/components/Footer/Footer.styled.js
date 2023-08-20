@@ -8,6 +8,11 @@ export const FooterContainer = styled.footer`
   width: 100%;
   padding-top: 16px;
   padding-bottom: 16px;
+
+  @media (max-width: 1024px) {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 `;
 
 export const LinksContainer = styled.div`

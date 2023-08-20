@@ -4,6 +4,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { GlobalStyle } from "../components/GlobalStyles";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
 
+import { Toaster } from 'react-hot-toast';
+
 const AboutPage = lazy(() => import('../pages/About'));
 const AftercarePage = lazy(() => import('../pages/Aftercare'));
 const HomePage = lazy(() => import('../pages/Home'));
@@ -19,6 +21,7 @@ export const App = () => {
     <>
     <GlobalStyle/>
     <ScrollToTop></ScrollToTop>
+    <Toaster position="top-center" reverseOrder={false} />
     <Routes>
       
       <Route path='/' element={<Layout/>}>
@@ -28,7 +31,7 @@ export const App = () => {
         <Route path='/portfolio'  element={<PortfolioPage/>}/>
         <Route path='/services'   element={<ServicesPage/>}/>
         <Route path='/waiverform'   element={<WaiverformPage/>}/>
-        <Route path='/booking/:serviceName'   element={<BookingPage/>}/>
+        <Route path='/booking'   element={<BookingPage/>}/>
         <Route path='/faq'   element={<FAQPage/>}/>
         <Route path='/contact'   element={<ContactPage/>}/>
         <Route path="*" element={<Navigate to="/" replace />} />

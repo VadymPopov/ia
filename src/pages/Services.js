@@ -23,7 +23,7 @@ export default function Services() {
                         <p>Size: up to 12 cm</p>
                         <p>Duration: 1.2h</p>
                     </Description>
-                    <Button primary onClick={()=>navigate('/booking/small-tattoo')}>Book now</Button>
+                    <Button primary onClick={()=>navigate('/booking', {state: 'Small Tattoo'})}>Book now</Button>
                 </CardFooter>
             </Card>
             <div>
@@ -46,7 +46,7 @@ export default function Services() {
                     <p>Size: more than 12 cm and detailed</p>
                     <p>Duration: 3h</p>
                 </Description>
-                <Button primary onClick={()=>navigate('/booking/large-tattoo')}>Book now</Button>
+                <Button primary onClick={()=>navigate('/booking', {state: 'Large Tattoo'})}>Book now</Button>
                 </CardFooter>
             </Card>
             <div>
@@ -65,7 +65,8 @@ export default function Services() {
                     <CardTitle>Consultation/Touch-up</CardTitle>
                     <p>Duration: 30min</p>
                 </Description>
-                <Button primary onClick={()=>navigate('/booking/consultation-touch-up')}>Book now</Button></CardFooter>
+                <Button primary onClick={()=>navigate('/booking', {state: 'Consultation/Touch-up'})}>Book now</Button>
+                </CardFooter>
             </Card>
             <div>
                 <div>
@@ -94,7 +95,7 @@ export default function Services() {
                     <p>Price is fixed CA$280</p>
                     <p>Duration: 1h-3h</p>
                 </Description>
-                <Button primary onClick={()=>navigate('/booking/permanent')}>Book now</Button>
+                <Button primary onClick={()=>navigate('/booking', {state: 'Permanent Makeup'})}>Book now</Button>
                 </CardFooter>
             </Card>
             <div>

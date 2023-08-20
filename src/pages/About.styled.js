@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const List = styled.ul`
     display: flex;
+    &:first-child {
+        display: none;
+    }
 `;
 
 export const Item = styled.li`

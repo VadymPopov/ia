@@ -12,9 +12,12 @@ export const Link = styled(NavLink)`
   white-space: nowrap;
   transition: color 250ms linear;
   text-decoration: none;
-  margin-right: 30px;
   padding: 5px 10px;
-  
+
+  @media (min-width: 480px) and (max-width: 768px) {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
   
   &.active{
     border-radius: 8px;
@@ -27,16 +30,29 @@ export const Link = styled(NavLink)`
 `;
 
 export const List = styled.ul`
-display: flex;
-padding: 0;
+  display: flex;
+  padding: 0;
   margin: 0;
   list-style: none;
-`
+`;
+
+export const Item = styled.li`
+  margin-right: 30px;
+
+@media (min-width: 480px) and (max-width: 1024px) {
+  margin-right: 15px;
+}
+  
+`;
 
 export const Nav = styled.nav`
-display: flex;
-column-gap: 30px;
-align-items: center;
+  display: flex;
+  column-gap: 30px;
+  align-items: center;
+
+  @media (min-width: 480px) and (max-width: 1024px) {
+    column-gap: 0;
+  }
 `;
 
 export const LogoLink = styled(NavLink)`
@@ -44,6 +60,11 @@ export const LogoLink = styled(NavLink)`
   text-decoration: none;
   font-weight: 700;
   margin-right: 70px;
+
+  @media (min-width: 480px) and (max-width: 1024px) {
+    margin-right: 20px;
+    margin-left: 10px;
+  }
   
   &.active{
     border-radius: 8px;
@@ -51,7 +72,12 @@ export const LogoLink = styled(NavLink)`
 `;
 
 export const Logo = styled.img`
-max-width: 60px;
-max-height: 60px;
-border-radius: 50%;
-`
+  max-width: 60px;
+  max-height: 60px;
+  border-radius: 50%;
+
+  @media (min-width: 480px) and (max-width: 1024px) {
+    max-width: 50px;
+    max-height: 50px;
+  }
+`;

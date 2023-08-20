@@ -1,4 +1,4 @@
-import { Link, List, Nav,LogoLink, Logo } from './Navigation.styled';
+import { Link, List, Nav, LogoLink, Logo, Item } from './Navigation.styled';
 
 import logo from '../../images/logo-circle.svg';
 
@@ -11,30 +11,30 @@ const Navigation = () => {
       </LogoLink>
 
       <List>
-      <li><Link to="/about">
+      <Item><Link to="/about">
         About
-      </Link></li>
-      <li><Link to="/portfolio">
+      </Link></Item>
+      <Item><Link to="/portfolio">
         Portfolio
-      </Link></li>
-      <li><Link to="/services">
+      </Link></Item>
+      <Item><Link to="/services">
         Services and Prices
-      </Link></li>
-      <li><Link to="/aftercare">
+      </Link></Item>
+      <Item><Link to="/aftercare">
         Aftercare
-      </Link></li>
-      <li><Link to="/waiverform">
+      </Link></Item>
+      <Item><Link to="/waiverform">
         Waiverform
-      </Link></li>
-      <li><Link to="/booking/small-tattoo">
+      </Link></Item>
+      <Item><Link to="/booking">
         Booking
-      </Link></li>
-      <li><Link to="/faq">
+      </Link></Item>
+      <Item><Link to="/faq">
         FAQ
-      </Link></li>
-      <li><Link to="/contact">
+      </Link></Item>
+      <Item><Link to="/contact">
         Contact
-      </Link></li>
+      </Link></Item>
       </List>
     </Nav>
   );

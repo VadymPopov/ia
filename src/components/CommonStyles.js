@@ -9,6 +9,18 @@ export const Title = styled.h2`
     line-height: 1.16;
     letter-spacing: .05em;
     color: ${colors.mainDarkColor};
+
+  @media (min-width: 480px) and (max-width: 1024px) {
+    font-weight: 600;
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  @media screen and (max-width: 479px) {
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Text = styled.p`
@@ -19,6 +31,17 @@ export const Text = styled.p`
     color: ${props => props.primary ? `${colors.textColor}`:`${colors.mainDarkColor}`};
     text-align: justify;
     text-indent: 30px;
+
+    @media (min-width: 480px) and (max-width: 1024px) {
+    font-size: 14px;
+    text-indent: 20px;
+  }
+  
+    @media screen and (max-width: 479px) {
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-indent: 10px;
+  }
 `;
 
 export const Section = styled.section`
@@ -34,7 +57,6 @@ export const Suptitle = styled.p`
     font-weight: 600;
     line-height: 1.3636363636;
     text-transform: uppercase;
-    /* color: ${props => props.primary ? '#303030':'#9DA4BD'}; */
     color: ${props => props.primary ? `${colors.mainDarkColor}`:`${colors.textColorDarkBg}`};
 
     &::before {
