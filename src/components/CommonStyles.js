@@ -33,19 +33,17 @@ export const Text = styled.p`
     text-indent: 30px;
 
     @media (min-width: 480px) and (max-width: 1024px) {
-    font-size: 14px;
     text-indent: 20px;
   }
   
     @media screen and (max-width: 479px) {
-    font-size: 12px;
     margin-bottom: 10px;
     text-indent: 10px;
   }
 `;
 
 export const Section = styled.section`
-    padding: 20px 20px;
+    padding: 30px 20px;
     background-color:${props => props.primary ? `${colors.backgroundColor}`:`${colors.mainLightColor}`}; 
 `;
 

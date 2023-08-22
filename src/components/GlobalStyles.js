@@ -7,6 +7,14 @@ export const GlobalStyle = createGlobalStyle`
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 18px;
+
+  @media (min-width: 480px) and (max-width: 1024px) {
+    font-size: 14px;
+  }
+
+   @media screen and (max-width: 479px) {
+    font-size: 12px;
+  }
 }
 
 

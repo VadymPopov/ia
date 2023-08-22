@@ -1,23 +1,34 @@
-import { Link, List, Nav, LogoLink, Logo, Item } from './Navigation.styled';
+import { useState } from 'react';
+import { Header, Link, List, Nav, LogoLink, Logo, Item,MobileBtn, BurgerIcon, CrossIcon, MobileContainer } from './Navigation.styled';
+import { useMedia } from 'react-use';
 
 import logo from '../../images/logo-circle.svg';
 
 const Navigation = () => {
+  const isMobile = useMedia('(max-width: 767px)');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
 
   return (
+    <Header mobile={isMobile}>
     <Nav>
-      <LogoLink to="/">
+      <LogoLink to="/" onClick={isMobile ? onClose : null}>
         <Logo src={logo} alt="logo" />
       </LogoLink>
 
+      {isMobile ? <MobileBtn onClick={toggleMenu}>{isOpen ? <CrossIcon/> : <BurgerIcon/>}</MobileBtn> : 
       <List>
-      <Item><Link to="/about">
-        About
-      </Link></Item>
-      <Item><Link to="/portfolio">
+      <Item ><Link to="/portfolio">
         Portfolio
       </Link></Item>
-      <Item><Link to="/services">
+      <Item><Link to="/services" >
         Services and Prices
       </Link></Item>
       <Item><Link to="/aftercare">
@@ -35,8 +46,35 @@ const Navigation = () => {
       <Item><Link to="/contact">
         Contact
       </Link></Item>
-      </List>
+      </List>}
     </Nav>
+
+    <MobileContainer isOpen={isOpen}>
+      <List>
+      <Item><Link onClick={toggleMenu} to="/portfolio">
+        Portfolio
+      </Link></Item>
+      <Item><Link onClick={toggleMenu} to="/services">
+        Services and Prices
+      </Link></Item>
+      <Item><Link onClick={toggleMenu} to="/aftercare">
+        Aftercare
+      </Link></Item>
+      <Item><Link onClick={toggleMenu} to="/waiverform">
+        Waiverform
+      </Link></Item>
+      <Item><Link onClick={toggleMenu} to="/booking">
+        Booking
+      </Link></Item>
+      <Item><Link onClick={toggleMenu} to="/faq">
+        FAQ
+      </Link></Item>
+      <Item><Link onClick={toggleMenu} to="/contact">
+        Contact
+      </Link></Item>
+      </List>
+      </MobileContainer>
+    </Header>
   );
 };
 

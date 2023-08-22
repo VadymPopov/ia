@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Formik, Field} from 'formik';
 import { format } from 'date-fns';
 import { useNavigate, useLocation } from "react-router-dom";
-import { bookAppointment } from "api";
+import { bookAppointment, getAvailableSlots } from "api";
 import {validationSchemaBooking, FormError} from 'utils/formik';
 
 import  Button  from "components/Button";
@@ -11,6 +11,7 @@ import {  InputContainer, Input, InputLabel, FlexContainer,  StyledSelect, Conta
 import Payment from "components/Payment/Payment";
 import styleDatepickerBooking from './datepicker-book.css';
 
+
 const BookingForm = ()=> {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
@@ -18,8 +19,7 @@ const BookingForm = ()=> {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [selectedService, setSelectedService] = useState(location.state);
-  console.log(selectedService);
+  const [selectedService, setSelectedService] = useState(location.state || 'Small Tattoo');
   
   const calculatePrice = (selectedProcedure)=> {
     let price;
@@ -49,19 +49,19 @@ const BookingForm = ()=> {
 
     switch (selectedProcedure) {
       case 'Small Tattoo':
-        duration = 2;
+        duration = 60;
         break;
       case 'Large Tattoo':
-        duration = 4;
+        duration = 120;
         break;
       case 'Permanent Makeup':
-        duration = 2;
+        duration = 60;
         break;
       case 'Consultation/Touch-up':
-        duration = 1;
+        duration = 30;
         break;
       default:
-      duration = 2;
+      duration = 60;
     }
   
     return duration;
@@ -98,8 +98,6 @@ const BookingForm = ()=> {
     };
 
     bookAppointment(appointmentInfo)
-    
-    console.log(appointmentInfo);
   };
 
   const maxDate = new Date();
@@ -116,11 +114,21 @@ const BookingForm = ()=> {
     }
   };
 
+  const handleDataChange = (date, field, form) => {
+    const duration = pickDuration(selectedService);
+    
+
+    form.setFieldValue(field.name,date); 
+    setSelectedDate(date);
+  
+    getAvailableSlots(format(date, 'MM.dd.yyyy'), duration);
+  };
+
   const initialValues =  {
       name:'Dope',
       email: 'mail@dope.com',
       phone: '123456789',
-      service: selectedService,
+      service: selectedService || 'Small Tattoo',
       date: new Date(),
       slot: '', 
     };
@@ -132,6 +140,7 @@ const BookingForm = ()=> {
         validationSchema={validationSchemaBooking}
         onSubmit={handleSubmit}
       > 
+      {({ handleChange, values }) => (
         <FormWrapper autoComplete="off"> 
         <div>
         <FieldSet> 
@@ -167,7 +176,7 @@ const BookingForm = ()=> {
          <InputContainer>
           <InputLabel>What service are you receiving ?</InputLabel>
 
-        <Field name="service" value={selectedService} as={StyledSelect} onChange={(e)=>setSelectedService(e.target.value)}>
+        <Field name="service" value={selectedService || values.service} as={StyledSelect} onChange={(e)=>setSelectedService(e.target.value)}>
                 {/* <option value="">Select a service</option> */}
                 <option value="Small Tattoo">Small Tattoo</option>
                 <option value="Large Tattoo">Large Tattoo</option>
@@ -186,7 +195,7 @@ const BookingForm = ()=> {
               <CustomDatePicker
                 {...field}
                 selected={field.value}
-                onChange={(date) => {form.setFieldValue(field.name,date); setSelectedDate(date)}}
+                onChange={(date) => handleDataChange(date, field, form)}
                 showPopperArrow={false}
                 minDate={new Date()}
                 maxDate={maxDate}
@@ -247,7 +256,7 @@ const BookingForm = ()=> {
         <Payment></Payment>
         </Container>
           </ServiceContainer>
-        </FormWrapper>
+        </FormWrapper>)}
       </Formik>
       </>
     );

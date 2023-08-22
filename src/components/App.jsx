@@ -6,7 +6,6 @@ import ScrollToTop from "./ScrollToTop/ScrollToTop";
 
 import { Toaster } from 'react-hot-toast';
 
-const AboutPage = lazy(() => import('../pages/About'));
 const AftercarePage = lazy(() => import('../pages/Aftercare'));
 const HomePage = lazy(() => import('../pages/Home'));
 const PortfolioPage = lazy(() => import('../pages/Portfolio'));
@@ -26,7 +25,6 @@ export const App = () => {
       
       <Route path='/' element={<Layout/>}>
         <Route index element={<HomePage/>}/>
-        <Route path='/about'  element={<AboutPage/>}/>
         <Route path='/aftercare'  element={<AftercarePage/>}/>
         <Route path='/portfolio'  element={<PortfolioPage/>}/>
         <Route path='/services'   element={<ServicesPage/>}/>

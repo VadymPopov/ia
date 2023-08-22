@@ -5,13 +5,11 @@ export const FooterContainer = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding: 16px  20px;
+  font-size: 14px;
 
   @media (max-width: 1024px) {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px;
   }
 `;
 
@@ -26,6 +24,7 @@ align-items: center;
 background-color: ${colors.backgroundColor};
 color:${colors.mainDarkColor};
 border-radius: 50%;
+border: 1px solid transparent;
 width: 44px;
 height: 44px;
 transition: color 250ms linear;

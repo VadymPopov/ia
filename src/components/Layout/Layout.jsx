@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import  AppBar  from '../AppBar';
+import Navigation from 'components/Navigation/Navigation';
 import Footer from 'components/Footer/Footer';
 import { Suspense } from 'react';
 import { LayoutContainer, Main} from './Layout.styled';
@@ -7,7 +7,7 @@ import { LayoutContainer, Main} from './Layout.styled';
 const Layout = () => {
     return (
         <LayoutContainer>
-            <AppBar/>
+            <Navigation/>
             <Main>
                 <Suspense fallback={null}>
                   <Outlet />
