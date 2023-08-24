@@ -11,6 +11,17 @@ export const SwiperWrapper = styled(Swiper)`
     padding-bottom: 50px;
     margin-bottom: 100px;
 
+    &:last-child {
+         margin-bottom: 0;
+    }
+
+    @media (max-width: 767px) {
+      margin-bottom: 50px;
+      &:last-child {
+         margin-bottom: 0;
+      }
+    }
+
     .swiper-button-next,.swiper-button-prev {
     width: 50px;
     height: 50px;
@@ -22,7 +33,6 @@ export const SwiperWrapper = styled(Swiper)`
     justify-content: center;
 
     &::after {
-      /* color: #303030; */
       color: #fff;
       font-size: 32px;
     }

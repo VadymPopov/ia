@@ -6,20 +6,19 @@ import { bookAppointment, getAvailableSlots } from "api";
 import {validationSchemaBooking, FormError} from 'utils/formik';
 
 import  Button  from "components/Button";
-import { FormWrapper, SlotBtn, GridContainer, CustomDatePicker, ServiceContainer, ServiceTitle,ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider } from "./BookingForm.styled";
+import { FormWrapper, SlotBtn, GridContainer, CustomDatePicker, ServiceContainer, ServiceTitle, ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider } from "./BookingForm.styled";
 import {  InputContainer, Input, InputLabel, FlexContainer,  StyledSelect, Container, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
 import Payment from "components/Payment/Payment";
 import styleDatepickerBooking from './datepicker-book.css';
 
-
 const BookingForm = ()=> {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const navigate = useNavigate();
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [slots, setSlots] = useState([]);
   const location = useLocation();
-
   const [selectedService, setSelectedService] = useState(location.state || 'Small Tattoo');
+  const navigate = useNavigate();
   
   const calculatePrice = (selectedProcedure)=> {
     let price;
@@ -67,39 +66,10 @@ const BookingForm = ()=> {
     return duration;
   }
 
+  const duration = pickDuration(selectedService);
   const price = calculatePrice(selectedService) || 0;
   const tax = Number((price*0.13).toFixed(2)) || 0;
   const totalPrice = price + tax;
-
-  const timeSlots = [
-    '11:00am',
-    '12:00am',
-    '1:00pm',
-    '2:00pm',
-    '3:00pm',
-    '4:00pm',
-    '5:00pm',
-    '6:00pm',
-    '7:00pm',
-    '8:00pm'
-  ];
-
-  const handleSubmit = (values, actions) => {
-    const duration = pickDuration(values.service);
-
-    const appointmentInfo = {
-      name: values.name,
-      email: values.email,
-      phone: values.phone,
-      service: selectedService,
-      date: format(values.date, 'MM.dd.yyyy'),
-      slot: values.slot,
-      duration: duration,
-    };
-
-    bookAppointment(appointmentInfo)
-  };
-
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() + 1);
 
@@ -115,25 +85,47 @@ const BookingForm = ()=> {
   };
 
   const handleDataChange = (date, field, form) => {
-    const duration = pickDuration(selectedService);
-    
-
-    form.setFieldValue(field.name,date); 
+    form.setFieldValue(field.name, date); 
     setSelectedDate(date);
-  
-    getAvailableSlots(format(date, 'MM.dd.yyyy'), duration);
   };
+
+  const handleServiceChange = (event) => {
+    setSelectedService(event.target.value);
+  };
+
+  useEffect(()=>{
+     (async()=>{
+      const slots = await getAvailableSlots(format(selectedDate, 'MM.dd.yyyy'), duration);
+      setSlots(slots);
+     })();
+
+  },[duration, selectedDate]);
 
   const initialValues =  {
       name:'Dope',
       email: 'mail@dope.com',
       phone: '123456789',
-      service: selectedService || 'Small Tattoo',
+      service: selectedService,
       date: new Date(),
       slot: '', 
     };
 
-    return (
+  const handleSubmit = (values, actions) => {
+      const appointmentInfo = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        service: selectedService,
+        date: format(values.date, 'MM.dd.yyyy'),
+        slot: values.slot,
+        duration: duration,
+      };
+  
+  
+      bookAppointment(appointmentInfo);
+  };
+
+  return (
       <>
         <Formik
         initialValues={initialValues}
@@ -176,7 +168,7 @@ const BookingForm = ()=> {
          <InputContainer>
           <InputLabel>What service are you receiving ?</InputLabel>
 
-        <Field name="service" value={selectedService || values.service} as={StyledSelect} onChange={(e)=>setSelectedService(e.target.value)}>
+        <Field name="service" value={selectedService} as={StyledSelect} onChange={(e)=>handleServiceChange(e)}>
                 {/* <option value="">Select a service</option> */}
                 <option value="Small Tattoo">Small Tattoo</option>
                 <option value="Large Tattoo">Large Tattoo</option>
@@ -210,13 +202,16 @@ const BookingForm = ()=> {
         <p>{selectedDate && format(selectedDate, 'MMMM dd, yyyy')}</p>
           <Input name="slot">
             {({ field, form }) => (
-              <GridContainer>
-              {selectedDate && timeSlots.map((slot, index) => (
+              <>
+              {slots && slots.length !== 0 && <GridContainer>
+               {slots.map((slot, index) => (
                     <SlotBtn type='button' key={index} onClick={()=>handleButtonClick(slot, form, index, field)} active={activeButtonIndex === index ? index.toString() : null}>
                     {slot}
                     </SlotBtn>
                   ))} 
-              </GridContainer>
+              </GridContainer>}
+              {slots.length === 0 &&  <ServiceTitle>There are no available times </ServiceTitle>}  
+              </>
             )}
           </Input>
           <FormError name="slot" component="span" />

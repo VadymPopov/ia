@@ -58,15 +58,42 @@ export const HeroContainer = styled.div`
 
 export const List = styled.ul`
     display: flex;
+
+    @media (min-width: 1024px) and (max-width: 1199px) {
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      > :last-child {
+      display: none;
+    }
+  }
+    @media (max-width: 768px) {
+      justify-content: space-evenly;
+       > :last-child {
+      margin-right: 0;
+    }
+    }
 `;
 
 export const Item = styled.li`
     margin-right: 30px;
 `;
 
-export const Description = styled.div`
+export const Description = styled.div` 
     display: flex;
+    flex: 1;
     flex-direction: column;
-    max-width: 480px;
     text-align: left;
 `;
+
+export const Container = styled.div`
+    display: flex;
+    align-items: end;
+
+  @media (max-width: 768px) {
+    display: block;
+}
+
+`;
+

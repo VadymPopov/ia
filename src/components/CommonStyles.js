@@ -9,6 +9,7 @@ export const Title = styled.h2`
     line-height: 1.16;
     letter-spacing: .05em;
     color: ${colors.mainDarkColor};
+    text-align:${props => props.align ? 'end' : 'start'} ;
 
   @media (min-width: 480px) and (max-width: 1024px) {
     font-weight: 600;
@@ -18,8 +19,10 @@ export const Title = styled.h2`
   
   @media screen and (max-width: 479px) {
     font-weight: 600;
-    font-size: 28px;
+    font-size: 24px;
     margin-bottom: 10px;
+    text-align: ${props => props.mobile ? 'end' : 'start' };
+    letter-spacing: 0;
   }
 `;
 
@@ -37,8 +40,8 @@ export const Text = styled.p`
   }
   
     @media screen and (max-width: 479px) {
-    margin-bottom: 10px;
     text-indent: 10px;
+    font-size: 14px;
   }
 `;
 

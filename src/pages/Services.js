@@ -62,28 +62,26 @@ export default function Services() {
                 <Image src={touchUp} alt="touch-up" />
                <CardFooter>
                 <Description>
-                    <CardTitle>Consultation/Touch-up</CardTitle>
+                    <CardTitle>Consultation/ Touch-up</CardTitle>
                     <p>Duration: 30min</p>
                 </Description>
                 <Button primary onClick={()=>navigate('/booking', {state: 'Consultation/Touch-up'})}>Book now</Button>
                 </CardFooter>
             </Card>
+            
             <div>
-                <div>
-                <Title>Consultation/Touch-up</Title>
+                <Title>Consultation/ Touch-up</Title>
                 <Text primary>
             The consultation process occurs online, where you will be required to describe your tattoo idea and share a relevant photo through Instagram. This initial step allows me to understand your vision and discuss the design possibilities before proceeding further. However, in unique situations, a personal meeting can be arranged, especially when the client wishes to create a custom and intricate design.
             </Text>
-
             <Text primary>
             It's important to note that tattoo corrections are provided free of charge for a period of six months following the initial procedure. However, if a client fails to show up for two scheduled appointments, the opportunity for a free correction is forfeited. In addition, it is important to note that tattoo corrections are typically limited to the works created by the original tattoo artist.
             </Text>
             <Text primary>
             Typically, when it comes to correcting a permanent tattoo, a separate fee is charged. For more detailed information about the correction process and associated costs, it is best to consult directly with your tattoo artist. 
             </Text>
-                </div>
-           
             </div>
+
         </Item>
         <Item>
             <Card>

@@ -49,11 +49,7 @@ export const getAvailableSlots = async(date,duration) => {
   try {
     const response = await axios.get(`/appointments/slots?date=${date}&duration=${duration}`);
 
-    if (response.status === 201) {
-      toast.success('The appointment was successfully booked!', {
-        duration: 3000,
-      });
-    }
+    return response.data; 
   } catch (error) {
     toast.error(`${error.message}`, {
       duration: 3000,

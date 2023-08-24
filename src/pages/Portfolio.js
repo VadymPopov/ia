@@ -10,19 +10,19 @@ import { healedArray } from "images/healed";
 export default function Portfolio() {
     return (
     <Section>
-        <Title>Healed Permanent</Title>
+        <Title mobile>Healed Permanent</Title>
         <Swiper>{
             permanentArray.map((item,index)=><Slide>
                 <img key={index} src={item} alt={`permanent-${index}`} />
                 </Slide>
             )}</Swiper>
-        <Title>Fresh Tattoo</Title>
+        <Title mobile>Fresh Tattoos</Title>
         <Swiper>{
         freshArray.map((item,index) =><Slide>
         <img key={index} src={item} alt={`fresh-${index}`} />
         </Slide>)
         }</Swiper>
-        <Title>Healed Tattoo</Title>
+        <Title mobile>Healed Tattoos</Title>
         <Swiper>
         {
         healedArray.map((item,index) =><Slide>
