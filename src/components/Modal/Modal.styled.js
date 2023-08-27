@@ -13,15 +13,10 @@ export const ModalBackdrop = styled.div`
 export const Content = styled.div`
    display: flex;
    flex-direction: column;
-   /* justify-content: center;
-   align-items: center; */
    position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   /* width: 100%; */
    background: #fff;
-   /* z-index: 101; */
+   width: 100%;
+   height: 100%;
 `;
 
 export const ModalTitle = styled.h3`

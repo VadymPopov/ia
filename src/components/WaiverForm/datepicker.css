@@ -160,3 +160,11 @@
 .react-datepicker__year-option--disabled {
     display: none;
 }
+
+
+@media (max-width: 767px){ 
+    canvas {
+        width: 100%;
+        height: 200px;
+    }
+}

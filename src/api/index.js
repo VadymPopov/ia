@@ -28,7 +28,6 @@ export const sendFileToBackend = async ({file, email, name, phone, address}) => 
   }
 };
 
-
 export const bookAppointment = async (data) => {
   try {
     const response = await axios.post('/appointments', data);
@@ -57,20 +56,20 @@ export const getAvailableSlots = async(date,duration) => {
   }
 };
 
+export const getPublishableKey = async () => {
+ try {
+   const  response = await axios.get('/stripe/config');
+   return response.data.publishableKey;
+ } catch (error) {
+  console.error(error)
+ }
+}
 
-// export const handleCheckout = async ()=> {
-//   const stripe = await getStripe();
-//   const { error } = await stripe.redirectToCheckout({
-//     lineItems: [
-//       {
-//         price: process.env.local.REACT_APP_STRIPE_PRICE_ID,
-//         quantity: 1,
-//       },
-//     ],
-//     mode: 'payment',
-//     successUrl: `http://localhost:3000/success`,
-//     cancelUrl: `http://localhost:3000/cancel`,
-//     customerEmail: 'customer@email.com',
-//   });
-//   console.warn(error.message);
-// }
+export const createPaymentIntent = async () => {
+  try {
+    const  response = await axios.post('/stripe/create-payment-intent', {});
+    return response.data.clientSecret;
+  } catch (error) {
+   console.error(error)
+  }
+ }

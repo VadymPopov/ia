@@ -35,7 +35,7 @@ const Navigation = () => {
         Aftercare
       </Link></Item>
       <Item><Link to="/waiverform">
-        Waiverform
+        Waiver
       </Link></Item>
       <Item><Link to="/booking">
         Booking
@@ -61,7 +61,7 @@ const Navigation = () => {
         Aftercare
       </Link></Item>
       <Item><Link onClick={toggleMenu} to="/waiverform">
-        Waiverform
+        Waiver
       </Link></Item>
       <Item><Link onClick={toggleMenu} to="/booking">
         Booking

@@ -16,6 +16,16 @@ export const InputContainer = styled.div`
   &:first-child {
     margin-right: 20px;
   }
+
+  @media (max-width: 767px){
+    margin-bottom: 20px;
+    text-align: start;
+    font-size: 18px;
+
+    &:first-child {
+    margin-right: 0;
+  }
+  }
 `;
 
 export const Input = styled(Field)`
@@ -25,12 +35,7 @@ export const Input = styled(Field)`
   border-radius: 10px;
   outline: none;
 
-  &:focus {
-    border-color: ${colors.accentColor};
-    /* box-shadow: ${colors.accentColor} 0px 0px 5px 2px; */
-  }
-
-  &:hover {
+  &:focus, &:hover {
     border-color: ${colors.accentColor};
   }
 
@@ -38,6 +43,10 @@ export const Input = styled(Field)`
     width: 20px;
     height: 20px;
     margin-right: 20px;
+  }
+
+  @media (max-width: 767px){
+   font-size: 18px;
   }
 `;
 
@@ -47,14 +56,14 @@ export const StyledSelect = styled.select`
   border: 2px solid ${colors.textColorDarkBg};
   border-radius: 10px;
   outline: none;
+  width: 100%;
 
-  &:focus {
+  &:focus, &:hover {
     border-color: ${colors.accentColor};
-    /* box-shadow: ${colors.accentColor} 0px 0px 5px 2px; */
   }
 
-  &:hover {
-    border-color: ${colors.accentColor};
+  @media (max-width: 767px){
+   font-size: 18px;
   }
 `;
 
@@ -66,6 +75,11 @@ padding: 10px 15px;
 border: 2px solid ${colors.textColorDarkBg};
   border-radius: 10px;
   outline: none;
+
+  @media (max-width: 767px){
+   font-size: 18px;
+  }
+
 `;
 
 export const ErrorText = styled.p`
@@ -97,7 +111,7 @@ export const ButtonText = styled.div`
 `;
 
 export const Title = styled.h3`
-  margin:20px 0;
+  margin: 20px 0;
   font-family: "Raleway", sans-serif;
   font-weight: 600;
   font-size: 18px;
@@ -105,6 +119,10 @@ export const Title = styled.h3`
   letter-spacing: .05em;
   color: ${colors.mainDarkColor};
   text-align: start;
+
+  @media (max-width: 767px){
+    margin: 10px 0;
+  }
 `;
 
 export const InputLabel = styled.label`
@@ -128,6 +146,10 @@ export const FlexContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+
+  @media (max-width: 767px){
+    display: block;
+  }
 `;
 
 export const Text = styled.p`
@@ -150,6 +172,10 @@ export const ModalFormText = styled.p`
   letter-spacing: .02em;
   color: ${colors.mainDarkColor};
   text-align: justify;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 export const CloseBtn = styled.button`
@@ -179,6 +205,12 @@ export const ModalFlex = styled.div`
  display: flex;
  align-items: center;
  padding: 10px;
+ justify-content: center;
+
+ @media (max-width: 767px) {
+  display: block;
+  text-align: center;
+ }
 `;
 
 export const Legend = styled.legend`
@@ -189,6 +221,10 @@ export const Legend = styled.legend`
   letter-spacing: .05em;
   color: ${colors.mainDarkColor};
   text-align: start;
+
+  @media (max-width:768px) {
+    font-size: 18px;
+  }
 `;
 
 export const FieldSet = styled.fieldset`

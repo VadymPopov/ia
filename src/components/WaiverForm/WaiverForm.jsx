@@ -161,7 +161,7 @@ const WaiverForm = ()=> {
               <Field name="service" as={StyledSelect}>
                 <option value="">Select a service</option>
                 <option value="Tattoo">Tattoo</option>
-                <option value="Permanent Makeup (Cosmetic Tattoo)">Permanent Makeup (Cosmetic Tattoo)</option>
+                <option value="Permanent Makeup">Permanent Makeup</option>
               </Field>
               <FormError name="service" component='span' />
           </InputContainer>  
@@ -399,7 +399,7 @@ const WaiverForm = ()=> {
           </FlexContainer> 
 
         <Title>Parental/Guardian Signature:</Title>
-        <SignatureField  canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px'}}} label="parentalSignatureField" name="parentalSignatureField"/> 
+        <SignatureField  canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px', width: "100px"}}} label="parentalSignatureField" name="parentalSignatureField"/>
         </FieldSet>  
         }
 

@@ -1,15 +1,17 @@
 import React, {useState, useEffect} from "react";
 import {Formik, Field} from 'formik';
 import { format } from 'date-fns';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { bookAppointment, getAvailableSlots } from "api";
 import {validationSchemaBooking, FormError} from 'utils/formik';
 
 import  Button  from "components/Button";
-import { FormWrapper, SlotBtn, GridContainer, CustomDatePicker, ServiceContainer, ServiceTitle, ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider } from "./BookingForm.styled";
-import {  InputContainer, Input, InputLabel, FlexContainer,  StyledSelect, Container, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
+import { FormWrapper, SlotBtn, GridContainer, FlexCentered, CustomDatePicker, ServiceContainer, ServiceTitle, ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider } from "./BookingForm.styled";
+import { InputContainer, Input, InputLabel, FlexContainer,  StyledSelect, Container, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
 import Payment from "components/Payment/Payment";
 import styleDatepickerBooking from './datepicker-book.css';
+
+import {useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 
 const BookingForm = ()=> {
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -18,7 +20,22 @@ const BookingForm = ()=> {
   const [slots, setSlots] = useState([]);
   const location = useLocation();
   const [selectedService, setSelectedService] = useState(location.state || 'Small Tattoo');
-  const navigate = useNavigate();
+
+  const [message , setMessage] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const stripe = useStripe();
+  const elements = useElements();
+  const paymentElement = elements &&  elements.getElement(PaymentElement);
+
+  console.log(paymentElement);
+
+  // elements && paymentElement.on('change', function(event) {
+  //   if (event.complete) {
+  //     console.log(true)
+  //   } else if (event.error) {
+  //     console.log(false)
+  //   }
+  // });
   
   const calculatePrice = (selectedProcedure)=> {
     let price;
@@ -110,7 +127,7 @@ const BookingForm = ()=> {
       slot: '', 
     };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async(values, actions) => {
       const appointmentInfo = {
         name: values.name,
         email: values.email,
@@ -120,9 +137,33 @@ const BookingForm = ()=> {
         slot: values.slot,
         duration: duration,
       };
+
+      if(!stripe || !elements) {
+        return;
+    }
+    setIsProcessing(true);
+
+    const {error, paymentIntent} = await stripe.confirmPayment({
+      elements, 
+      confirmParams: {
+        return_url: `${window.location.origin}/success`
+      },
+      // redirect: 'always'
+      redirect: 'if_required'
+  })
+
+    if((error && error.type === "card_error") || (error && error.type === "validation_error")) {
+      setMessage(error.message);
+    } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+      setMessage('Payment status ' + paymentIntent.status);
+      await bookAppointment(appointmentInfo);
+    } else {
+      setMessage('Unexpected state');
+   }
+    setIsProcessing(false);
   
   
-      bookAppointment(appointmentInfo);
+    
   };
 
   return (
@@ -152,14 +193,14 @@ const BookingForm = ()=> {
           </InputContainer>
       </FlexContainer>  
 
-      {/* <FlexContainer> */}
+      <FlexContainer>
         <InputContainer>
         <InputLabel>Phone number</InputLabel>
               <Input name="phone" type="tel" placeholder="5551234567"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +" />
               <FormError name="phone" component='span'/>
           </InputContainer>     
-      {/* </FlexContainer>    */}
+      </FlexContainer>   
       </FieldSet>
 
       <FieldSet>
@@ -169,10 +210,9 @@ const BookingForm = ()=> {
           <InputLabel>What service are you receiving ?</InputLabel>
 
         <Field name="service" value={selectedService} as={StyledSelect} onChange={(e)=>handleServiceChange(e)}>
-                {/* <option value="">Select a service</option> */}
                 <option value="Small Tattoo">Small Tattoo</option>
                 <option value="Large Tattoo">Large Tattoo</option>
-                <option value="Permanent Makeup">Permanent Makeup (Cosmetic Tattoo)</option>
+                <option value="Permanent Makeup">Permanent Makeup</option>
                 <option value="Consultation/Touch-up">Consultation/Touch-up</option>
               </Field>
               <FormError name="service" component='span' />
@@ -203,14 +243,14 @@ const BookingForm = ()=> {
           <Input name="slot">
             {({ field, form }) => (
               <>
-              {slots && slots.length !== 0 && <GridContainer>
+              {slots && slots.length !== 0 && <FlexCentered><GridContainer>
                {slots.map((slot, index) => (
                     <SlotBtn type='button' key={index} onClick={()=>handleButtonClick(slot, form, index, field)} active={activeButtonIndex === index ? index.toString() : null}>
                     {slot}
                     </SlotBtn>
                   ))} 
-              </GridContainer>}
-              {slots.length === 0 &&  <ServiceTitle>There are no available times </ServiceTitle>}  
+              </GridContainer></FlexCentered>}
+              {slots && slots.length === 0 &&  <ServiceTitle>There are no available times </ServiceTitle>}  
               </>
             )}
           </Input>
@@ -219,9 +259,9 @@ const BookingForm = ()=> {
           </FieldSet>
           </div>
 
-          <ServiceContainer>
-            <ServiceTitle>Service Details</ServiceTitle>
+          <ServiceContainer>  
             <ServiceDivider>
+            <ServiceTitle>Service Details</ServiceTitle>
             {selectedService && <ServiceText>{selectedService} Appointment {selectedService === "Consultation/Touch-up" ? '' : "Deposit"}</ServiceText>}
      
             <ServiceText>{selectedSlot && format(selectedDate, 'MMMM dd, yyyy')} {selectedSlot && <span>at {selectedSlot}</span>}</ServiceText>
@@ -246,9 +286,13 @@ const BookingForm = ()=> {
             </PriceContainer>
             </PaymentContainer>}
             <Container>
-              
-        <Button type="submit">Next</Button> 
-        <Payment></Payment>
+            {/* <Payment/> */}
+            <PaymentElement />
+        {/* <Button type="submit">Next</Button>  */}
+        <Button type="submit" disabled={isProcessing || !stripe || !elements }>
+          <span id="button-text">
+                    {isProcessing ? 'Processing...' : 'Pay now'}
+                </span></Button> 
         </Container>
           </ServiceContainer>
         </FormWrapper>)}

@@ -1,5 +1,5 @@
 import { Container, Title, Section } from "components/CommonStyles";
-import {StyledIcon, Link, Flex,FlexItem, Label} from './Contact.styled';
+import {FlexContainer, StyledIcon, Link, Flex,FlexItem, Label} from './Contact.styled';
 
 import { FiMapPin, FiMail, FiPhone,  } from 'react-icons/fi';
 import {TfiTime} from 'react-icons/tfi';
@@ -10,7 +10,7 @@ export default function Contact() {
     return (
   <Section primary>
   <Title>Contact me</Title>
-    <Container>
+    <FlexContainer>
     <FlexItem>
       <Flex>
       <StyledIcon as={FiMapPin}/>
@@ -30,7 +30,7 @@ export default function Contact() {
     </FlexItem>
     <FlexItem><EmbeddedMap/></FlexItem>
     
-    </Container>
+    </FlexContainer>
     </Section>
     );
 }

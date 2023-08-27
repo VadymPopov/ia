@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import { colors } from 'components/theme';
 
+export const FlexContainer = styled.div`
+    display: flex;
+
+    @media (max-width: 1024px) {
+      display: block;
+
+    }
+`;
+
 export const Flex = styled.div`
     display: flex;
     align-items: center;

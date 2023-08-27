@@ -9,6 +9,10 @@ export const FormWrapper = styled(Form)`
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 1023px) {
+    display: block;
+  }
 `;
 
 export const CustomDatePicker = styled(DatePicker)`
@@ -55,11 +59,32 @@ export  const GridContainer = styled.div`
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 20px;
+
+  @media (max-width: 480px) {
+    width: auto;
+    grid-template-columns: 90px 90px 90px;
+  }
+
+  @media (max-width: 400px) {
+    width: auto;
+    grid-template-columns: 90px 90px;
+  }
 `;
+
+
+export  const FlexCentered = styled.div`
+  @media (max-width: 480px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
 
 export const ServiceContainer = styled.div`
   height: 100%;
   margin-left: 24px;
+  margin-top: 30px;
   overflow: hidden;
   padding: 40px 32px;
   position: sticky;
@@ -68,11 +93,16 @@ export const ServiceContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: baseline;
+  /* align-items: baseline; */
   border: 1px solid ${colors.textColorDarkBg};
   box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 12px;
   border-radius: 12px;
   background: ${colors.backgroundColor};
+
+  @media (max-width:1023px) {
+    width: auto;
+    margin-left: 0;
+  }
 `;
 
 
@@ -81,7 +111,7 @@ export  const ServiceTitle = styled.p`
   font-weight: 600;
   line-height: 24px;
   letter-spacing: 0.5px;
-  /* margin-bottom: 18px; */
+  margin-bottom: 18px;
 `;
 
 export  const ServiceText = styled.p`
