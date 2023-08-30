@@ -6,51 +6,40 @@ import { bookAppointment, getAvailableSlots } from "api";
 import {validationSchemaBooking, FormError} from 'utils/formik';
 
 import  Button  from "components/Button";
-import { FormWrapper, SlotBtn, GridContainer, FlexCentered, CustomDatePicker, ServiceContainer, ServiceTitle, ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider } from "./BookingForm.styled";
+import { FormWrapper, SlotBtn, GridContainer, FlexCentered, CustomDatePicker, ServiceContainer, ServiceTitle, ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider, PaymentElements } from "./BookingForm.styled";
 import { InputContainer, Input, InputLabel, FlexContainer,  StyledSelect, Container, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
-import Payment from "components/Payment/Payment";
 import styleDatepickerBooking from './datepicker-book.css';
 
-import {useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
+import {useStripe, useElements } from '@stripe/react-stripe-js';
 
-const BookingForm = ()=> {
+const BookingForm = ({setService})=> {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [slots, setSlots] = useState([]);
   const location = useLocation();
-  const [selectedService, setSelectedService] = useState(location.state || 'Small Tattoo');
+  const [selectedService, setSelectedService] = useState(location.state || 'small-tattoo');
 
   const [message , setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const paymentElement = elements &&  elements.getElement(PaymentElement);
-
-  console.log(paymentElement);
-
-  // elements && paymentElement.on('change', function(event) {
-  //   if (event.complete) {
-  //     console.log(true)
-  //   } else if (event.error) {
-  //     console.log(false)
-  //   }
-  // });
+  
   
   const calculatePrice = (selectedProcedure)=> {
     let price;
 
     switch (selectedProcedure) {
-      case 'Small Tattoo':
+      case 'small-tattoo':
         price = 100;
         break;
-      case 'Large Tattoo':
+      case 'large-tattoo':
         price = 120;
         break;
-      case 'Permanent Makeup':
+      case 'permanent':
         price = 100;
         break;
-      case 'Consultation/Touch-up':
+      case 'consultation':
         price = 0;
         break;
       default:
@@ -64,16 +53,16 @@ const BookingForm = ()=> {
     let duration;
 
     switch (selectedProcedure) {
-      case 'Small Tattoo':
+      case 'small-tattoo':
         duration = 60;
         break;
-      case 'Large Tattoo':
+        case 'large-tattoo':
         duration = 120;
         break;
-      case 'Permanent Makeup':
+        case 'permanent':
         duration = 60;
         break;
-      case 'Consultation/Touch-up':
+        case 'consultation':
         duration = 30;
         break;
       default:
@@ -108,6 +97,7 @@ const BookingForm = ()=> {
 
   const handleServiceChange = (event) => {
     setSelectedService(event.target.value);
+    setService(event.target.value)
   };
 
   useEffect(()=>{
@@ -141,29 +131,33 @@ const BookingForm = ()=> {
       if(!stripe || !elements) {
         return;
     }
+    
     setIsProcessing(true);
 
-    const {error, paymentIntent} = await stripe.confirmPayment({
-      elements, 
-      confirmParams: {
-        return_url: `${window.location.origin}/success`
-      },
-      // redirect: 'always'
-      redirect: 'if_required'
-  })
-
-    if((error && error.type === "card_error") || (error && error.type === "validation_error")) {
-      setMessage(error.message);
-    } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-      setMessage('Payment status ' + paymentIntent.status);
+    if(selectedService === 'consultation') {
       await bookAppointment(appointmentInfo);
     } else {
-      setMessage('Unexpected state');
-   }
+      const {error, paymentIntent} = await stripe.confirmPayment({
+        elements, 
+        confirmParams: {
+          return_url: `${window.location.origin}/booking-succeeded`
+        },
+        redirect: 'always'
+        // redirect: 'if_required'
+    })
+  
+      if((error && error.type === "card_error") || (error && error.type === "validation_error")) {
+        setMessage(error.message);
+      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+        setMessage('Payment status ' + paymentIntent.status);
+        await bookAppointment(appointmentInfo);
+      } else {
+        setMessage('Unexpected state');
+     }
+    }
+
+   
     setIsProcessing(false);
-  
-  
-    
   };
 
   return (
@@ -210,10 +204,10 @@ const BookingForm = ()=> {
           <InputLabel>What service are you receiving ?</InputLabel>
 
         <Field name="service" value={selectedService} as={StyledSelect} onChange={(e)=>handleServiceChange(e)}>
-                <option value="Small Tattoo">Small Tattoo</option>
-                <option value="Large Tattoo">Large Tattoo</option>
-                <option value="Permanent Makeup">Permanent Makeup</option>
-                <option value="Consultation/Touch-up">Consultation/Touch-up</option>
+                <option value="small-tattoo">Small Tattoo</option>
+                <option value="large-tattoo">Large Tattoo</option>
+                <option value="permanent">Permanent Makeup</option>
+                <option value="consultation">Consultation/Touch-up</option>
               </Field>
               <FormError name="service" component='span' />
           </InputContainer>  
@@ -286,14 +280,14 @@ const BookingForm = ()=> {
             </PriceContainer>
             </PaymentContainer>}
             <Container>
-            {/* <Payment/> */}
-            <PaymentElement />
-        {/* <Button type="submit">Next</Button>  */}
-        <Button type="submit" disabled={isProcessing || !stripe || !elements }>
-          <span id="button-text">
-                    {isProcessing ? 'Processing...' : 'Pay now'}
-                </span></Button> 
-        </Container>
+                <PaymentElements/>
+                  <Button type="submit" disabled={isProcessing || !stripe || !elements }>
+                    <span id="button-text">
+                      {isProcessing ? 'Processing...' : 'Pay now'}
+                    </span>
+                  </Button> 
+                  {message && <div id="payment-message">{message}</div>}
+            </Container>
           </ServiceContainer>
         </FormWrapper>)}
       </Formik>

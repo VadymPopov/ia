@@ -9,10 +9,17 @@ import { PaymentElement } from '@stripe/react-stripe-js';
 export const FormWrapper = styled(Form)`
   text-align: center;
   margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
+`;
 
-  @media (max-width: 1023px) {
+export const FieldSet = styled.fieldset`
+ margin: 20px 0 ;
+ border-radius: 20px;
+ border: 2px solid ${colors.textColorDarkBg};
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+
+ @media (max-width: 768px) {
     display: block;
   }
 `;

@@ -74,3 +74,18 @@ export const Container = styled.div`
     display: flex;
 `;
 
+export const SubTitle = styled.h3`
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: .05em;
+  color: ${colors.mainDarkColor};
+  text-align: start;
+  margin-bottom: 20px;
+
+  @media (max-width:768px) {
+    font-size: 18px;
+    line-height: 1.16;
+  }
+`;

@@ -8,13 +8,6 @@ import { PaymentElement } from '@stripe/react-stripe-js';
 
 export const FormWrapper = styled(Form)`
   text-align: center;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-
-  @media (max-width: 1023px) {
-    display: block;
-  }
 `;
 
 export const CustomDatePicker = styled(DatePicker)`

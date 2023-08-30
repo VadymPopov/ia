@@ -29,6 +29,18 @@ export const validationSchemaBooking = () => {
   })
 };
 
+export const validationSchemaTime = Yup.object().shape({
+  slot: Yup.string().required("Date and Time is required"),
+});
+
+export const validationSchemaClient = () => {
+  return Yup.object().shape({
+  name: Yup.string().min(3).matches(nameRegExp, 'Enter a valid name').required('Name is a required field'),
+  email: Yup.string().matches(emailRegExp,'Enter a valid email').required('Email is a required field'),
+  phone: Yup.string().matches(phoneRegExp, 'Enter a valid phone number').required('Phone number is a required field'),
+  })
+};
+
 export const validationSchemaWaiverForm = (isClientUnder18) => {
   return Yup.object().shape({
   name: Yup.string().min(3).matches(nameRegExp, 'Enter a valid name').required('Name is a required field'),

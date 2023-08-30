@@ -37,7 +37,7 @@ const Navigation = () => {
       <Item><Link to="/waiverform">
         Waiver
       </Link></Item>
-      <Item><Link to="/booking">
+      <Item><Link to="/booking/service">
         Booking
       </Link></Item>
       <Item><Link to="/faq">

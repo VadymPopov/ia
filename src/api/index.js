@@ -65,9 +65,9 @@ export const getPublishableKey = async () => {
  }
 }
 
-export const createPaymentIntent = async () => {
+export const createPaymentIntent = async (service) => {
   try {
-    const  response = await axios.post('/stripe/create-payment-intent', {});
+    const  response = await axios.post(`/stripe/create-payment-intent/${service}`, {});
     return response.data.clientSecret;
   } catch (error) {
    console.error(error)
