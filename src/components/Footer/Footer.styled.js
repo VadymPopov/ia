@@ -1,6 +1,31 @@
 import styled from 'styled-components';
 import { colors } from 'components/theme';
 
+import {VscGithub} from 'react-icons/vsc';
+import {VscGithubInverted} from 'react-icons/vsc';
+
+export const  GitIcon = styled(VscGithub)`
+  width: 20px;
+  height: 20px;
+  color: ${colors.cardColor};
+  transition: color 250ms linear;
+
+  &:hover{
+color: ${colors.accentColor};
+}
+`;
+
+export const  GitIconTwo = styled(VscGithubInverted)`
+  width: 20px;
+  height: 20px;
+  color: ${colors.cardColor};
+  transition: color 250ms linear;
+
+  &:hover{
+color: ${colors.accentColor};
+}
+`;
+
 export const FooterContainer = styled.footer`
   display: flex;
   justify-content: space-between;
@@ -42,11 +67,24 @@ border: 1px solid ${colors.textColorDarkBg};
 `;
 
 export const DevLink = styled.a`
-  transition: color 250ms linear;
   text-decoration: none;
-  color: ${colors.mainDarkColor};
+  padding: 10px;
 
-&:hover{
-color: ${colors.accentColor};
-}
+  @media (max-width: 480px) {
+    display: inline-block;
+    padding: 5px;
+    margin-top: 5px;
+  }
+`;
+
+
+export const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 480px) {
+    display: block;
+    text-align: center;
+  }
 `;
