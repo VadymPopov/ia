@@ -7,7 +7,7 @@ import {VscGithubInverted} from 'react-icons/vsc';
 export const  GitIcon = styled(VscGithub)`
   width: 20px;
   height: 20px;
-  color: ${colors.cardColor};
+  color:${colors.mainDarkColor};
   transition: color 250ms linear;
 
   &:hover{
@@ -18,7 +18,7 @@ color: ${colors.accentColor};
 export const  GitIconTwo = styled(VscGithubInverted)`
   width: 20px;
   height: 20px;
-  color: ${colors.cardColor};
+  color:${colors.mainDarkColor};
   transition: color 250ms linear;
 
   &:hover{
