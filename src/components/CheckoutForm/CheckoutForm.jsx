@@ -35,10 +35,9 @@ const CheckoutForm = ({appointmentInfo})=>{
         const {error, paymentIntent} = await stripe.confirmPayment({
             elements, 
             confirmParams: {
-                return_url: `${window.location.origin}/booking-succeeded`,
+                return_url: `${window.location.origin}/booking/payment`,
             },
-            redirect: 'always'
-            // redirect: 'if_required'
+            redirect: 'if_required'
         })
 
         if((error && error.type === "card_error") || (error && error.type === "validation_error")) {

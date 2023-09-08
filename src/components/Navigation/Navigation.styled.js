@@ -138,6 +138,7 @@ export const MobileBtn = styled.button`
   width: 50px;
   height: 50px;
   margin-right: 20px;
+  cursor: pointer;
 `;
 
 

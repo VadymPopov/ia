@@ -5,6 +5,115 @@ import { toast } from "react-hot-toast";
 // Assuming you have the Blob file in the variable 'pdfBlob'
 axios.defaults.baseURL = 'https://jubilant-potato.onrender.com';
 
+// Utility to add JWT
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+// Utility to remove JWT
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
+
+
+
+export const logIn = async (credentials) => {
+    try {
+      const resp = await axios.post('/admin/login', credentials);
+      // After successful login, add the token to the HTTP header
+      setAuthHeader(resp.data);
+      localStorage.setItem('token', resp.data);
+    } catch (error) {
+      toast.error("The email address or password is incorrect. Please retry", {
+        duration: 3000,
+      });
+    }
+  };
+
+export const logOut =  async () => {
+  try {
+    await axios.post('/admin/logout');
+    // After a successful logout, remove the token from the HTTP header
+    clearAuthHeader();
+    localStorage.clear();
+  } catch (error) {
+    return error.message;
+  }
+};
+
+  export const getAppointments = async () => {
+    try {
+      const resp = await axios.get('/appointments');
+      return resp.data;
+
+    } catch (error) {
+      toast.error("Oops! Something went wrong. Please retry later", {
+        duration: 3000,
+      });
+    }
+  };
+
+  export const getAppointmentsByDate = async (date) => {
+    try {
+      if(!axios.defaults.headers.common.Authorization) {
+        return;
+      }
+      const resp = await axios.get(`/appointments?date=${date}`);
+      return resp.data;
+
+    } catch (error) {
+      toast.error("Oops! Something went wrong. Please retry later", {
+        duration: 3000,
+      });
+    }
+  };
+
+
+  export const getAppointmentsByMonth = async (month) => {
+    try {
+      if(!axios.defaults.headers.common.Authorization) {
+        return;
+      }
+      const resp = await axios.get(`/appointments?month=${month}`);
+      return resp.data;
+
+    } catch (error) {
+      toast.error("Oops! Something went wrong. Please retry later", {
+        duration: 3000,
+      });
+    }
+  };
+
+
+  export const refreshUser = async () => {
+    try {
+
+      const token = localStorage.getItem('token');
+
+      if(!token) {
+        return 
+      }
+
+      setAuthHeader(token);
+
+      
+      // const resp = await axios.get('/admin/check');
+      // console.log(resp)
+
+      // After successful login, add the token to the HTTP header
+      // setAuthHeader(resp.data.token);
+      // return resp.data;
+    } catch (error) {
+      toast.error("The email address or password is incorrect. Please retry", {
+        duration: 3000,
+      });
+    }
+  };
+
+
+
+
+
 export const sendFileToBackend = async ({file, email, name, phone, address}) => {
   try {
     const formData = new FormData();
@@ -31,12 +140,7 @@ export const sendFileToBackend = async ({file, email, name, phone, address}) => 
 export const bookAppointment = async (data) => {
   try {
     const response = await axios.post('/appointments', data);
-
-    if (response.status === 201) {
-      toast.success('The appointment was successfully booked!', {
-        duration: 3000,
-      });
-    }
+    return response;
   } catch (error) {
     toast.error(`${error.message}`, {
       duration: 3000,
@@ -73,3 +177,25 @@ export const createPaymentIntent = async (service) => {
    console.error(error)
   }
  }
+
+
+ export const updateAppointment = async (id,data) => {
+  try {
+    const response = await axios.put(`/appointments/${id}`, data);
+    return response;
+  } catch (error) {
+    toast.error(`${error.message}`, {
+      duration: 3000,
+    });
+  }
+};
+
+export const deleteAppointment = async (id) => {
+  try {
+    await axios.delete(`/appointments/${id}`);
+  } catch (error) {
+    toast.error(`${error.message}`, {
+      duration: 3000,
+    });
+  }
+};

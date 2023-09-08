@@ -2,13 +2,41 @@ import styled from 'styled-components';
 import background from '../images/hero-bg.jpg';
 import { colors } from 'components/theme';
 
-import {MdOutlineDoubleArrow} from 'react-icons/md';
 import {RxDoubleArrowRight} from 'react-icons/rx';
+import {GiCat, GiHollowCat} from 'react-icons/gi';
+import {FaCat} from 'react-icons/fa';
+import {RiLogoutCircleRFill} from 'react-icons/ri'
 
 export const  ArrowIcon = styled(RxDoubleArrowRight)`
   width: 15px;
   height: 15px;
   color: ${colors.textColorDarkBg};
+`;
+
+export const CatIcon = styled(GiCat)`
+  width: 30px;
+  height: 30px;
+  color: ${colors.cardColor};
+`;
+
+export const HollowCatIcon = styled(GiHollowCat)`
+width: 30px;
+  height: 30px;
+  color: ${colors.cardColor};
+`;
+
+
+export const HelloCat = styled(FaCat)`
+  width: 30px;
+  height: 30px;
+  color: ${colors.cardColor};
+`;
+
+export const LogOut = styled(RiLogoutCircleRFill)`
+  width: 30px;
+  height: 30px;
+  color: ${colors.cardColor};
+  margin-left: 5px;
 `;
 
 
@@ -21,6 +49,9 @@ export const Button = styled.button`
   background: none;
   cursor: pointer;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     color:${props => props.active ? `${colors.accentColor}` : `${colors.cardColor}`};
@@ -111,7 +142,13 @@ export const Container = styled.div`
 
   @media (max-width: 768px) {
     display: block;
-}
+}`;
 
+
+export const AdminFlex = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin: 20px 0;
 `;
 

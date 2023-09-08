@@ -11,7 +11,7 @@ export default function FAQ() {
                     <Question>
                         How can I book an appoinment ?
                     </Question>
-                    <Text primary main>To schedule an appointment, simply visit the <LinkTo to='/booking/small-tattoo'>booking</LinkTo> page and follow the easy steps to select a suitable date and time. For your convenience, I also accept same-day appointments, provided you already have your design ready. Let's get started and make your appointment today! Let the magic begin!</Text>
+                    <Text primary main>To schedule an appointment, simply visit the <LinkTo to='/booking/service'>booking</LinkTo> page and follow the easy steps to select a suitable date and time. For your convenience, I also accept same-day appointments, provided you already have your design ready. Let's get started and make your appointment today! Let the magic begin!</Text>
 
                 <Question>
                     Should I prepare for getting a tattoo?
@@ -27,7 +27,7 @@ export default function FAQ() {
                     </Question>
                     <Text primary>
                     To begin, take some time to explore and research the tattoo styles that resonate with you. Collecting reference photos can be helpful in expressing your preferences to the tattoo artist.
-                    If you're excited about the idea of working together, let's make some magic happen! Head to the booking page, where you can choose a suitable time to schedule a free <LinkTo to='/booking/consultation-touch-up'>consultation</LinkTo>. During this consultation, I'll be more than happy to address any additional questions you may have about your new tattoo. Let's collaborate to bring your vision to life!
+                    If you're excited about the idea of working together, let's make some magic happen! Head to the booking page, where you can choose a suitable time to schedule a free <LinkTo to='/booking/service'>consultation</LinkTo>. During this consultation, I'll be more than happy to address any additional questions you may have about your new tattoo. Let's collaborate to bring your vision to life!
                     </Text>
                 </Item>
 

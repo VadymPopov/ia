@@ -37,7 +37,7 @@ export default function Home() {
           <Suptitle primary>About me</Suptitle>
           <Title>Your favorite tattoo artist</Title>
           <Text primary main>You have chosen a tattoo artist who goes beyond the ordinary. By coming here, you are stepping into a world of transformation and artistic magic. I am about energy, change and a new way. On this site you can explore my portfolio and schedule the most convenient time for our meeting. Welcome! With each step, you are drawing closer to embracing a new reality tailored specifically for you.</Text>
-          <Button onClick={()=>navigate('/booking')}>Online-Booking</Button>
+          <Button onClick={()=>navigate('/booking/service')}>Online-Booking</Button>
           </Description>
        </Container>
     </Section>

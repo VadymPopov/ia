@@ -63,7 +63,7 @@ const Navigation = () => {
       <Item><Link onClick={toggleMenu} to="/waiverform">
         Waiver
       </Link></Item>
-      <Item><Link onClick={toggleMenu} to="/booking">
+      <Item><Link onClick={toggleMenu} to="/booking/service">
         Booking
       </Link></Item>
       <Item><Link onClick={toggleMenu} to="/faq">

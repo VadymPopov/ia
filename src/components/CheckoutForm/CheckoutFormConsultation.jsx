@@ -21,10 +21,13 @@ const CheckoutForm = ({appointmentInfo})=>{
 
         setIsProcessing(true);
 
-        await bookAppointment(appointmentInfo);
-      
+        const response = await bookAppointment(appointmentInfo);
+
         setIsProcessing(false);
-        navigate("/");
+        
+        if(response.status === 201){
+          navigate("/booking-succeeded");
+        }
     }
 
     return (

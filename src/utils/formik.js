@@ -19,6 +19,11 @@ export const emailRegExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 export const governmentId = /^[A-Za-z0-9]+$/;
 
+export const validationSchemaLogin = Yup.object().shape({
+  email: Yup.string().min(10).required(),
+  password: Yup.string().min(6).required(),
+});
+
 export const validationSchemaBooking = () => {
   return Yup.object().shape({
   name: Yup.string().min(3).matches(nameRegExp, 'Enter a valid name').required('Name is a required field'),

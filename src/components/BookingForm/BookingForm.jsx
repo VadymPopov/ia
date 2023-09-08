@@ -136,13 +136,15 @@ const BookingForm = ({setService})=> {
 
     if(selectedService === 'consultation') {
       await bookAppointment(appointmentInfo);
-    } else {
-      const {error, paymentIntent} = await stripe.confirmPayment({
+      return;
+    }
+
+    const {error, paymentIntent} = await stripe.confirmPayment({
         elements, 
-        confirmParams: {
-          return_url: `${window.location.origin}/booking-succeeded`
-        },
-        redirect: 'always'
+        // confirmParams: {
+        //   return_url: `${window.location.origin}/booking-succeeded`
+        // },
+        // redirect: 'always'
         // redirect: 'if_required'
     })
   
@@ -151,11 +153,10 @@ const BookingForm = ({setService})=> {
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         setMessage('Payment status ' + paymentIntent.status);
         await bookAppointment(appointmentInfo);
+        console.log('Hello from booking Appointment')
       } else {
         setMessage('Unexpected state');
      }
-    }
-
    
     setIsProcessing(false);
   };

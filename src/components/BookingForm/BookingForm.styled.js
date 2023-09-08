@@ -33,7 +33,7 @@ export const SlotBtn = styled.button`
   font-size: 12px;
   line-height: 1.33;
   width: 90px;
-  border: 1px solid ${colors.accentColor};;
+  border: 1px solid ${colors.accentColor};
   border-radius: 15px;
   background:  ${props => (props.active ? `${colors.accentColor}` : `${colors.cardColor}`)};
   transition: background-color 250ms linear;
