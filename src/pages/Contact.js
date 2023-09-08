@@ -1,4 +1,4 @@
-import { Container, Title, Section } from "components/CommonStyles";
+import { Title, Section } from "components/CommonStyles";
 import {FlexContainer, StyledIcon, Link, Flex,FlexItem, Label} from './Contact.styled';
 
 import { FiMapPin, FiMail, FiPhone,  } from 'react-icons/fi';
@@ -8,7 +8,7 @@ import EmbeddedMap from '../components/Map/Map';
 
 export default function Contact() {
     return (
-  <Section primary>
+  <Section primary={'primary'}>
   <Title>Contact me</Title>
     <FlexContainer>
     <FlexItem>

@@ -13,12 +13,15 @@ import { verifyClientLegalAge } from "./ageVerification";
 import PdfContent from "components/PdfContent";
 import { usePDF } from '@react-pdf/renderer';
 import { sendFileToBackend } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 const WaiverForm = ()=> {
   const [formValues, setFormValues] = useState(null);
   const [isClientUnder18, setIsClientUnder18] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [instance, update] = usePDF({ });
+  const [isProcessing, setIsProcessing] =useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isOpenModal) {
@@ -42,9 +45,12 @@ const WaiverForm = ()=> {
     openModal();
   };
 
-  const handleSendFileToBackend = () => {
-    sendFileToBackend({file: instance.blob, email:formValues.email, name:formValues.name, phone:formValues.phone, address:formValues.address});
+  const handleSendFileToBackend = async () => {
+    setIsProcessing(true);
+    await sendFileToBackend({file: instance.blob, email:formValues.email, name:formValues.name, phone:formValues.phone, address:formValues.address});
+    setIsProcessing(false);
     closeModal();
+    navigate('/faq');
   }
 
   const initialValues =  useMemo(() => {
@@ -413,9 +419,9 @@ const WaiverForm = ()=> {
       {isOpenModal && <Modal onClose={closeModal}>
         <ModalFlex>
           <ModalFormText>Double check the information and</ModalFormText>
-          <Button onClick={handleSendFileToBackend}>Submit</Button>
+          <Button disabled={isProcessing} onClick={handleSendFileToBackend}>{isProcessing ? 'Processing...' : 'Submit'}</Button>
         </ModalFlex>
-        <CloseBtn onClick={closeModal}>Close</CloseBtn>
+        <CloseBtn onClick={closeModal} disabled={isProcessing}>Close</CloseBtn>
         <PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>}
       </>
     );

@@ -153,7 +153,7 @@ export const  CrossIcon = styled(CgClose)`
 `;
 
 export const  MobileContainer = styled.div`
-position: ${props => props.isOpen ? "flex"  : "fixed"};
+position: ${props => props.open ? "flex"  : "fixed"};
 background-color: ${colors.cardColor};
 right: 0; 
 z-index: 1000;
@@ -161,8 +161,8 @@ z-index: 1000;
  height: 100vh;
  overflow: auto;
  transition: opacity 1s ease-in-out, transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
- transform:  ${props => props.isOpen ? "translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)" : "translate3d(100%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)"
+ transform:  ${props => props.open ? "translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)" : "translate3d(100%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)"
 };
-opacity: ${props => (props.isOpen ? 1 : 0)};
+opacity: ${props => (props.open ? 1 : 0)};
 transform-style: preserve-3d;
 `;

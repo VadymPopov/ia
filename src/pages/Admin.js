@@ -7,7 +7,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { refreshUser, logOut } from "api";
 import { useEffect } from "react";
 
-
 export default function Admin () {
     const location = useLocation();
     const currentPathname = location.pathname;
@@ -30,11 +29,11 @@ export default function Admin () {
         
         <Text>Тут ти можеш дивитись свої апойнтменти та редагувати якщо треба. Мяу </Text>
       <FlexContainer>
-          <Button onClick={()=>navigate('/admin/appointmentsbyday')} active={currentPathname === '/admin/appointmentsbyday'}>By day</Button>
+          <Button onClick={()=>navigate('/gatita/admin/appointmentsbyday')} active={currentPathname === '/gatita/admin/appointmentsbyday'}>By day</Button>
           <CatIcon/>
-          <Button onClick={()=>navigate('/admin/appointmentsbymonth')} active={currentPathname === '/admin/appointmentsbymonth'}>By month</Button>
+          <Button onClick={()=>navigate('/gatita/admin/appointmentsbymonth')} active={currentPathname === '/gatita/admin/appointmentsbymonth'}>By month</Button>
           <HollowCatIcon/>
-          <Button onClick={()=>navigate('/admin/appointmentsall')} active={currentPathname === '/admin/appointmentsall'}>All</Button>
+          <Button onClick={()=>navigate('/gatita/admin/appointmentsall')} active={currentPathname === '/gatita/admin/appointmentsall'}>All</Button>
       </FlexContainer>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />

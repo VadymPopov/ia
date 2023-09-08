@@ -47,7 +47,7 @@ const CheckoutForm = ({appointmentInfo})=>{
                   </Button> 
             </Container>
           </ServiceContainer>
-        </FormWrapper>
+      </FormWrapper>
     )
 };
 

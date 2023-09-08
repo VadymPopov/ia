@@ -1,14 +1,11 @@
 import { lazy } from "react";
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import Layout  from "./Layout";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { GlobalStyle } from "../components/GlobalStyles";
-import ScrollToTop from "./ScrollToTop/ScrollToTop";
+import ScrollToTop from "./ScrollToTop";
 import { RestrictedRoute } from "./RestrictedRoute";
-// import { PrivateRoute } from "./PrivateRoute";
-// import { useAuth } from 'hooks/useAuth';
-// import { refreshUser } from "api";
-import { RequireAuth } from "./RequireAuth";
+import { PrivateRoute } from "./PrivateRoute";
 import { Toaster } from 'react-hot-toast';
 
 const AftercarePage = lazy(() => import('../pages/Aftercare'));
@@ -40,38 +37,31 @@ export const App = () => {
     <ScrollToTop></ScrollToTop>
     <Toaster position="top-center" reverseOrder={false} />
     <Routes>
-      
       <Route path='/' element={<Layout/>}>
         <Route index element={<HomePage/>}/>
         <Route path='/aftercare'  element={<AftercarePage/>}/>
         <Route path='/portfolio'  element={<PortfolioPage/>}/>
         <Route path='/services'   element={<ServicesPage/>}/>
         <Route path='/waiverform'   element={<WaiverformPage/>}/>
-
         <Route path='/booking'   element={<BookingPage appointmentInfo={appointmentInfo} service={service}/>}>
           <Route path="service" element={<Service setService={setService}/>} />
           <Route path="client-info" element={<Client service={service} setAppointmentInfo={setAppointmentInfo}/>} />
           <Route path="schedule" element={<Schedule appointmentInfo={appointmentInfo} setAppointmentInfo={setAppointmentInfo}/>} />
           <Route path="payment" element={<Payment  appointmentInfo={appointmentInfo} />} />
         </Route>
-
         <Route path='/faq'   element={<FAQPage/>}/>
         <Route path='/contact'   element={<ContactPage/>}/>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
-      <Route path="/booking-succeeded" element={<CompletionPage/>}></Route>
 
-      <Route path="/admin" element={<Admin/>}>
+      <Route path="/booking-succeeded" element={<CompletionPage/>}></Route>
+      <Route path="/gatita/admin" element={<PrivateRoute component={<Admin/>} redirectTo="/gatita/login"/>}>
           <Route path="appointmentsbyday" element={<DaySchedule/>}/>
           <Route path="appointmentsbymonth" element={<MonthSchedule/>}/>
           <Route path="appointmentsall" element={<AllSchedule/>}/>
       </Route>
-      {/* <Route element={<RequireAuth/>}>
-          <Route path="/admin" element={<Admin/>}></Route>
-      </Route> */}
-      <Route path="/login" element={<RestrictedRoute component={<Login/>} redirectTo="/admin/appointmentsbyday"/>}/>
+      <Route path="/gatita/login" element={<RestrictedRoute component={<Login/>} redirectTo="/gatita/admin/appointmentsbyday"/>}/>
     </Routes>
-
     </>
    
   );

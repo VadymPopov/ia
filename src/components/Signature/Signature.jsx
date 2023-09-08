@@ -33,8 +33,6 @@ import {FormError} from 'utils/formik';
           <SignatureCanvas
             ref={signatureRef}
             onEnd={handleCanvasChange}
-            onBegin={() => console.log('working...')}
-            // velocityFilterWeight={0.7}
             penWidth={2}
             {...props}
           />

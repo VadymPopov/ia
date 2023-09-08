@@ -17,7 +17,7 @@ const Navigation = () => {
   };
 
   return (
-    <Header mobile={isMobile}>
+    <Header mobile={isMobile ? 'mobile' : ''}>
     <Nav>
       <LogoLink to="/" onClick={isMobile ? onClose : null}>
         <Logo src={logo} alt="logo" />
@@ -49,7 +49,7 @@ const Navigation = () => {
       </List>}
     </Nav>
 
-    <MobileContainer isOpen={isOpen}>
+    <MobileContainer open={isOpen}>
       <List>
       <Item><Link onClick={toggleMenu} to="/portfolio">
         Portfolio

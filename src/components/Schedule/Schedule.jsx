@@ -89,9 +89,7 @@ const ScheduleForm = ({appointmentInfo, setAppointmentInfo})=> {
       };
 
       setAppointmentInfo(info);
-
       navigate('/booking/payment')
-      console.log(info);
   };
 
   return (
