@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Formik} from 'formik';
 import { format } from 'date-fns';
-import { useNavigate } from "react-router-dom";
 import { getAppointmentsByDate } from "api";
 import {validationSchemaTime, FormError} from 'utils/formik';
 
@@ -11,7 +10,6 @@ import Appointments from "components/Appointments/Appointments";
 
 const DaySchedule = ()=> {
   const [data, setData] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(()=> {
     const func = async()=>{

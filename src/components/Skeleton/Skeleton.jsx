@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import {FlexContainer, Info,Time, Service, Payment} from './Skeleton.styled';
+import {FlexContainer, Payment} from './Skeleton.styled';
 
 
 const SkeletonForm = () => {
