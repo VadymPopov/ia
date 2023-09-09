@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { colors } from '../theme';
+import { colors } from '../../utils/theme';
 import { Form } from 'formik';
 
 import { PaymentElement } from '@stripe/react-stripe-js';

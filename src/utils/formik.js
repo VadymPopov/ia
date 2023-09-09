@@ -102,3 +102,38 @@ export const validationSchemaWaiverForm = (isClientUnder18) => {
     otherwise: (schema) => schema}
   ),
 })};
+
+
+export const initialValuesWaiver = {
+    name:'',
+    email: '',
+    phone: '',
+    governmentId: '',
+    dob:'',
+    address: '',
+    service:'',
+    bodyPart: '',
+    design:'',
+    date: new Date(),
+    waveRelease: false,
+    pain: false,
+    infection: false,
+    healing: false,
+    outcome: false,
+    refund: false,
+    permanentChange: false,
+    media: false,
+    age: false,
+    agreement: false,
+    drugs: false,
+    desease: false,
+    medication: false,
+    skin: false,
+    recipientOrgan: false,
+    lot: '',
+    signatureField: '',
+    parentalConsent: false,
+    parentalName: '',
+    parentGovernmentId: '',
+    parentalSignatureField: '',
+  };

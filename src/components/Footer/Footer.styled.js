@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from 'components/theme';
+import { colors } from 'utils/theme';
 
 import {VscGithub} from 'react-icons/vsc';
 import {VscGithubInverted} from 'react-icons/vsc';

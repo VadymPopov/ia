@@ -1,13 +1,14 @@
 import { Text, Title, Section } from "components/CommonStyles";
 import {  Outlet } from "react-router-dom";
-
+import useGlobalState from "hooks/useGlobalState";
 import { ArrowIcon, Button, FlexContainer } from "./Booking.styled";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export default function Booking({service, appointmentInfo}) {
+export default function Booking() {
     const location = useLocation();
     const currentPathname = location.pathname;
     const navigate = useNavigate();
+    const {service, appointmentInfo} = useGlobalState();
 
     return (
     <Section>

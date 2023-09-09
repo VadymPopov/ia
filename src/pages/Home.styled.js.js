@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import background from '../images/hero-bg.jpg';
-import { colors } from 'components/theme';
+import { colors } from 'utils/theme';
 
 export const MainTitle = styled.h1`
     font-size: 72px;

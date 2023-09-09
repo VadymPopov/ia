@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { colors } from 'components/theme';
+import { colors } from 'utils/theme';
 import {CgMenu, CgClose} from 'react-icons/cg';
 
 export const Header = styled.header`

@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from "react";
 import {Formik} from 'formik';
 import { format } from 'date-fns';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAvailableSlots } from "api";
 import {validationSchemaTime, FormError} from 'utils/formik';
-
+import useGlobalState from "hooks/useGlobalState";
 import  Button  from "components/Button";
 import { FormWrapper, SlotBtn, GridContainer, FlexCentered, CustomDatePicker, ServiceTitle, FieldSet } from "./Schedule.styled";
 import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
-import styleDatepickerBooking from './datepicker-book.css';
 
-const ScheduleForm = ({appointmentInfo, setAppointmentInfo})=> {
+  const ScheduleForm = ()=> {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [slots, setSlots] = useState([]);
+  const {appointmentInfo, setAppointmentInfo} = useGlobalState();
   const navigate = useNavigate();
   const selectedService= appointmentInfo?.service;
 
@@ -100,7 +100,7 @@ const ScheduleForm = ({appointmentInfo, setAppointmentInfo})=> {
         onSubmit={handleSubmit}
       > 
       {({ handleChange, values }) => (
-        <FormWrapper autoComplete="off">
+        <FormWrapper autoComplete="off" className="schedule">
         <FieldSet> 
         <Legend>Choose a time:</Legend>
           <Input name="date">
@@ -113,7 +113,6 @@ const ScheduleForm = ({appointmentInfo, setAppointmentInfo})=> {
                 minDate={new Date()}
                 maxDate={maxDate}
                 dateFormat="dd/MM/yyyy"
-                className={styleDatepickerBooking}
                 inline
               />
             )}
@@ -122,7 +121,6 @@ const ScheduleForm = ({appointmentInfo, setAppointmentInfo})=> {
 
         <div>
 
-       
         <p>{selectedDate && format(selectedDate, 'MMMM dd, yyyy')}</p>
           <Input name="slot">
             {({ field, form }) => (

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../theme';
+import { colors } from '../../utils/theme';
 
 import { PaymentElement } from '@stripe/react-stripe-js';
 

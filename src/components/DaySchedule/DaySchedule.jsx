@@ -7,7 +7,6 @@ import {validationSchemaTime, FormError} from 'utils/formik';
 
 import { FormWrapper,  CustomDatePicker,  FieldSet } from "./DaySchedule.styled";
 import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
-import styleDatepickerBooking from './datepicker-book.css';
 import Appointments from "components/Appointments/Appointments";
 
 const DaySchedule = ()=> {
@@ -30,38 +29,14 @@ const DaySchedule = ()=> {
     date: new Date(),
   };
 
-    const handleDataChange = async (date, field, form) => {
+    const handleDataChange = async (date) => {
       const formattedDate = format(date, 'MM.dd.yyyy'); 
-      // form.setFieldValue(field.name, date); 
-     
       const appointments = await getAppointmentsByDate(formattedDate);
       if(appointments) {
         setData(appointments);
       }
       
     };
-
-  //   useEffect(()=>{
-  //     (async()=>{
-  //      const slots = await getAvailableSlots(format(selectedDate, 'MM.dd.yyyy'), duration);
-  //      setSlots(slots);
-  //     })();
- 
-  //  },[duration, selectedDate]);
-
-  // const handleSubmit = async(values, actions) => {
-  //     const info = {
-  //       ...appointmentInfo,
-  //       date: format(values.date, 'MM.dd.yyyy'),
-  //       slot: values.slot,
-  //       duration: duration,
-  //     };
-
-  //     setAppointmentInfo(info);
-
-  //     navigate('/booking/payment')
-  //     console.log(info);
-  // };
 
   return (
       <>
@@ -70,7 +45,7 @@ const DaySchedule = ()=> {
         validationSchema={validationSchemaTime}
       > 
       {({ handleChange, values }) => (
-        <FormWrapper autoComplete="off">
+        <FormWrapper autoComplete="off" className='schedule'>
         <FieldSet> 
         <Legend>Choose a time:</Legend>
           <Input name="date">
@@ -78,12 +53,11 @@ const DaySchedule = ()=> {
               <CustomDatePicker
                 {...field}
                 selected={field.value}
-                onChange={(date) => handleDataChange(date, field, form)}
+                onChange={(date) => handleDataChange(date)}
                 showPopperArrow={false}
                 minDate={new Date()}
                 maxDate={maxDate}
                 dateFormat="dd/MM/yyyy"
-                className={styleDatepickerBooking}
                 inline
               />
             )}

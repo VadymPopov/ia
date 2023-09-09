@@ -1,6 +1,6 @@
 import { Field,Form } from 'formik';
 import styled from 'styled-components';
-import { colors } from '../theme';
+import { colors } from '../../utils/theme';
 
 export const Container = styled.div`
   display: flex;

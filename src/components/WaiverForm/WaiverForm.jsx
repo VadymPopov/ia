@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from "react";
+import React, {useState, useEffect} from "react";
 import {Formik, Field} from 'formik';
 
 import SignatureField from "components/Signature";
@@ -7,9 +7,8 @@ import PdfPreview from "components/PdfPreview";
 import Modal from "components/Modal";
 import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet } from "./WaiverForm.styled";
 
-import {validationSchemaWaiverForm, FormError} from 'utils/formik';
-import styleDatepicker from './datepicker.css';
-import { verifyClientLegalAge } from "./ageVerification";
+import {validationSchemaWaiverForm, FormError, initialValuesWaiver} from 'utils/formik';
+import { verifyClientLegalAge } from "../../utils/ageVerification";
 import PdfContent from "components/PdfContent";
 import { usePDF } from '@react-pdf/renderer';
 import { sendFileToBackend } from "../../api";
@@ -53,49 +52,14 @@ const WaiverForm = ()=> {
     navigate('/faq');
   }
 
-  const initialValues =  useMemo(() => {
-  return {
-    name:'Vadym',
-    email: 'mailto@gmail.com',
-    phone: '123456789',
-    governmentId: '123456789',
-    dob:new Date(1995,4,15),
-    address: '123 Main street',
-    service:'Tattoo',
-    bodyPart: 'hand',
-    design:'tiger black and gold',
-    date: new Date(),
-    waveRelease: true,
-    pain: true,
-    infection: true,
-    healing: true,
-    outcome: true,
-    refund: true,
-    permanentChange: true,
-    media: true,
-    age: true,
-    agreement: true,
-    drugs: true,
-    desease: true,
-    medication: true,
-    skin: true,
-    recipientOrgan: true,
-    lot: '123456789',
-    signatureField: '',
-    parentalConsent: false,
-    parentalName: '',
-    parentGovernmentId: '',
-    parentalSignatureField: '',
-  }},[]);
-
     return (
       <>
         <Formik
-        initialValues={initialValues}
+        initialValues={initialValuesWaiver}
         validationSchema={validationSchemaWaiverForm(isClientUnder18)}
         onSubmit={handleSubmit}
       > 
-        <FormWrapper autoComplete="off"> 
+        <FormWrapper autoComplete="off" className="waiver"> 
         <FieldSet> 
         <Legend>Client Information:</Legend>
           <FlexContainer> 
@@ -107,7 +71,7 @@ const WaiverForm = ()=> {
 
       <InputContainer>
           <InputLabel>Birthday Date</InputLabel>
-          <Input name="dob">
+          <Input name="dob" >
             {({ field, form }) => (
               <CustomDatePicker
                 {...field}
@@ -120,7 +84,6 @@ const WaiverForm = ()=> {
                 scrollableYearDropdown
                 yearDropdownItemNumber={100}
                 dateFormat="dd/MM/yyyy"
-                className={styleDatepicker}
               />
             )}
           </Input>

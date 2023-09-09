@@ -4,7 +4,7 @@ import {FlexContainer, StyledIcon, Link, Flex,FlexItem, Label} from './Contact.s
 import { FiMapPin, FiMail, FiPhone,  } from 'react-icons/fi';
 import {TfiTime} from 'react-icons/tfi';
 
-import EmbeddedMap from '../components/Map/Map';
+import EmbeddedMap from '../components/EmbeddedMap';
 
 export default function Contact() {
     return (

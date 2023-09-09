@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../theme';
+import { colors } from '../../utils/theme';
 
 export const Item = styled.li`
   padding: 20px 15px;  

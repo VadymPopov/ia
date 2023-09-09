@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import Button from 'components/Button/Button';
 import { useNavigate, useLocation } from "react-router-dom";
 import { ServiceContainer, ServiceItem, FlexContainer, Price, Time } from "./Service.styled";
 import { SubTitle } from "components/CommonStyles";
+import useGlobalState from "hooks/useGlobalState";
 
-export default function Service({setService}) {
+export default function Service() {
   const location = useLocation();
   const [selectedService, setSelectedService] = useState(location.state || null);
   const navigate = useNavigate();
+  const {setService} = useGlobalState();
 
     const handleServiceClick = (value) => {
         if (selectedService === value) {

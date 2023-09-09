@@ -1,6 +1,6 @@
 import { Section, Title } from "components/CommonStyles";
 
-import Swiper from "components/Swiper/Swiper";
+import Swiper from "components/Swiper";
 import { Slide } from "components/Swiper/Swiper.styled";
 import { permanentArray } from "images/permanent";
 import { freshArray } from "images/fresh";

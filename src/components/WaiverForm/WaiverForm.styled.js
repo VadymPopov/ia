@@ -2,7 +2,7 @@ import { Field,Form } from 'formik';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { colors } from '../theme';
+import { colors } from '../../utils/theme';
 
 export const FormWrapper = styled(Form)`
   text-align: center;

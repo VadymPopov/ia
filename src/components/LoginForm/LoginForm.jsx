@@ -6,7 +6,7 @@ import {MdLogin} from 'react-icons/md'
 import { FormError, validationSchemaLogin } from 'utils/formik';
 import { logIn } from 'api';
 
-import useAuth from 'hooks/useAuth';
+import useAuth from 'hooks/useGlobalState';
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {

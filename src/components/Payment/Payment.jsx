@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import useGlobalState from "hooks/useGlobalState";
 import { getPublishableKey, createPaymentIntent } from "api";
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from "components/CheckoutForm/CheckoutForm";
@@ -8,9 +8,10 @@ import Skeleton from '../Skeleton';
 import {loadStripe} from '@stripe/stripe-js';
 import { useNavigate } from "react-router-dom";
 
-const Payment = ({appointmentInfo}) => {
+    const Payment = () => {
     const [stripePromise, setStripePromise] = useState(null);
     const [clientSecret, setClientSecret] = useState(null);
+    const {appointmentInfo} = useGlobalState();
     const service = appointmentInfo?.service;
     const navigate = useNavigate();
 

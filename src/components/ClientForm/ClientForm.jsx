@@ -1,14 +1,15 @@
 import React, {useEffect} from "react";
 import {Formik} from 'formik';
 import {validationSchemaClient, FormError} from 'utils/formik';
-
+import useGlobalState from "hooks/useGlobalState";
 import  Button  from "components/Button";
 import { FormWrapper} from "./ClientForm.styled";
 import { InputContainer, Input, InputLabel, FlexContainer, Legend, FieldSet } from "../WaiverForm/WaiverForm.styled";
 import { useNavigate } from "react-router-dom";
 
-const ClientForm = ({service, setAppointmentInfo})=> {
+  const ClientForm = ()=> {
   const navigate = useNavigate();
+  const {service, setAppointmentInfo} = useGlobalState();
 
   useEffect(()=> {
       if(!service) {

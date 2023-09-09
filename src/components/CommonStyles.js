@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from './theme';
+import { colors } from '../utils/theme';
 
 export const Title = styled.h2`
     margin-bottom: 20px;

@@ -1,12 +1,12 @@
-import { lazy } from "react";
-import React, {useState} from "react";
+import React, { lazy } from "react";
 import Layout  from "./Layout";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { GlobalStyle } from "../components/GlobalStyles";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "../utils/scrollToTop";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
 import { Toaster } from 'react-hot-toast';
+import Datepicker from './datepicker.css'
 
 const AftercarePage = lazy(() => import('../pages/Aftercare'));
 const HomePage = lazy(() => import('../pages/Home'));
@@ -28,13 +28,11 @@ const MonthSchedule = lazy(() => import('../components/MonthSchedule'));
 const AllSchedule = lazy(() => import('../components/AllSchedule'));
 
 export const App = () => {
-  const [service, setService] = useState(null);
-  const [appointmentInfo, setAppointmentInfo] = useState(null);
 
   return (
     <>
     <GlobalStyle/>
-    <ScrollToTop></ScrollToTop>
+    <ScrollToTop/>
     <Toaster position="top-center" reverseOrder={false} />
     <Routes>
       <Route path='/' element={<Layout/>}>
@@ -43,18 +41,18 @@ export const App = () => {
         <Route path='/portfolio'  element={<PortfolioPage/>}/>
         <Route path='/services'   element={<ServicesPage/>}/>
         <Route path='/waiverform'   element={<WaiverformPage/>}/>
-        <Route path='/booking'   element={<BookingPage appointmentInfo={appointmentInfo} service={service}/>}>
-          <Route path="service" element={<Service setService={setService}/>} />
-          <Route path="client-info" element={<Client service={service} setAppointmentInfo={setAppointmentInfo}/>} />
-          <Route path="schedule" element={<Schedule appointmentInfo={appointmentInfo} setAppointmentInfo={setAppointmentInfo}/>} />
-          <Route path="payment" element={<Payment  appointmentInfo={appointmentInfo} />} />
+        <Route path='/booking'   element={<BookingPage />}>
+          <Route path="service" element={<Service/>}/>
+          <Route path="client-info" element={<Client/>} />
+          <Route path="schedule" element={<Schedule />} />
+          <Route path="payment" element={<Payment   />} />
         </Route>
         <Route path='/faq'   element={<FAQPage/>}/>
         <Route path='/contact'   element={<ContactPage/>}/>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
 
-      <Route path="/booking-succeeded" element={<CompletionPage/>}></Route>
+      <Route path="/booking-succeeded" element={<CompletionPage/>}/>
       <Route path="/gatita/admin" element={<PrivateRoute component={<Admin/>} redirectTo="/gatita/login"/>}>
           <Route path="appointmentsbyday" element={<DaySchedule/>}/>
           <Route path="appointmentsbymonth" element={<MonthSchedule/>}/>
