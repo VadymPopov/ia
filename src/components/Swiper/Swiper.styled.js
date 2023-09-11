@@ -51,22 +51,22 @@ export const Slide = styled(SwiperSlide)`
   }
 `;
 
-export const SwiperPagination = styled.div`
-  .swiper-pagination-bullet {
-    background-color: #111;
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    border-radius: 50%;
-    cursor: pointer;
+// export const SwiperPagination = styled.div`
+//   .swiper-pagination-bullet {
+//     background-color: #111;
+//     width: 10px;
+//     height: 10px;
+//     margin: 0 5px;
+//     border-radius: 50%;
+//     cursor: pointer;
 
-    &:hover {
-      background-color: #999;
-    }
-  }
+//     &:hover {
+//       background-color: #999;
+//     }
+//   }
 
-  .swiper-pagination-bullet-active {
-    background-color: #007bff;
-  }
-`;
+//   .swiper-pagination-bullet-active {
+//     background-color: #007bff;
+//   }
+// `;
 

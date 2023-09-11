@@ -39,31 +39,44 @@
 
 // export default Swiper;
 
+import { register } from 'swiper/element/bundle';
+// import 'swiper/element/css/effect-coverflow';
+// import { EffectCoverflow, Pagination } from 'swiper/modules';
+import '../swiper.css';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+register();
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
+const SwiperComponent = ({children}) => {
+  // const swiperElRef = useRef(null);
 
-// import required modules
-import { Navigation } from 'swiper/modules';
+  // useEffect(() => {
+  //   // listen for Swiper events using addEventListener
+  //   swiperElRef.current.addEventListener('progress', (e) => {
+  //     const [swiper, progress] = e.detail;
+  //     console.log(progress);
+  //   });
 
-const SwiperComponent = () => {
+  //   swiperElRef.current.addEventListener('slidechange', (e) => {
+  //     console.log('slide changed');
+  //   });
+  // }, []);
+
   return (
-    <>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
-    </>
+    <swiper-container
+      // ref={swiperElRef}
+      slides-per-view="auto"
+      centered-slides="true"
+      navigation="true"
+      pagination="true"
+      pagination-dynamic-bullets="true"
+      grab-cursor="true"
+      effect='coverflow'
+      coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+      coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true"
+      class="wrapper"
+    >
+      {children}
+    </swiper-container>
   );
 };
 
