@@ -1,17 +1,17 @@
 import { Section, Title } from "components/CommonStyles";
-
-import Swiper from "components/Swiper";
-import { Slide } from "components/Swiper/Swiper.styled";
-import { permanentArray } from "images/permanent";
-import { freshArray } from "images/fresh";
-import { healedArray } from "images/healed";
+import SwiperComponent from "components/Swiper/Swiper";
+// import Swiper from "components/Swiper";
+// import { Slide } from "components/Swiper/Swiper.styled";
+// import { permanentArray } from "images/permanent";
+// import { freshArray } from "images/fresh";
+// import { healedArray } from "images/healed";
 
 
 export default function Portfolio() {
     return (
     <Section>
         <Title mobile={'mobile'}>Healed Permanent</Title>
-        <Swiper>{
+        {/* <Swiper>{
             permanentArray.map((item,index)=><Slide key={index}>
                 <img src={item} alt={`permanent-${index}`} />
                 </Slide>
@@ -29,7 +29,8 @@ export default function Portfolio() {
         <img src={item} alt={`healed-${index}`} />
         </Slide>)
         }
-        </Swiper>
+        </Swiper> */}
+        <SwiperComponent></SwiperComponent>
     </Section>
     );
 }
