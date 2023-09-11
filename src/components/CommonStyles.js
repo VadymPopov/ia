@@ -89,3 +89,11 @@ export const SubTitle = styled.h3`
     line-height: 1.16;
   }
 `;
+
+export const Image = styled.img`
+    width: 100%; 
+    border-radius: 10px;
+    overflow: hidden;
+`;
+
+ 

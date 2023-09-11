@@ -45,13 +45,6 @@
     overflow: hidden;
   };
 
-.slide-image {
-    display: block;
-    width: 100%; 
-    border-radius: 10px;
-    overflow: hidden;
-  };
-
   .swiper-pagination-bullet {
      background-color: #111;
      width: 10px;
