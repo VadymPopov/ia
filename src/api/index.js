@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { toast } from "react-hot-toast";
 
-axios.defaults.baseURL = 'https://jubilant-potato.onrender.com';
+const currentURL = window.location.protocol + "//" + window.location.hostname + window.location.pathname + "api/";
+
+axios.defaults.baseURL = currentURL;
 
 // Utility to add JWT
 const setAuthHeader = token => {
