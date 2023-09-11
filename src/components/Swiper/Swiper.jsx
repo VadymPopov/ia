@@ -1,6 +1,10 @@
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import { SwiperWrapper, SwiperPagination } from './Swiper.styled';
 import { Navigation } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 const Swiper = ({children}) => {

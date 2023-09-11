@@ -6,7 +6,7 @@ import ScrollToTop from "../utils/scrollToTop";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
 import { Toaster } from 'react-hot-toast';
-import datepicker from './datepicker.css'
+import './datepicker.css';
 
 const AftercarePage = lazy(() => import('../pages/Aftercare'));
 const HomePage = lazy(() => import('../pages/Home'));
