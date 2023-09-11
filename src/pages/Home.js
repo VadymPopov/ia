@@ -8,13 +8,6 @@ import aboutMeTwo from '../images/about-me-two.jpg'
 
 export default function Home() {
     const navigate = useNavigate();
-
-    const currentURL = window.location.protocol + "//" + window.location.hostname + window.location.pathname + "api/";
-console.log("Current URL:", currentURL);
-
-console.log(window.location.protocol);
-console.log(window.location.hostname);
-console.log(window.location.pathname);
     
     return (
         <>
