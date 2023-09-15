@@ -23,6 +23,7 @@
     "react-dom": "^18.1.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
+    "react-loader-spinner": "^5.4.5",
     "react-loading-skeleton": "^3.3.1",
     "react-number-format": "^5.2.2",
     "react-pdf": "^7.1.3",

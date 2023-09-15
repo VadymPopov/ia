@@ -3,20 +3,24 @@ import {useStripe, useElements} from '@stripe/react-stripe-js';
 import { format } from 'date-fns';
 import { bookAppointment } from "api";
 import { switchName, calculatePrice } from "utils/helpers";
+import { useNavigate } from "react-router";
 
+import Loader from "components/BtnLoader";
 import  Button  from "components/Button";
 import { FormWrapper, ServiceContainer, ServiceTitle, ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider, PaymentElements, ErrorMessage } from "./CheckoutForm.styled";
 import { Container } from "../WaiverForm/WaiverForm.styled";
-
+import {BtnContainer} from "../LoginForm/LoginForm.styled";
+console.log(window.location.origin)
 
 const CheckoutForm = ({appointmentInfo})=>{
-    const [message , setMessage] = useState(null);
+    const [message, setMessage] = useState(null);
     const [isProcessing, setIsProcessing] =useState(false);
     const selectedService = appointmentInfo.service;
     const selectedSlot = appointmentInfo.slot;
     const selectedDate = appointmentInfo.date;
     const stripe = useStripe();
     const elements = useElements();
+    const navigate = useNavigate();
 
     const price = calculatePrice(selectedService) || 0;
     const tax = Number((price*0.13).toFixed(2)) || 0;
@@ -35,7 +39,7 @@ const CheckoutForm = ({appointmentInfo})=>{
         const {error, paymentIntent} = await stripe.confirmPayment({
             elements, 
             confirmParams: {
-                return_url: `${window.location.origin}/booking/payment`,
+                return_url: `${window.location.origin}/booking-succeeded`,
             },
             redirect: 'if_required'
         })
@@ -43,8 +47,8 @@ const CheckoutForm = ({appointmentInfo})=>{
         if((error && error.type === "card_error") || (error && error.type === "validation_error")) {
               setMessage(error.message);
         } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-              setMessage('Payment status ' + paymentIntent.status);
               await bookAppointment(appointmentInfo);
+              navigate('/booking-succeeded');
         } else {
               setMessage('Unexpected state');
           }
@@ -82,9 +86,7 @@ const CheckoutForm = ({appointmentInfo})=>{
             <Container>
               <PaymentElements/>
                   <Button type="submit" disabled={isProcessing || !stripe || !elements }>
-                    <span id="button-text">
-                      {isProcessing ? 'Processing...' : 'Pay now'}
-                    </span>
+                      {isProcessing ? <BtnContainer>Processing<Loader/></BtnContainer>  : 'Pay now'}
                   </Button> 
                   {message && <ErrorMessage id="payment-message">{message}</ErrorMessage>}
             </Container>

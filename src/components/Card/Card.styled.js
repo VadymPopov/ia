@@ -7,7 +7,7 @@ export const Item = styled.li`
   border-radius: 15px;
   
   @media screen and (max-width: 599px) {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -17,15 +17,6 @@ export const Name = styled.p`
     font-weight: 700;
     font-size: 20px;
     text-transform: uppercase;
-
-
-  @media (min-width: 480px) and (max-width: 1024px) {
-
-  }
-  
-  @media screen and (max-width: 479px) {
-
-  }
 `;
 
 export const Info = styled.p`
@@ -33,15 +24,6 @@ export const Info = styled.p`
     color: ${colors.textColor};
     font-size: 16px;
     font-weight: 500;
-
-
-  @media (min-width: 480px) and (max-width: 1024px) {
-
-  }
-  
-  @media screen and (max-width: 479px) {
-
-  }
 `;
 
 

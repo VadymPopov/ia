@@ -56,6 +56,7 @@ export const SlotBtn = styled.button`
   &:disabled {
     background: ${colors.backgroundColor};
     box-shadow: none;
+    color: ${colors.textColorDarkBg};
     cursor: not-allowed;
   }
 `;

@@ -21,9 +21,11 @@ export const ButtonStyled = styled.button`
   }
 
   &:disabled {
-    background: #dddddd;
+    background-color: rgba(255, 108, 0, 1);
+    color: ${props => props.primary ? '#000' : '#fff'};
     box-shadow: none;
     cursor: not-allowed;
+    opacity: 0.7;
   }
 `;
 

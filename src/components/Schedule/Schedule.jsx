@@ -3,6 +3,7 @@ import {Formik} from 'formik';
 import { format } from 'date-fns';
 import { useNavigate } from "react-router-dom";
 import { getAvailableSlots } from "api";
+import {isTimeWithinLastHour} from 'utils/timeComparison'
 import {validationSchemaTime, FormError} from 'utils/formik';
 import useGlobalState from "hooks/useGlobalState";
 import  Button  from "components/Button";
@@ -128,7 +129,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
               {slots && slots.length !== 0 && <FlexCentered>
                 <GridContainer>
                {slots.map((slot, index) => (
-                    <SlotBtn type='button' key={index} onClick={()=>handleButtonClick(slot, form, index, field)} active={activeButtonIndex === index ? index.toString() : null}>
+                    <SlotBtn type='button' key={index} onClick={()=>handleButtonClick(slot, form, index, field)} active={activeButtonIndex === index ? index.toString() : null} disabled={isTimeWithinLastHour(selectedDate,slot)}>
                     {slot}
                     </SlotBtn>
                   ))} 

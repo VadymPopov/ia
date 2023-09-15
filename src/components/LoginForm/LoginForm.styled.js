@@ -1,13 +1,14 @@
 import { Field,Form } from 'formik';
 import styled from 'styled-components';
 import { colors } from '../../utils/theme';
+import {MdLogin} from 'react-icons/md'
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-`
+`;
 
 export const FormWrapper = styled(Form)`
   text-align: center;
@@ -42,4 +43,17 @@ export const FlexContainer = styled.div`
   @media (max-width: 767px){
     display: block;
   }
+`;
+
+export const BtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LoginIcon = styled(MdLogin)`
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  padding: 2.5px;
 `;

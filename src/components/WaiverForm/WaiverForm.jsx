@@ -6,6 +6,8 @@ import  Button  from "components/Button";
 import PdfPreview from "components/PdfPreview";
 import Modal from "components/Modal";
 import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet } from "./WaiverForm.styled";
+import Loader from "components/BtnLoader";
+import {BtnContainer} from "../LoginForm/LoginForm.styled";
 
 import {validationSchemaWaiverForm, FormError, initialValuesWaiver} from 'utils/formik';
 import { verifyClientLegalAge } from "../../utils/ageVerification";
@@ -368,21 +370,19 @@ const WaiverForm = ()=> {
           </FlexContainer> 
 
         <Title>Parental/Guardian Signature:</Title>
-        <SignatureField  canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px', width: "100px"}}} label="parentalSignatureField" name="parentalSignatureField"/>
+        <SignatureField  canvasProps={{ width: 500, height: 200, style: {border: '1px solid #9DA4BD', borderRadius:'5px'}}} label="parentalSignatureField" name="parentalSignatureField"/>
         </FieldSet>  
         }
-
         <Container>
         <Button type="submit">Next</Button> 
         </Container>
-        
         </FormWrapper>
       </Formik>
 
       {isOpenModal && <Modal onClose={closeModal}>
         <ModalFlex>
           <ModalFormText>Double check the information and</ModalFormText>
-          <Button disabled={isProcessing} onClick={handleSendFileToBackend}>{isProcessing ? 'Processing...' : 'Submit'}</Button>
+          <Button disabled={isProcessing} onClick={handleSendFileToBackend}>{isProcessing ? <BtnContainer>Processing<Loader/></BtnContainer>  : 'Submit'}</Button>
         </ModalFlex>
         <CloseBtn onClick={closeModal} disabled={isProcessing}>Close</CloseBtn>
         <PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>}

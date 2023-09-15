@@ -1,30 +1,30 @@
-import { Container, FormWrapper, Input, InputContainer} from "./LoginForm.styled";
+import { useState } from "react";
+import { Container, FormWrapper, Input, InputContainer, BtnContainer, LoginIcon} from "./LoginForm.styled";
 import  Button  from "components/Button";
 import { Title } from 'components/CommonStyles';
 import { Formik } from 'formik';
-import {MdLogin} from 'react-icons/md'
 import { FormError, validationSchemaLogin } from 'utils/formik';
 import { logIn } from 'api';
-
-import useAuth from 'hooks/useGlobalState';
+import Loader from "components/BtnLoader";
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
-  const {setAuth} = useAuth();
+  const [isLoading, setIsLoading] =useState(false);
   const navigate = useNavigate();
   const initialValues = {
     email:'',
     password:'',
   };
-  
 
-  const handleSubmit = async (values, actions) => {
-   const token = await logIn({
+  const handleSubmit = async (values) => {
+    setIsLoading(true);
+      await logIn({
           email: values.email,
           password: values.password,
         });
-        setAuth(token);
-        navigate('/gatita/admin/appointmentsbyday')
+
+      navigate('/gatita/admin/appointmentsbyday');
+      setIsLoading(false);
   };
 
   return (
@@ -49,7 +49,11 @@ const LoginForm = () => {
               <FormError name="password" component='span'/>
             </div>
           </InputContainer>
-          <Button type={"submit"}>Log In <MdLogin/></Button>
+          <Button type={"submit"} disabled={isLoading}>{isLoading ? 
+            (<BtnContainer>
+              <Loader/>Loading</BtnContainer>) : 
+            (<BtnContainer>Log In<LoginIcon/></BtnContainer>)}
+          </Button>
         </FormWrapper>
       </Formik>
       </Container>

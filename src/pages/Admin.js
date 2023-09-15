@@ -6,6 +6,7 @@ import { CatIcon, HollowCatIcon, HelloCat,LogOut, Button, FlexContainer, AdminFl
 import { useNavigate, useLocation } from "react-router-dom";
 import { refreshUser, logOut } from "api";
 import { useEffect } from "react";
+import Spinner from 'components/Spinner';
 
 export default function Admin () {
     const location = useLocation();
@@ -35,7 +36,7 @@ export default function Admin () {
           <HollowCatIcon/>
           <Button onClick={()=>navigate('/gatita/admin/appointmentsall')} active={currentPathname === '/gatita/admin/appointmentsall'}>All</Button>
       </FlexContainer>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner/>}>
         <Outlet />
       </Suspense>
     </Section>
