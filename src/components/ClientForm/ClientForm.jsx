@@ -18,9 +18,9 @@ import { useNavigate } from "react-router-dom";
   });
 
   const initialValues =  {
-      name:'Dope',
-      email: 'mail@dope.com',
-      phone: '123456789',
+      name:'',
+      email: '',
+      phone: '',
     };
 
   const handleSubmit = async(values, actions) => {
@@ -28,7 +28,7 @@ import { useNavigate } from "react-router-dom";
         name: values.name,
         email: values.email,
         phone: values.phone,
-        service:service,
+        service: service,
       };
 
       setAppointmentInfo(appointmentInfo);

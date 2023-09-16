@@ -79,11 +79,11 @@ border: 2px solid ${colors.textColorDarkBg};
   @media (max-width: 767px){
    font-size: 18px;
   }
-
 `;
 
 export const ErrorText = styled.p`
   margin-top: 5px;
+  margin-bottom: 5px;
   font-size: 14px;
   color: red;
 `;
@@ -231,4 +231,10 @@ export const FieldSet = styled.fieldset`
  margin: 20px 0 ;
  border-radius: 20px;
  border: 2px solid ${colors.textColorDarkBg};
+`;
+
+export const ErrorMain = styled.p`
+  margin-top: 5px;
+  font-size: 18px;
+  color: red;
 `;

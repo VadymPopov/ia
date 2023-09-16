@@ -5,7 +5,7 @@ import SignatureField from "components/Signature";
 import  Button  from "components/Button";
 import PdfPreview from "components/PdfPreview";
 import Modal from "components/Modal";
-import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet } from "./WaiverForm.styled";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet, ErrorMain } from "./WaiverForm.styled";
 import Loader from "components/BtnLoader";
 import {BtnContainer} from "../LoginForm/LoginForm.styled";
 
@@ -25,11 +25,11 @@ const WaiverForm = ()=> {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isOpenModal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    // if (isOpenModal) {
+    //   document.body.style.overflow = 'hidden';
+    // } else {
+    //   document.body.style.overflow = 'auto';
+    // }
   }, [isOpenModal]);
 
   const closeModal=()=> {
@@ -61,6 +61,7 @@ const WaiverForm = ()=> {
         validationSchema={validationSchemaWaiverForm(isClientUnder18)}
         onSubmit={handleSubmit}
       > 
+        {({ isValid }) => (
         <FormWrapper autoComplete="off" className="waiver"> 
         <FieldSet> 
         <Legend>Client Information:</Legend>
@@ -374,15 +375,16 @@ const WaiverForm = ()=> {
         </FieldSet>  
         }
         <Container>
-        <Button type="submit">Next</Button> 
+        {!isValid ?  <ErrorMain>"Oops! It looks like you forgot to fill in some required fields. Please review the form and make sure all required information is provided."</ErrorMain> : null }
+        <Button type="submit"  style={{display: !isValid ? 'none' : 'inline-block'}}>Next</Button> 
         </Container>
-        </FormWrapper>
+        </FormWrapper>)}
       </Formik>
 
       {isOpenModal && <Modal onClose={closeModal}>
         <ModalFlex>
           <ModalFormText>Double check the information and</ModalFormText>
-          <Button disabled={isProcessing} onClick={handleSendFileToBackend}>{isProcessing ? <BtnContainer>Processing<Loader/></BtnContainer>  : 'Submit'}</Button>
+          <Button disabled={isProcessing} onClick={handleSendFileToBackend}>{isProcessing ? <BtnContainer>Processing<Loader/></BtnContainer> : 'Submit'}</Button>
         </ModalFlex>
         <CloseBtn onClick={closeModal} disabled={isProcessing}>Close</CloseBtn>
         <PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>}

@@ -5,8 +5,8 @@ import { format } from 'date-fns';
 
 const PdfContent = ({ values, isClientUnder18 }) => {
   return (
-    <Document>
-      <Page size="A4" style={styles.page}>
+    <Document pageMode="fullScreen" pageLayout='oneColumn'>
+      <Page size="A4" style={styles.page} wrap={true}>
         <View style={styles.section}>
         <Text style={styles.mainTitle}>Consent to application of {values.service} and release and waiver of all claims</Text>
         <Text style={styles.value}>IMPORTANT NOTICE: BY SIGNING THIS TATTOO WAIVER FORM, YOU ARE WAIVING IMPORTANT LEGAL RIGHTS. READ THIS DOCUMENT CAREFULLY AND SEEK LEGAL COUNSEL IF NECESSARY BEFORE SIGNING.</Text>

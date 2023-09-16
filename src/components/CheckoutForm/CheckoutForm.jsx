@@ -10,7 +10,6 @@ import  Button  from "components/Button";
 import { FormWrapper, ServiceContainer, ServiceTitle, ServiceDivider, ServiceText, PriceContainer, PaymentContainer, PaymentDivider, PaymentElements, ErrorMessage } from "./CheckoutForm.styled";
 import { Container } from "../WaiverForm/WaiverForm.styled";
 import {BtnContainer} from "../LoginForm/LoginForm.styled";
-console.log(window.location.origin)
 
 const CheckoutForm = ({appointmentInfo})=>{
     const [message, setMessage] = useState(null);
