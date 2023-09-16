@@ -16,16 +16,13 @@ export default function Contact() {
       <StyledIcon as={FiMapPin}/>
       <Label>309 King St W 2rd floor, Toronto, ON M5V 1J5</Label> 
       </Flex>
-       <Flex>
-       <StyledIcon as={FiPhone}/><Link href="tel:+14372541559">(437) 254-1559</Link>
-      </Flex>
       <Flex>
       <StyledIcon as={FiMail}/>
       <Link href="mailto:InkedbyAlina@gmail.com">Email me</Link>
       </Flex>
       <Flex>
       <StyledIcon as={TfiTime}/>
-      <Label>Mon - Sat: 12PM - 6PM</Label>
+      <Label>Tue - Sun: 12PM - 6PM</Label>
       </Flex>
     </FlexItem>
     <FlexItem><EmbeddedMap/></FlexItem>
