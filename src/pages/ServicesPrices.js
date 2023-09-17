@@ -2,6 +2,7 @@ import Button from 'components/Button/Button';
 import { Card, Image, Item, Description, CardTitle,CardFooter } from './ServicesPrices.styled';
 import { Title, Text } from 'components/CommonStyles';
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import smallTattoo from '../images/small-tattoo.jpg';
 import largeTattoo from '../images/large-tattoo.jpg';
@@ -12,7 +13,16 @@ export default function Services() {
     const navigate = useNavigate();
 
     return (
-    <ul>
+        <>
+           <Helmet>
+                <meta name="description" content="Explore wide range of services and transparent pricing. From Permanent Makeup of lips to Fine line tattoo . Discover the perfect solution for your needs and budget today." />
+                <meta name="keywords" content="tattoo, toronto, canada, permanent, makeup, alina ivenko, pricing, services, small, large, consultation, makeup" />
+                <meta name="author" content="Alina Ivenko" />
+                <meta property="og:title" content="Services Provided" />
+                <meta property="og:description" content="Explore wide range of services and transparent pricing. From Permanent Makeup of lips to Fine line tattoo . Discover the perfect solution for your needs and budget today." />
+                <title>Services Provided</title>
+            </Helmet>
+            <ul>
         <Item>
             <Card>
                 <Image src={smallTattoo} alt="small-tattoo" />
@@ -109,6 +119,8 @@ export default function Services() {
             </div>
         </Item>
     
-    </ul>
+            </ul>
+        </>
+    
     );
 }

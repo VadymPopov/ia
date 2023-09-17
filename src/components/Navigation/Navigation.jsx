@@ -23,7 +23,7 @@ const Navigation = () => {
         <Logo src={logo} alt="logo" />
       </LogoLink>
 
-      {isMobile ? <MobileBtn onClick={toggleMenu}>{isOpen ? <CrossIcon/> : <BurgerIcon/>}</MobileBtn> : 
+      {isMobile ? <MobileBtn onClick={toggleMenu} aria-label="mobile-menu-toggle">{isOpen ? <CrossIcon/> : <BurgerIcon/>}</MobileBtn> : 
       <List>
       <Item ><Link to="/portfolio">
         Portfolio

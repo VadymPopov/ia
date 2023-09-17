@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
     const [clientSecret, setClientSecret] = useState(null);
     const {appointmentInfo} = useGlobalState();
     const service = appointmentInfo?.service;
+    const email = appointmentInfo?.email;
     const navigate = useNavigate();
 
     useEffect (()=>{
@@ -35,10 +36,10 @@ import { useNavigate } from "react-router-dom";
                 return
             };
 
-            const clientSecret = await createPaymentIntent(service);
+            const clientSecret = await createPaymentIntent(service, email);
             setClientSecret(clientSecret);
         })();
-    }, [service]);
+    }, [email, service]);
 
     if ((!stripePromise || !clientSecret) && service !== 'consultation') {
         return <Skeleton />;

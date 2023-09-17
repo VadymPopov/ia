@@ -16,7 +16,7 @@ const CheckoutForm = ({appointmentInfo})=>{
     const [isProcessing, setIsProcessing] =useState(false);
     const selectedService = appointmentInfo.service;
     const selectedSlot = appointmentInfo.slot;
-    const selectedDate = appointmentInfo.date;
+    const selectedDate = appointmentInfo.date.replace(/\./g, "/");
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();

@@ -2,6 +2,7 @@ import { MainTitle, HeroDescription, HeroSection, HeroContainer, Item, List, Des
 import { Text, Title, Suptitle, Section } from "components/CommonStyles";
 import Button from "components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import aboutMe from '../images/about-me-one.jpg';
 import aboutMeTwo from '../images/about-me-two.jpg'
@@ -11,6 +12,15 @@ export default function Home() {
     
     return (
         <>
+        <Helmet>
+            <meta name="description" content="Your favorite Tattoo and Permanent Makeup Artist in Toronto" />
+            <meta name="keywords" content="tattoo, toronto, canada, permanent, makeup, alina ivenko, ivenko alina, ivenko, alina, booking, artist, fine line tattoo, small tattoo, large tattoo, tattoo faqs, aftercare, portfolio" />
+            <meta name="author" content="Alina Ivenko" />
+            <meta property="og:title" content="Alina Ivenko" />
+            <meta property="og:description" content="Your favorite Tattoo and Permanent Makeup Artist in Toronto" />
+            <title>Ivenko Alina</title>
+        </Helmet>
+
     <HeroSection>
         <HeroContainer>
             <Suptitle >Your favorite tattoo artist</Suptitle>

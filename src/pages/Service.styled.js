@@ -44,11 +44,13 @@ export const ServiceItem = styled.div`
 
 }
 
+@media (min-width: 900px) {
   &:hover {
     background-color: ${colors.accentColor};
     box-shadow: ${colors.cardColor} 0px 0px 5px 2px;
     color: ${colors.mainLightColor};
   }
+}
 `;
 
 export  const FlexContainer = styled.div`

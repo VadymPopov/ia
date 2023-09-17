@@ -73,8 +73,8 @@ const WaiverForm = ()=> {
           </InputContainer>
 
       <InputContainer>
-          <InputLabel>Birthday Date</InputLabel>
-          <Input name="dob" >
+          <InputLabel htmlFor="user-birthday">Birthday Date</InputLabel>
+          <Input name="dob" aria-label="user-birthday" id="user-birthday">
             {({ field, form }) => (
               <CustomDatePicker
                 {...field}
@@ -153,8 +153,8 @@ const WaiverForm = ()=> {
           </InputContainer>
 
           <InputContainer>
-          <InputLabel>Appointment Date</InputLabel>
-          <Input name="date">
+          <InputLabel htmlFor="date">Appointment Date</InputLabel>
+          <Input name="date" aria-label="appointment-date" id="date">
             {({ field, form }) => (
               <CustomDatePicker
                 {...field}

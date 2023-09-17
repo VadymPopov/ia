@@ -5,8 +5,8 @@ import { format } from 'date-fns';
 
 const PdfContent = ({ values, isClientUnder18 }) => {
   return (
-    <Document pageMode="fullScreen" pageLayout='oneColumn'>
-      <Page size="A4" style={styles.page} wrap={true}>
+    <Document pageMode="fullScreen">
+      <Page size="A4" style={styles.page}>
         <View style={styles.section}>
         <Text style={styles.mainTitle}>Consent to application of {values.service} and release and waiver of all claims</Text>
         <Text style={styles.value}>IMPORTANT NOTICE: BY SIGNING THIS TATTOO WAIVER FORM, YOU ARE WAIVING IMPORTANT LEGAL RIGHTS. READ THIS DOCUMENT CAREFULLY AND SEEK LEGAL COUNSEL IF NECESSARY BEFORE SIGNING.</Text>
@@ -40,7 +40,13 @@ const PdfContent = ({ values, isClientUnder18 }) => {
 
         <View style={styles.section}>
         <Text style={styles.title}>Tattoo Outcome:</Text>
-        <Text style={styles.value}>I acknowledge that the final appearance of the tattoo, including color, placement, size, and design, may vary due to individual skin characteristics, healing process, and artistic interpretation. I understand that the Tattoo Artist will exercise their professional judgment in delivering the best possible outcome, but I accept that there may be variations. I acknowledge that the Tattoo Artist is not accountable for the accuracy, meaning, or spelling of the symbols, text, or dates that I have provided or selected from the flash (design) sheets. I am fully responsible for verifying these details prior to getting the tattoo.</Text>
+        <Text style={styles.value}>I acknowledge that the final appearance of the tattoo, including color, placement, size, and design, may vary due to individual skin characteristics, healing process, and artistic interpretation. I understand that the Tattoo Artist will exercise their professional judgment in delivering the best possible outcome, but I accept that there may be variations.</Text>
+        </View>
+        </Page>
+
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+        <Text style={styles.value}> I acknowledge that the Tattoo Artist is not accountable for the accuracy, meaning, or spelling of the symbols, text, or dates that I have provided or selected from the flash (design) sheets. I am fully responsible for verifying these details prior to getting the tattoo.</Text>
         </View>
 
         <View style={styles.section}>
@@ -73,8 +79,10 @@ const PdfContent = ({ values, isClientUnder18 }) => {
         <Text style={styles.title}>Media Consent:</Text>
         <Text style={styles.value}>I acknowledge that the Tattoo Artist retains full rights to utilize any photographs or videos of my tattoo, and I willingly grant consent for such visual media to be captured during and after my tattoo procedure.</Text>
         </View>
+      </Page>
 
-        <View style={styles.section}>
+      <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
         <Text style={styles.title}>Age and Identification:</Text>
         <Text style={styles.value}>I confirm that I am either at least 18 years old or have a legal guardian present. In both cases, all parties involved will provide government-issued photo identification as required.</Text>
         </View>
@@ -135,17 +143,9 @@ const PdfContent = ({ values, isClientUnder18 }) => {
            
         </View>
         </View>
-        </Page>  
+      </Page>  
     </Document>
   );
 };
-
-// const PdfPreview = ({ values, isClientUnder18 }) => {
-//   return (
-//     <PDFViewer width="800" height="500">
-//       <PdfContent values={values} isClientUnder18={isClientUnder18}></PdfContent>
-//     </PDFViewer>
-//   );
-// };
 
 export default PdfContent;

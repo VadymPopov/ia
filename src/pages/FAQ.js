@@ -1,10 +1,17 @@
 import { Text, Title, Section } from "components/CommonStyles";
 import {  Item, List, Question, LinkTo } from "pages/FAQ.styled";
-
+import { Helmet } from "react-helmet-async";
 
 export default function FAQ() {
     return (
-        <Section primary={"primary"}>
+        <>
+            <Helmet>
+                   <meta name="description" content="Get in touch with Alina Ivenko through our contact page.  Reach out  easily, and let me  assist you promptly. Your communication matters to me." />
+                   <meta property="og:title" content="Contact" />
+                   <meta property="og:description" content="Get in touch with Alina Ivenko through our contact page.  Reach out  easily, and let me  assist you promptly. Your communication matters to me." />
+                   <title>Contact</title>
+            </Helmet>
+            <Section primary={"primary"}>
              <Title>Tattoo FAQ's</Title>
              <List>
                 <Item>
@@ -79,6 +86,8 @@ export default function FAQ() {
                     </Text>
                 </Item>
              </List>
-    </Section>
+            </Section>
+        </>
+        
     );
 }

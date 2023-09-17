@@ -1,4 +1,5 @@
 import { Text, Suptitle, Title } from "components/CommonStyles";
+import { Helmet } from "react-helmet-async";
 
 import { ImageRight, ImageLeft, TattooContainer,FlexContainer, Container } from "./Aftercare.styled";
 import aftercareOne from '../images/aftercare-one.jpg';
@@ -8,6 +9,14 @@ import aftercareThree from '../images/aftercare-three.jpg';
 export default function Aftercare() {
     return (
     <>
+     <Helmet>
+                <meta name="description" content="Discover essential tattoo aftercare tips and guidelines . Aftercare instructions will help you ensure the longevity and vibrancy of your new ink. Learn how to care for your tattoo properly and keep it looking its best for years to come." />
+                <meta name="keywords" content="Tattoo aftercare, Tattoo healing,  Tattoo care instructions, Tattoo skincare,Tattoo hygiene,Tattoo healing process, Prevent tattoo fading, Tattoo protection" />
+                <meta name="author" content="Alina Ivenko" />
+                <meta property="og:title" content="Tattoo Aftercare" />
+                <meta property="og:description" content="Discover essential tattoo aftercare tips and guidelines . Aftercare instructions will help you ensure the longevity and vibrancy of your new ink. Learn how to care for your tattoo properly and keep it looking its best for years to come." />
+                <title>Tattoo Aftercare</title>
+      </Helmet>
     <Container>
     <FlexContainer>
         <div>
