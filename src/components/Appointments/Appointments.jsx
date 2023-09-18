@@ -3,7 +3,6 @@ import {List} from "./Appointments.styled";
 import { Text } from "components/CommonStyles";
 import Card from '../Card';
 
-
 const Appointments = ({data}) => {
 const [appointments, setAppointments] = useState([]);
 

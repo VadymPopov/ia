@@ -1,7 +1,6 @@
 import { DevLink, FooterContainer, Link, LinksContainer, FlexContainer, GitIcon, GitIconTwo } from './Footer.styled';
 import {SiInstagram, SiTiktok} from 'react-icons/si';
 
-
 const Footer = () => {
 
   return (
@@ -15,15 +14,10 @@ const Footer = () => {
       <GitIconTwo/>
     </DevLink>
     </FlexContainer>
-     
-  
-     
-
       <LinksContainer>
         <Link href="https://www.tiktok.com/@ivenko.alinaaa" target='_blank' rel="noopener noreferrer" aria-label='tiktok-page'><SiTiktok></SiTiktok></Link>
         <Link href="https://www.instagram.com/ivenko.alinaaa/" target='_blank' rel="noopener noreferrer" aria-label='instagram-page'><SiInstagram></SiInstagram></Link>
       </LinksContainer>
-      
     </FooterContainer>
   );
 };

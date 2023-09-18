@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { toast } from "react-hot-toast";
 
-// const currentURL = window.location.protocol + "//" + window.location.hostname  + "/api/";
-const currentURL = 'https://alinaivenko.com/api/'
+const currentURL = window.location.protocol + "//" + window.location.hostname  + "/api/";
 
 axios.defaults.baseURL = currentURL;
 

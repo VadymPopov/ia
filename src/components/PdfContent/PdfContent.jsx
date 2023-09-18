@@ -126,8 +126,6 @@ const PdfContent = ({ values, isClientUnder18 }) => {
             <Text style={styles.text}>Parental/Guardian name:</Text>
             <Text style={styles.text}>{values.parentalName}</Text>
             </View>
-            
-            
            </View>
         </View>
         }
