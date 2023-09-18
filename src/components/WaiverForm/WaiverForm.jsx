@@ -5,7 +5,7 @@ import SignatureField from "components/Signature";
 import  Button  from "components/Button";
 import PdfPreview from "components/PdfPreview";
 import Modal from "components/Modal";
-import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet, ErrorMain } from "./WaiverForm.styled";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet, ErrorMain, SubmitBtn } from "./WaiverForm.styled";
 import Loader from "components/BtnLoader";
 import {BtnContainer} from "../LoginForm/LoginForm.styled";
 
@@ -15,6 +15,7 @@ import PdfContent from "components/PdfContent";
 import { usePDF } from '@react-pdf/renderer';
 import { sendFileToBackend } from "../../api";
 import { useNavigate } from "react-router-dom";
+import { useMedia } from 'react-use';
 
 const WaiverForm = ()=> {
   const [formValues, setFormValues] = useState(null);
@@ -23,13 +24,14 @@ const WaiverForm = ()=> {
   const [instance, update] = usePDF({ });
   const [isProcessing, setIsProcessing] =useState(false);
   const navigate = useNavigate();
+  const isMobile = useMedia('(max-width: 900px)');
 
   useEffect(() => {
-    // if (isOpenModal) {
-    //   document.body.style.overflow = 'hidden';
-    // } else {
-    //   document.body.style.overflow = 'auto';
-    // }
+    if (isOpenModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }, [isOpenModal]);
 
   const closeModal=()=> {
@@ -383,8 +385,9 @@ const WaiverForm = ()=> {
 
       {isOpenModal && <Modal onClose={closeModal}>
         <ModalFlex>
-          <ModalFormText>Double check the information and</ModalFormText>
-          <Button disabled={isProcessing} onClick={handleSendFileToBackend}>{isProcessing ? <BtnContainer>Processing<Loader/></BtnContainer> : 'Submit'}</Button>
+          {!isMobile && <ModalFormText>Double check the information and</ModalFormText>}
+          <Button disabled={isProcessing} onClick={handleSendFileToBackend}>{isProcessing ? <BtnContainer>Processing<Loader/></BtnContainer> : 'Submit'}
+          </Button>
         </ModalFlex>
         <CloseBtn onClick={closeModal} disabled={isProcessing}>Close</CloseBtn>
         <PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>}

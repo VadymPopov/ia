@@ -193,6 +193,7 @@ export const CloseBtn = styled.button`
   border-radius: 25px;
   border: 1px solid  ${colors.accentColor};
   background-color:  ${colors.accentColor};
+  z-index: 1000;
 
   &:hover, &:focus {
     border: 1px solid ${colors.textColorDarkBg};
@@ -201,15 +202,47 @@ export const CloseBtn = styled.button`
   }
 `;
 
+
+export const SubmitBtn = styled.button`
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.33;
+  padding: 8px 16px;
+  color: ${colors.cardColor};
+  transition: background-color 250ms linear;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 25px;
+  border: 1px solid  ${colors.accentColor};
+  background-color:  ${colors.mainLightColor};
+
+  &:hover, &:focus {
+    background-color: ${colors.accentColor};
+    color: ${colors.mainLightColor};
+    box-shadow: black 0px 0px 5px 2px;
+  }
+
+  &:disabled {
+    background-color: rgba(255, 108, 0, 1);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+`;
+
 export const ModalFlex = styled.div`
  display: flex;
  align-items: center;
  padding: 10px;
  justify-content: center;
-
+ z-index: 999;
+ background-color: ${colors.mainLightColor};
+ box-shadow: black 0px 0px 5px 2px;
+ 
  @media (max-width: 767px) {
   display: block;
   text-align: center;
+  padding: 5px;
  }
 `;
 

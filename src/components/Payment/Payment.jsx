@@ -15,6 +15,10 @@ import { useNavigate } from "react-router-dom";
     const service = appointmentInfo?.service;
     const email = appointmentInfo?.email;
     const navigate = useNavigate();
+    
+    appointmentInfo.address = '309 King St W 2rd floor, Toronto, ON M5V 1J5';
+
+    console.log(appointmentInfo);
 
     useEffect (()=>{
         if(!service) {

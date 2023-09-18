@@ -1,0 +1,25 @@
+.main {
+    overflow:scroll;
+}
+
+.main .mobile__pdf__container__header {
+    display: none;
+};
+
+@media (min-width: 481px) and (max-width: 900px) {
+    .main .mobile__pdf__container #viewerContainer {
+        top: 5rem !important;
+    }
+};
+
+@media screen and (max-width: 480px) {
+    .main .mobile__pdf__container #viewerContainer {
+        top: 7rem !important;
+    }
+};
+
+@media screen and (max-width: 900px) {
+    .main .mobile__pdf__container footer {
+        background: rgba(255, 108, 0, 1);
+    };
+};

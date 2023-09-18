@@ -8,6 +8,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { Toaster } from 'react-hot-toast';
 import './datepicker.css';
 
+
 const AftercarePage = lazy(() => import('../pages/Aftercare'));
 const HomePage = lazy(() => import('../pages/Home'));
 const PortfolioPage = lazy(() => import('../pages/Portfolio'));

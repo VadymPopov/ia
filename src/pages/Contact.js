@@ -1,7 +1,7 @@
 import { Title, Section } from "components/CommonStyles";
 import {FlexContainer, StyledIcon, Link, Flex,FlexItem, Label} from './Contact.styled';
 
-import { FiMapPin, FiMail, FiPhone,  } from 'react-icons/fi';
+import { FiMapPin, FiMail } from 'react-icons/fi';
 import {TfiTime} from 'react-icons/tfi';
 
 import EmbeddedMap from '../components/EmbeddedMap';
@@ -22,7 +22,7 @@ export default function Contact() {
       </Flex>
       <Flex>
       <StyledIcon as={TfiTime}/>
-      <Label>Tue - Sun: 12PM - 6PM</Label>
+      <Label>Tue - Sun: 11PM - 8PM</Label>
       </Flex>
     </FlexItem>
     <FlexItem><EmbeddedMap/></FlexItem>
