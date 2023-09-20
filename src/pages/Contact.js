@@ -13,8 +13,11 @@ export default function Contact() {
     <FlexContainer>
     <FlexItem>
       <Flex>
+      <Label>Clove Studio (Ottawa)</Label> 
+      </Flex>
+      <Flex>
       <StyledIcon as={FiMapPin}/>
-      <Label>309 King St W 2rd floor, Toronto, ON M5V 1J5</Label> 
+      <Label>155 Loretta Ave N, Ottawa, ON K1Y 3E5</Label> 
       </Flex>
       <Flex>
       <StyledIcon as={FiMail}/>
@@ -22,7 +25,7 @@ export default function Contact() {
       </Flex>
       <Flex>
       <StyledIcon as={TfiTime}/>
-      <Label>Tue - Sun: 11PM - 8PM</Label>
+      <Label>Thu - Sun: 11PM - 8PM</Label>
       </Flex>
     </FlexItem>
     <FlexItem><EmbeddedMap/></FlexItem>

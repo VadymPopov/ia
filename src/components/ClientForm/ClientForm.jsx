@@ -25,10 +25,10 @@ import { useNavigate } from "react-router-dom";
 
   const handleSubmit = async(values, actions) => {
       const appointmentInfo = {
-        name: values.name,
-        email: values.email,
-        phone: values.phone,
-        service: service,
+        name: values.name.trim(),
+        email: values.email.trim(),
+        phone: values.phone.trim(),
+        service: service.trim(),
       };
 
       setAppointmentInfo(appointmentInfo);

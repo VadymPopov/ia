@@ -2,9 +2,9 @@ import React from 'react';
 
 const EmbeddedMap = () => {
   const apiKey = 'AIzaSyADtmfaKoDbGchjLiXWRFuxo_soqOVNqH4';
-  const lat = '43.646426';
-  const lon = '-79.390357';
-  const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&center=${lat},${lon}&zoom=18&q=Icon+Tattoo+Studio`; 
+  const lat = '45.4039972';
+  const lon = '-75.7156819';
+  const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&center=${lat},${lon}&zoom=18&q=Clove+Studio+Ottawa`; 
 
   return (
     <div style={{ width: '100%', height: '500px' }}>

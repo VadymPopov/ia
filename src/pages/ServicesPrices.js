@@ -100,7 +100,7 @@ export default function Services() {
                 <Description>
                     <CardTitle>Permanent</CardTitle>
                     <p>Deposit: CA$100</p>
-                    <p>Price is fixed CA$280</p>
+                    <p>Price is fixed CA$300</p>
                     <p>Duration: 1h-3h</p>
                 </Description>
                 <Button primary="true" onClick={()=>navigate('/booking/service', {state: 'permanent'})}>Book now</Button>

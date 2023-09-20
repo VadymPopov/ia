@@ -11,9 +11,11 @@ import { FormWrapper, SlotBtn, GridContainer, FlexCentered, CustomDatePicker, Se
 import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
 
   const ScheduleForm = ()=> {
+  const minDate = new Date(2023,9,12);
+  const maxDate = new Date(2023,9,15);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(minDate);
   const [slots, setSlots] = useState([]);
   const {appointmentInfo, setAppointmentInfo} = useGlobalState();
   const navigate = useNavigate();
@@ -49,8 +51,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
   };
   
   const duration = pickDuration(selectedService);
-  const maxDate = new Date();
-  maxDate.setFullYear(maxDate.getFullYear() + 1);
+  
 
   const handleButtonClick = (slot, form, index, field) => {
     if (activeButtonIndex === index) {
@@ -64,7 +65,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
   };
 
   const initialValues =  {
-    date: new Date(),
+    date: minDate,
     slot: '', 
   };
 
@@ -81,7 +82,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
  
    },[duration, selectedDate]);
 
-  const handleSubmit = async(values, actions) => {
+  const handleSubmit = async(values) => {
       const info = {
         ...appointmentInfo,
         date: format(values.date, 'MM.dd.yyyy'),
@@ -99,8 +100,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
         initialValues={initialValues}
         validationSchema={validationSchemaTime}
         onSubmit={handleSubmit}
-      > 
-      {({ handleChange, values }) => (
+      >
         <FormWrapper autoComplete="off" className="schedule">
         <FieldSet> 
         <Legend>Choose a time:</Legend>
@@ -111,7 +111,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
                 selected={field.value}
                 onChange={(date) => handleDataChange(date, field, form)}
                 showPopperArrow={false}
-                minDate={new Date()}
+                minDate={minDate}
                 maxDate={maxDate}
                 dateFormat="dd/MM/yyyy"
                 inline
@@ -145,7 +145,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
     <div>
     <Button type="submit">Next</Button>
     </div>
-        </FormWrapper>)}
+        </FormWrapper>
       </Formik>
       </>
     );

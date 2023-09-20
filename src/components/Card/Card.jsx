@@ -5,16 +5,22 @@ import { updateAppointment, deleteAppointment } from "api";
 
 const Card = ({data: {service, date, slot, name, email, _id, duration}, onDelete, onUpdate}) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [serviceDate, setDate] = useState(date);
-  const [serviceSlot, setSlot] = useState(slot);
+  const [serviceDate, setSerivceDate] = useState(date);
+  const [serviceSlot, setServiceSlot] = useState(slot);
+  const [deleteFlag, setDeleteFlag] = useState(false);
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
+  const toggleFlag = (value) => {
+    setDeleteFlag(value);
+  };
+
   const handleDeleteClick = () => {
     deleteAppointment(_id)
     onDelete(_id);
+    setDeleteFlag(false);
   };
 
   const handleSaveClick = () => {
@@ -48,22 +54,32 @@ const Card = ({data: {service, date, slot, name, email, _id, duration}, onDelete
       return (<Item>
                   <Container>
                     <div>
-                    {isEditing ? <Input type="text" value={serviceDate} onChange={(e) => setDate(e.target.value)}/> : <Info>{serviceDate}</Info>}
+                    {isEditing ? <Input type="text" value={serviceDate} onChange={(e) => setSerivceDate(e.target.value)}/> : <Info>{serviceDate}</Info>}
                     <Name>{name} </Name>
                     <Info>{email}</Info>
                     <Info>{procedure(service)}</Info>
                     </div>
 
                     <div>
-                    {isEditing ? <Input type="text" value={serviceSlot} onChange={(e) => setSlot(e.target.value)}/> : <Time>{serviceSlot}</Time>}
-                                        <Info>{duration} min</Info>
+                    {isEditing ? <Input type="text" value={serviceSlot} onChange={(e) => setServiceSlot(e.target.value)}/> : <Time>{serviceSlot}</Time>}
+                     <Info>{duration} min</Info>
                     </div>
                     </Container>
 
-                    {isEditing  ?  <ButtonContainer><Button onClick={handleSaveClick}>Save</Button></ButtonContainer> :
+                    {isEditing  ?  <ButtonContainer>
+                      <Button onClick={handleSaveClick}>Save</Button>
+                      </ButtonContainer> :
                     <ButtonContainer>
+                      {deleteFlag ? 
+                      <>
+                      <Button type="button" title="yes" onClick={handleDeleteClick}>Yes</Button>
+                      <Button type="button" title="no" onClick={()=>toggleFlag(false)}>No</Button>
+                      </> :
+                      <>
                       <Button type="button" title="Edit appointment" onClick={handleEditClick}><MdEdit/></Button>
-                      <Button type="button" title="Delete appointment" onClick={handleDeleteClick} ><MdDelete /></Button>
+                      <Button type="button" title="Delete appointment" onClick={()=>toggleFlag(true)}><MdDelete /></Button>
+                      </>
+                      }
                     </ButtonContainer>}
                 </Item>);
 };

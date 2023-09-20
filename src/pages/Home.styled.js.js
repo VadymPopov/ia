@@ -94,6 +94,16 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     display: block;
 }
-
 `;
 
+export const ToastContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+`;
+
+export const ToastSpan = styled.span`
+    margin-bottom: 10px;
+`;

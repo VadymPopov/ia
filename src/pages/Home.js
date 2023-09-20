@@ -1,13 +1,28 @@
-import { MainTitle, HeroDescription, HeroSection, HeroContainer, Item, List, Description, Container } from "./Home.styled.js";
+import { useEffect } from "react";
+import { MainTitle, HeroDescription, HeroSection, HeroContainer, Item, List, Description, Container, ToastContainer, ToastSpan } from "./Home.styled.js";
 import { Text, Title, Suptitle, Section } from "components/CommonStyles";
 import Button from "components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 
 import aboutMe from '../images/about-me-one.jpg';
 import aboutMeTwo from '../images/about-me-two.jpg'
 
 export default function Home() {
+    useEffect(() => {
+        setTimeout(() =>{
+          toast((t) => (
+            <ToastContainer>
+            <span>Exciting News!</span> 
+            <p>Tattoo bookings for <b>Ottawa</b> from <b>October 12th to 15th</b> are now OPEN! </p>
+            <ToastSpan>Secure your spot today!</ToastSpan>
+            <Button onClick={() => toast.dismiss(t.id)}>Dismiss</Button>
+            </ToastContainer>
+          ), {duration: 10000, position: 'bottom-center'});
+        }, 1000)
+      }, [])
+
     const navigate = useNavigate();
     
     return (

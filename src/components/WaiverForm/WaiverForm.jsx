@@ -43,8 +43,14 @@ const WaiverForm = ()=> {
   };
 
   const handleSubmit = async (values, actions) => {
-    setFormValues(values);
-    update(<PdfContent values={values} isClientUnder18={isClientUnder18}/>)
+    const trimmedValues = Object.keys(values).reduce((acc, key) => {
+      acc[key] = typeof values[key] === 'string' ? values[key].trim() : values[key];
+      return acc;
+    }, {});
+
+    setFormValues(trimmedValues);
+  
+    update(<PdfContent values={trimmedValues} isClientUnder18={isClientUnder18}/>)
     openModal();
   };
 
