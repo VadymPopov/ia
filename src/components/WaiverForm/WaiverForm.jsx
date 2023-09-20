@@ -5,7 +5,7 @@ import SignatureField from "components/Signature";
 import  Button  from "components/Button";
 import PdfPreview from "components/PdfPreview";
 import Modal from "components/Modal";
-import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet, ErrorMain, SubmitBtn } from "./WaiverForm.styled";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet, ErrorMain } from "./WaiverForm.styled";
 import Loader from "components/BtnLoader";
 import {BtnContainer} from "../LoginForm/LoginForm.styled";
 
@@ -384,7 +384,7 @@ const WaiverForm = ()=> {
         }
         <Container>
         {!isValid ?  <ErrorMain>"Oops! It looks like you forgot to fill in some required fields. Please review the form and make sure all required information is provided."</ErrorMain> : null }
-        <Button type="submit"  style={{display: !isValid ? 'none' : 'inline-block'}}>Next</Button> 
+        <Button type="submit"  style={{display: !isValid ? 'none' : 'inline-block'}}>Next</Button>
         </Container>
         </FormWrapper>)}
       </Formik>
