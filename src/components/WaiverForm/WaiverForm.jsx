@@ -3,7 +3,7 @@ import {Formik, Field} from 'formik';
 import toast from "react-hot-toast";
 import SignatureField from "components/Signature";
 import  Button  from "components/Button";
-import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, Container, Legend, FieldSet, ErrorMain } from "./WaiverForm.styled";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, Container, Legend, FieldSet, ErrorMain, HintText } from "./WaiverForm.styled";
 import Loader from "components/BtnLoader";
 
 import {validationSchemaWaiverForm, FormError, initialValuesWaiver} from 'utils/formik';
@@ -20,32 +20,36 @@ const WaiverForm = ()=> {
   const [isProcessing, setIsProcessing] =useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (values, actions) => {
+  const handleFileGenerate = async (values) => {
     setIsProcessing(true);
     const trimmedValues = Object.keys(values).reduce((acc, key) => {
       acc[key] = typeof values[key] === 'string' ? values[key].trim() : values[key];
       return acc;
     }, {});
 
-    update(<PdfContent values={trimmedValues} isClientUnder18={isClientUnder18}/>);
-
-   const response = await sendFileToBackend({file: instance.blob, email:trimmedValues.email, name:trimmedValues.name, phone:trimmedValues.phone, address:trimmedValues.address});
+   setFormValues(trimmedValues);
+   update(<PdfContent values={trimmedValues} isClientUnder18={isClientUnder18}/>);
    setIsProcessing(false);
+  };
 
+  const handleFileSubmit = async () => {
+    setIsProcessing(true);
+    const {email, name, phone, address} = formValues;
+    const response = instance.blob && await sendFileToBackend({file: instance.blob, email,name, phone, address});
+    setIsProcessing(false);
     if (response === 200) {
       toast.success('The form was successfully submitted!', {
         duration: 3000,
       });
       navigate('/faq');
     }
-    
-  };
+  }
 
     return (
         <Formik
         initialValues={initialValuesWaiver}
         validationSchema={validationSchemaWaiverForm(isClientUnder18)}
-        onSubmit={handleSubmit}
+        onSubmit={handleFileGenerate}
       > 
         {({ isValid }) => (
         <FormWrapper autoComplete="off" className="waiver"> 
@@ -362,7 +366,20 @@ const WaiverForm = ()=> {
         }
         <Container>
         {!isValid ?  <ErrorMain>"Oops! It looks like you forgot to fill in some required fields. Please review the form and make sure all required information is provided."</ErrorMain> : null }
-        <Button type="submit"  style={{display: !isValid ? 'none' : 'inline-flex'}} disabled={isProcessing}>{isProcessing ? (<>Processing<Loader/></>) : 'Submit'}</Button>
+
+        {!instance.blob && isValid && 
+        <>
+        <HintText>Press the button to generate the file</HintText>
+        <Button type="submit" disabled={isProcessing}>{isProcessing ? (<>Processing<Loader/></>) : 'Generate'}</Button>
+        </>
+        }
+
+        {instance.blob && 
+        <>
+        <HintText>Now, press the button to submit the file</HintText>
+        <Button type="button" disabled={isProcessing} onClick={handleFileSubmit}>{isProcessing ? (<>Processing<Loader/></>) : 'Submit'}</Button>
+        </>
+        }
         </Container>
         </FormWrapper>)}
       </Formik>

@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header, Link, List, Nav, LogoLink, Logo, Item,MobileBtn, BurgerIcon, CrossIcon, MobileContainer } from './Navigation.styled';
-import { useMedia } from 'react-use';
+import { useMedia, useWindowSize } from 'react-use';
 
 import logo from '../../images/logo-circle.svg';
 
 const Navigation = () => {
   const isMobile = useMedia('(max-width: 767px)');
   const [isOpen, setIsOpen] = useState(false);
+  const {height} = useWindowSize();
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+  
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -49,7 +58,7 @@ const Navigation = () => {
       </List>}
     </Nav>
 
-    <MobileContainer open={isOpen}>
+    <MobileContainer open={isOpen} height={height}>
       <List>
       <Item><Link onClick={toggleMenu} to="/portfolio">
         Portfolio

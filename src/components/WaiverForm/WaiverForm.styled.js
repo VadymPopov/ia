@@ -271,3 +271,8 @@ export const ErrorMain = styled.p`
   font-size: 18px;
   color: red;
 `;
+
+export const HintText = styled.p`
+  margin: 10px 0;
+  font-size: 18px;
+`;

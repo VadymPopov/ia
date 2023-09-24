@@ -1,4 +1,4 @@
-import React, { lazy, useEffect } from "react";
+import React, { lazy } from "react";
 import Layout  from "./Layout";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { GlobalStyle } from "../components/GlobalStyles";
