@@ -1,13 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {Formik, Field} from 'formik';
-
+import toast from "react-hot-toast";
 import SignatureField from "components/Signature";
 import  Button  from "components/Button";
-import PdfPreview from "components/PdfPreview";
-import Modal from "components/Modal";
-import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, ModalFlex,ModalFormText, CloseBtn, Container, Legend, FieldSet, ErrorMain } from "./WaiverForm.styled";
+import { FormWrapper, InputContainer, Input, CustomDatePicker, Title, InputLabel, FlexContainer, Text, CheckboxLabel, StyledSelect, Container, Legend, FieldSet, ErrorMain } from "./WaiverForm.styled";
 import Loader from "components/BtnLoader";
-import {BtnContainer} from "../LoginForm/LoginForm.styled";
 
 import {validationSchemaWaiverForm, FormError, initialValuesWaiver} from 'utils/formik';
 import { verifyClientLegalAge } from "../../utils/ageVerification";
@@ -15,55 +12,36 @@ import PdfContent from "components/PdfContent";
 import { usePDF } from '@react-pdf/renderer';
 import { sendFileToBackend } from "../../api";
 import { useNavigate } from "react-router-dom";
-import { useMedia } from 'react-use';
 
 const WaiverForm = ()=> {
   const [formValues, setFormValues] = useState(null);
   const [isClientUnder18, setIsClientUnder18] = useState(false);
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const [instance, update] = usePDF({ });
   const [isProcessing, setIsProcessing] =useState(false);
   const navigate = useNavigate();
-  const isMobile = useMedia('(max-width: 900px)');
-
-  useEffect(() => {
-    if (isOpenModal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isOpenModal]);
-
-  const closeModal=()=> {
-      setIsOpenModal(false)
-  };
-  
-  const openModal = () => {
-     setIsOpenModal(true)
-  };
 
   const handleSubmit = async (values, actions) => {
+    setIsProcessing(true);
     const trimmedValues = Object.keys(values).reduce((acc, key) => {
       acc[key] = typeof values[key] === 'string' ? values[key].trim() : values[key];
       return acc;
     }, {});
 
-    setFormValues(trimmedValues);
-  
-    update(<PdfContent values={trimmedValues} isClientUnder18={isClientUnder18}/>)
-    openModal();
+    update(<PdfContent values={trimmedValues} isClientUnder18={isClientUnder18}/>);
+
+   const response = await sendFileToBackend({file: instance.blob, email:trimmedValues.email, name:trimmedValues.name, phone:trimmedValues.phone, address:trimmedValues.address});
+   setIsProcessing(false);
+
+    if (response === 200) {
+      toast.success('The form was successfully submitted!', {
+        duration: 3000,
+      });
+      navigate('/faq');
+    }
+    
   };
 
-  const handleSendFileToBackend = async () => {
-    setIsProcessing(true);
-    await sendFileToBackend({file: instance.blob, email:formValues.email, name:formValues.name, phone:formValues.phone, address:formValues.address});
-    setIsProcessing(false);
-    closeModal();
-    navigate('/faq');
-  }
-
     return (
-      <>
         <Formik
         initialValues={initialValuesWaiver}
         validationSchema={validationSchemaWaiverForm(isClientUnder18)}
@@ -384,20 +362,10 @@ const WaiverForm = ()=> {
         }
         <Container>
         {!isValid ?  <ErrorMain>"Oops! It looks like you forgot to fill in some required fields. Please review the form and make sure all required information is provided."</ErrorMain> : null }
-        <Button type="submit"  style={{display: !isValid ? 'none' : 'inline-block'}}>Next</Button>
+        <Button type="submit"  style={{display: !isValid ? 'none' : 'inline-flex'}} disabled={isProcessing}>{isProcessing ? (<>Processing<Loader/></>) : 'Submit'}</Button>
         </Container>
         </FormWrapper>)}
       </Formik>
-
-      {isOpenModal && <Modal onClose={closeModal}>
-        <ModalFlex>
-          {!isMobile && <ModalFormText>Double check the information and</ModalFormText>}
-          <Button disabled={isProcessing} onClick={handleSendFileToBackend}>{isProcessing ? <BtnContainer>Processing<Loader/></BtnContainer> : 'Submit'}
-          </Button>
-        </ModalFlex>
-        <CloseBtn onClick={closeModal} disabled={isProcessing}>Close</CloseBtn>
-        <PdfPreview values={formValues} isClientUnder18={isClientUnder18} /></Modal>}
-      </>
     );
 };
 

@@ -128,12 +128,7 @@ export const sendFileToBackend = async ({file, email, name, phone, address}) => 
     formData.append('address', address);
 
     const response = await axios.post('/send', formData);
-
-    if (response.status === 200) {
-      toast.success('The form was successfully submitted!', {
-        duration: 3000,
-      });
-    }
+    return response.status;
   } catch (error) {
     toast.error(`${error.message}`, {
       duration: 3000,

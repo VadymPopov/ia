@@ -17,6 +17,8 @@ export const Header = styled.header`
   @media (min-width: 480px) and (max-width: 1024px) {
     padding-top: 12px;
     padding-bottom: 12px;
+    overflow: auto;
+    max-height: 100vh;
   }
   
   @media screen and (max-width: 479px) {

@@ -11,17 +11,15 @@ export const FormError = ({ name }) => {
     );
   };
 
-export const nameRegExp = /^[a-zA-Z]+(([' -][a-zA-Z])?[a-zA-Z]*)*$/;
+export const nameRegExp = /^[a-zA-Z]+(([' -][a-zA-Z])?[a-zA-Z]*)/;
 
 export const phoneRegExp = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
 
 export const emailRegExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
-export const governmentId = /^[A-Za-z0-9]+$/;
+export const governmentId = /^[-\sA-Za-z0-9]+$/;
 
-const regex = /^(?!.*\s$)\s?[a-zA-Z]+(?:\s[a-zA-Z]+)*$/;
-
-const addressRegex = /^[0-9a-zA-Z\s.,-]+(?<!\s)$/;
+const addressRegex = /^[0-9a-zA-Z\s.,-]+\s*$/;
 
 export const validationSchemaLogin = Yup.object().shape({
   email: Yup.string().min(10).required(),
@@ -32,7 +30,7 @@ export const validationSchemaBooking = () => {
   return Yup.object().shape({
     name: Yup.string()
       .min(2, 'Name must be at least 2 characters')
-      .matches(nameRegExp, 'Please enter a valid name')
+      .matches(nameRegExp, 'Please enter a valid name without spaces at the beggining')
       .required('Name is required'),
     email: Yup.string()
       .matches(emailRegExp, 'Please enter a valid email')
@@ -82,8 +80,8 @@ export const validationSchemaWaiverForm = (isClientUnder18) => {
   governmentId: Yup.string().matches(governmentId, 'Please enter a valid government-issued ID number').required('Government ID is required'),
   dob: Yup.string().required('Birthday date is required'),
   address: Yup.string().matches(addressRegex, 'Please enter a valid address with no trailing spaces').required('Address is required'),
-  bodyPart: Yup.string().matches(regex, 'Please enter a valid body part').required('Body part is required'),
-  design: Yup.string().matches(regex, 'Please enter a valid design description').required('Design is required'),
+  bodyPart: Yup.string().matches(nameRegExp, 'Please enter a valid body part').required('Body part is required'),
+  design: Yup.string().matches(nameRegExp, 'Please enter a valid design description').required('Design is required'),
   service: Yup.string().required("Service is required"),
   date: Yup.string().required('Date is required'),
   waveRelease: Yup.boolean().oneOf([true], 'Please accept the Wave Release field').required('Wave Release is required'),

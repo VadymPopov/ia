@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, FormWrapper, Input, InputContainer, BtnContainer, LoginIcon} from "./LoginForm.styled";
+import { Container, FormWrapper, Input, InputContainer, LoginIcon} from "./LoginForm.styled";
 import  Button  from "components/Button";
 import { Title } from 'components/CommonStyles';
 import { Formik } from 'formik';
@@ -50,9 +50,9 @@ const LoginForm = () => {
             </div>
           </InputContainer>
           <Button type={"submit"} disabled={isLoading}>{isLoading ? 
-            (<BtnContainer>
-              <Loader/>Loading</BtnContainer>) : 
-            (<BtnContainer>Log In<LoginIcon/></BtnContainer>)}
+            (<>
+              <Loader/>Loading</>) : 
+            (<>Log In<LoginIcon/></>)}
           </Button>
         </FormWrapper>
       </Formik>
