@@ -13,7 +13,7 @@ const CheckoutForm = ({appointmentInfo})=>{
     const navigate = useNavigate();
     const selectedService = appointmentInfo.service;
     const selectedSlot = appointmentInfo.slot;
-    const selectedDate = appointmentInfo.date;
+    const selectedDate = appointmentInfo.date.replace(/\./g, "/");
     const procedureName = switchName(selectedService);
 
     const handleSubmit = async (e) => {
