@@ -2,7 +2,7 @@ import { Text, Title, Section } from "components/CommonStyles";
 import {  Outlet } from "react-router-dom";
 import { Suspense } from "react";
 
-import { CatIcon, HollowCatIcon, HelloCat,LogOut, Button, FlexContainer, AdminFlex } from "./Booking.styled";
+import { CatIcon, HollowCatIcon, HelloCat, BallCat, LogOut, Button, FlexContainer, AdminFlex } from "./Booking.styled";
 import { useNavigate, useLocation } from "react-router-dom";
 import { refreshUser, logOut } from "api";
 import { useEffect } from "react";
@@ -35,6 +35,8 @@ export default function Admin () {
           <Button onClick={()=>navigate('/gatita/admin/appointmentsbymonth')} active={currentPathname === '/gatita/admin/appointmentsbymonth'}>By month</Button>
           <HollowCatIcon/>
           <Button onClick={()=>navigate('/gatita/admin/appointmentsall')} active={currentPathname === '/gatita/admin/appointmentsall'}>All</Button>
+          <BallCat/>
+          <Button onClick={()=>navigate('/gatita/admin/addappointment')} active={currentPathname === '/gatita/admin/addappointment'}>Add appointment</Button>
       </FlexContainer>
       <Suspense fallback={<Spinner/>}>
         <Outlet />

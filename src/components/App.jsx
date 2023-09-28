@@ -26,6 +26,7 @@ const Admin = lazy(() => import('../pages/Admin'));
 const DaySchedule = lazy(() => import('./DaySchedule'));
 const MonthSchedule = lazy(() => import('../components/MonthSchedule'));
 const AllSchedule = lazy(() => import('../components/AllSchedule'));
+const AddAppointment = lazy(() => import('../components/AddAppointment'));
 
 export const App = () => {
 
@@ -57,6 +58,7 @@ export const App = () => {
           <Route path="appointmentsbyday" element={<DaySchedule/>}/>
           <Route path="appointmentsbymonth" element={<MonthSchedule/>}/>
           <Route path="appointmentsall" element={<AllSchedule/>}/>
+          <Route path='addappointment'   element={<AddAppointment/>}/>
       </Route>
       <Route path="/gatita/login" element={<RestrictedRoute component={<Login/>} redirectTo="/gatita/admin/appointmentsbyday"/>}/>
     </Routes>

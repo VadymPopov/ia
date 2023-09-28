@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getAvailableSlots } from "api";
 import {isTimeWithinLastHour} from 'utils/timeComparison'
 import {validationSchemaTime, FormError} from 'utils/formik';
+import { pickDuration } from "utils/helpers";
 import useGlobalState from "hooks/useGlobalState";
 import  Button  from "components/Button";
 import { FormWrapper, SlotBtn, GridContainer, FlexCentered, CustomDatePicker, ServiceTitle, FieldSet } from "./Schedule.styled";
@@ -27,32 +28,8 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
     }
 });
 
-  const pickDuration = (selectedProcedure)=> {
-    let duration;
-
-    switch (selectedProcedure) {
-      case 'small-tattoo':
-        duration = 60;
-        break;
-        case 'large-tattoo':
-        duration = 120;
-        break;
-        case 'permanent':
-        duration = 60;
-        break;
-        case 'consultation':
-        duration = 30;
-        break;
-      default:
-      duration = 60;
-    }
-  
-    return duration;
-  };
-  
   const duration = pickDuration(selectedService);
   
-
   const handleButtonClick = (slot, form, index, field) => {
     if (activeButtonIndex === index) {
       setActiveButtonIndex(null);

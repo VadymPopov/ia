@@ -43,3 +43,26 @@ export const calculatePrice = (selectedProcedure)=> {
   
     return price;
 }
+
+export const pickDuration = (selectedProcedure)=> {
+  let duration;
+
+  switch (selectedProcedure) {
+    case 'small-tattoo':
+      duration = 60;
+      break;
+      case 'large-tattoo':
+      duration = 120;
+      break;
+      case 'permanent':
+      duration = 60;
+      break;
+      case 'consultation':
+      duration = 30;
+      break;
+    default:
+    duration = 60;
+  }
+
+  return duration;
+};

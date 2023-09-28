@@ -45,7 +45,6 @@ export const validationSchemaBooking = () => {
   });
 };
 
-
 export const validationSchemaTime = Yup.object().shape({
   slot: Yup.string().required("Date and Time is required"),
 });
@@ -163,3 +162,22 @@ export const initialValuesWaiver = {
     parentalSignatureField: '',
   };
 
+  export const validationSchemaAdmin = () => {
+    return Yup.object().shape({
+      name: Yup.string()
+        .min(2, 'Name must be at least 2 characters')
+        .matches(nameRegExp, 'Please enter a valid name without spaces at the beggining')
+        .required('Name is required'),
+      email: Yup.string()
+        .matches(emailRegExp, 'Please enter a valid email')
+        .required('Email is required'),
+      phone: Yup.string()
+        .matches(phoneRegExp, 'Please enter a valid phone number')
+        .required('Phone number is required'),
+      service: Yup.string()
+        .required('Service is required'),
+      slot: Yup.string()
+        .required('Date and Time is required'),
+      date: Yup.string().required('Date is required'),
+    });
+  };

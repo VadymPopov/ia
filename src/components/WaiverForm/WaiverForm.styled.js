@@ -1,4 +1,4 @@
-import { Field,Form } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';

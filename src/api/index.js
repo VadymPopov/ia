@@ -118,14 +118,12 @@ export const getAppointmentsByMonth = async (month) => {
     }
   };
 
-export const sendFileToBackend = async ({file, email, name, phone, address}) => {
+export const sendFileToBackend = async (data) => {
   try {
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('email', email);
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('address', address);
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
     const response = await axios.post('/send', formData);
     return response.status;
@@ -137,8 +135,12 @@ export const sendFileToBackend = async ({file, email, name, phone, address}) => 
 };
 
 export const bookAppointment = async (data) => {
-  try {
-    const response = await axios.post('/appointments', data);
+  try { 
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+     });
+    const response = await axios.post('/appointments', formData);
     return response;
   } catch (error) {
     toast.error(`${error.message}`, {

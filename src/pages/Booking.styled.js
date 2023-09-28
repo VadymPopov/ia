@@ -5,7 +5,8 @@ import { colors } from 'utils/theme';
 import {RxDoubleArrowRight} from 'react-icons/rx';
 import {GiCat, GiHollowCat} from 'react-icons/gi';
 import {FaCat} from 'react-icons/fa';
-import {RiLogoutCircleRFill} from 'react-icons/ri'
+import {RiLogoutCircleRFill} from 'react-icons/ri';
+import { SiGnuicecat} from 'react-icons/si';
 
 export const  ArrowIcon = styled(RxDoubleArrowRight)`
   width: 15px;
@@ -27,6 +28,12 @@ width: 30px;
 
 
 export const HelloCat = styled(FaCat)`
+  width: 30px;
+  height: 30px;
+  color: ${colors.cardColor};
+`;
+
+export const BallCat = styled(SiGnuicecat)`
   width: 30px;
   height: 30px;
   color: ${colors.cardColor};
