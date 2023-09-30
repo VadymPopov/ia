@@ -39,19 +39,20 @@ export const logOut =  async () => {
   }
 };
 
-export const refreshUser = async () => {
+export const refreshAdmin = async () => {
   try {
-    const token = localStorage.getItem('token');
-
-    if(!token) {
-      return 
+    const resp = await axios.get('/admin/check');
+    if(resp.status === 200) {
+      return
     }
-
-    setAuthHeader(token);
   } catch (error) {
-    toast.error("Something went wrong. Please retry", {
-      duration: 3000,
-    });
+    if(error.response && error.response.status === 401) {
+      localStorage.removeItem('token');
+    } else {
+      toast.error("Something went wrong. Please retry", {
+        duration: 3000,
+      });
+    }
   }
 };
 

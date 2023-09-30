@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 import { CatIcon, HollowCatIcon, HelloCat, BallCat, LogOut, Button, FlexContainer, AdminFlex } from "./Booking.styled";
 import { useNavigate, useLocation } from "react-router-dom";
-import { refreshUser, logOut } from "api";
+import { refreshAdmin, logOut } from "api";
 import { useEffect } from "react";
 import Spinner from 'components/Spinner';
 
@@ -14,7 +14,7 @@ export default function Admin () {
     const navigate = useNavigate();
 
     useEffect(()=>{
-      refreshUser();
+      refreshAdmin();
     });
 
     const handleLogOut =()=>{

@@ -38,7 +38,7 @@ const CheckoutForm = ({appointmentInfo})=>{
         const {error, paymentIntent} = await stripe.confirmPayment({
             elements, 
             confirmParams: {
-                return_url: `${window.location.origin}/booking-succeeded`,
+                return_url: `${window.location.origin}`,
             },
             redirect: 'if_required'
         })
