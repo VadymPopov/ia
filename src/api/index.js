@@ -41,13 +41,16 @@ export const logOut =  async () => {
 
 export const refreshAdmin = async () => {
   try {
+    const token = localStorage.getItem('token');
+    setAuthHeader(token);
+
     const resp = await axios.get('/admin/check');
     if(resp.status === 200) {
       return
     }
   } catch (error) {
     if(error.response && error.response.status === 401) {
-      localStorage.removeItem('token');
+      localStorage.clear();
     } else {
       toast.error("Something went wrong. Please retry", {
         duration: 3000,
