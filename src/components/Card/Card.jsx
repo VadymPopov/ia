@@ -5,8 +5,9 @@ import { updateAppointment, deleteAppointment } from "api";
 
 const Card = ({data: {service, date, slot, name, email, _id, duration}, onDelete, onUpdate}) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [serviceDate, setSerivceDate] = useState(date);
+  const [serviceDate, setServiceDate] = useState(date);
   const [serviceSlot, setServiceSlot] = useState(slot);
+  const [serviceDuration, setServiceDuration] = useState(duration);
   const [deleteFlag, setDeleteFlag] = useState(false);
 
   const handleEditClick = () => {
@@ -24,8 +25,8 @@ const Card = ({data: {service, date, slot, name, email, _id, duration}, onDelete
   };
 
   const handleSaveClick = () => {
-    updateAppointment(_id, {date:serviceDate, slot:serviceSlot});
-    onUpdate(_id, {date:serviceDate, slot:serviceSlot});
+    updateAppointment(_id, {date:serviceDate, slot:serviceSlot, duration: serviceDuration});
+    onUpdate(_id, {date:serviceDate, slot:serviceSlot, duration: serviceDuration});
     setIsEditing(false);
   };
 
@@ -54,7 +55,7 @@ const Card = ({data: {service, date, slot, name, email, _id, duration}, onDelete
       return (<Item>
                   <Container>
                     <div>
-                    {isEditing ? <Input type="text" value={serviceDate} onChange={(e) => setSerivceDate(e.target.value)}/> : <Info>{serviceDate}</Info>}
+                    {isEditing ? <Input type="text" value={serviceDate} onChange={(e) => setServiceDate(e.target.value)}/> : <Info>{serviceDate}</Info>}
                     <Name>{name} </Name>
                     <Info>{email}</Info>
                     <Info>{procedure(service)}</Info>
@@ -62,7 +63,7 @@ const Card = ({data: {service, date, slot, name, email, _id, duration}, onDelete
 
                     <div>
                     {isEditing ? <Input type="text" value={serviceSlot} onChange={(e) => setServiceSlot(e.target.value)}/> : <Time>{serviceSlot}</Time>}
-                     <Info>{duration} min</Info>
+                    {isEditing ? <Input type="number" min="30" step="30" value={Number(serviceDuration)} onChange={(e) => setServiceDuration(e.target.value)}/> : <Info>{duration} min</Info>}
                     </div>
                     </Container>
 

@@ -39,6 +39,8 @@ const AddAppointmentForm = ()=> {
     slot: '11:00am',
     service:'small-tattoo',
     date: new Date(),
+    duration: 30,
+    instagram: '',
   };
   
   const handleSubmit = async (values) => {
@@ -51,7 +53,7 @@ const AddAppointmentForm = ()=> {
     const info = {
         ...trimmedValues,
         date: format(values.date, 'MM.dd.yyyy'),
-        duration: pickDuration(trimmedValues.service),
+        duration: trimmedValues.service === 'large-tattoo' ? trimmedValues.duration : pickDuration(trimmedValues.service),
         address: '155 Loretta Ave N, Ottawa, ON K1Y 3E5',
       };
   
@@ -71,7 +73,7 @@ const AddAppointmentForm = ()=> {
         <FormWrapper autoComplete="off" className="waiver"> 
         <FieldSet> 
         <Legend>Client Information:</Legend>
-          <FlexContainer> 
+        <FlexContainer> 
          <InputContainer>
             <InputLabel htmlFor="name">Full Name</InputLabel>
               <Input name="name" type="text"  placeholder="John Doe" title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan" />
@@ -90,13 +92,27 @@ const AddAppointmentForm = ()=> {
           </InputContainer>  
        </FlexContainer>  
 
+       <FlexContainer> 
+         <InputContainer>
+            <InputLabel htmlFor="duration">Duration</InputLabel>
+              <Input name="duration" type="number" min="30" step="30"/>
+              <FormError name="duration" component='span' />
+          </InputContainer>
+
+          <InputContainer>
+          <InputLabel>Instagram</InputLabel>
+          <Input name="instagram" type="text" placeholder="@instagram name"/>
+          </InputContainer>  
+       </FlexContainer>  
+
+
         <FlexContainer>
         <InputContainer>
         <InputLabel>Phone number</InputLabel>
               <Input name="phone" type="tel" placeholder="5551234567"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +" />
               <FormError name="phone" component='span'/>
-          </InputContainer>
+        </InputContainer>
 
           <InputContainer>
           <InputLabel>Email</InputLabel>

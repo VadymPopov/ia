@@ -23,7 +23,8 @@ import { useNavigate } from "react-router-dom";
       email: '',
       phone: '',
       sketch: '',
-      description: '', 
+      description: '',
+      instagram: '', 
     };
 
     const handleImageChange = (event, setFieldValue) => {
@@ -34,7 +35,7 @@ import { useNavigate } from "react-router-dom";
     };
 
   const handleSubmit = async(values) => {
-    const {name, email, phone, description, sketch} = values;
+    const {name, email, phone, description, sketch, instagram} = values;
       const appointmentInfo = {
         sketch,
         name: name.trim(),
@@ -42,6 +43,7 @@ import { useNavigate } from "react-router-dom";
         phone: phone.trim(),
         service: service.trim(),
         description: description.trim(),
+        instagram: instagram.trim(),
       };
 
       setAppointmentInfo(appointmentInfo);
@@ -80,7 +82,11 @@ import { useNavigate } from "react-router-dom";
               <Input name="phone" type="tel" placeholder="5551234567"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +" />
               <FormError name="phone" component='span'/>
-        </InputContainer>     
+        </InputContainer>
+        <InputContainer>
+        <InputLabel>Instagram</InputLabel>
+              <Input name="instagram" type="text" placeholder="@your instagram" />
+        </InputContainer>          
       </FlexContainer>   
       </FieldSet>
       <Text>If you have a tattoo concept in mind or a rough sketch, please upload a photo and provide a description of your idea.</Text>

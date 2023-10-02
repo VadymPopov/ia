@@ -162,8 +162,7 @@ export const initialValuesWaiver = {
     parentalSignatureField: '',
   };
 
-  export const validationSchemaAdmin = () => {
-    return Yup.object().shape({
+  export const validationSchemaAdmin = Yup.object().shape({
       name: Yup.string()
         .min(2, 'Name must be at least 2 characters')
         .matches(nameRegExp, 'Please enter a valid name without spaces at the beggining')
@@ -179,5 +178,7 @@ export const initialValuesWaiver = {
       slot: Yup.string()
         .required('Date and Time is required'),
       date: Yup.string().required('Date is required'),
-    });
-  };
+      duration: Yup.number().test('is-divisible-by-30', 'Number must be divisible by 30', (value) => {
+        return value % 30 === 0;
+    }),
+  });
