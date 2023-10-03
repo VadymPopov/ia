@@ -112,7 +112,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
                   ))} 
                  </GridContainer>
               </FlexCentered>}
-              {slots && slots.length === 0 &&  <ServiceTitle>There are no available times </ServiceTitle>}  
+              {slots && slots.length === 0 &&  <ServiceTitle> Sorry, there are no available times. Please consider selecting an alternative date or time that may better suit your schedule. </ServiceTitle>}  
               </>
             )}
           </Input>

@@ -3,7 +3,7 @@ import {MdDelete, MdEdit} from 'react-icons/md';
 import {useState} from "react";
 import { updateAppointment, deleteAppointment } from "api";
 
-const Card = ({data: {service, date, slot, name, email, _id, duration}, onDelete, onUpdate}) => {
+const Card = ({data: {service, date, slot, name, email, _id, duration, instagram}, onDelete, onUpdate}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [serviceDate, setServiceDate] = useState(date);
   const [serviceSlot, setServiceSlot] = useState(slot);
@@ -58,6 +58,7 @@ const Card = ({data: {service, date, slot, name, email, _id, duration}, onDelete
                     {isEditing ? <Input type="text" value={serviceDate} onChange={(e) => setServiceDate(e.target.value)}/> : <Info>{serviceDate}</Info>}
                     <Name>{name} </Name>
                     <Info>{email}</Info>
+                    {instagram && <Info>{instagram}</Info>}
                     <Info>{procedure(service)}</Info>
                     </div>
 
