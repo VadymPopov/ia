@@ -14,7 +14,15 @@ export default function Admin () {
     const navigate = useNavigate();
 
     useEffect(()=>{
-      refreshAdmin();
+      async function refresh(){
+        const resp = await refreshAdmin();
+        if(resp.status === 401){
+          navigate('/gatita/login');
+        }
+      }
+
+      refresh();
+      
     });
 
     const handleLogOut =()=>{

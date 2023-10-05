@@ -63,11 +63,16 @@ export const Container = styled.div`
   gap: 30px;
 `;
 
-
 export const Input = styled.input`
   color: ${colors.cardColor};
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
   max-width: 80px;
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

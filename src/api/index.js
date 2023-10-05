@@ -44,10 +44,8 @@ export const refreshAdmin = async () => {
     const token = localStorage.getItem('token');
     setAuthHeader(token);
 
-    const resp = await axios.get('/admin/check');
-    if(resp.status === 200) {
-      return
-    }
+    const response = await axios.get('/admin/check');
+    return response;
   } catch (error) {
     if(error.response && error.response.status === 401) {
       localStorage.clear();
@@ -56,6 +54,7 @@ export const refreshAdmin = async () => {
         duration: 3000,
       });
     }
+    return error.response;
   }
 };
 
