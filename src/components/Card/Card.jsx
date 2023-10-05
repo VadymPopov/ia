@@ -1,7 +1,5 @@
-import { Item, Container, Name, Info, Time, ButtonContainer, Button, Input, Flex } from "./Card.styled";
+import { Item, Container, Name, Info, Time, ButtonContainer, Button, Input, Flex, Insta, Mail } from "./Card.styled";
 import {MdDelete, MdEdit} from 'react-icons/md';
-import {BsInstagram} from 'react-icons/bs';
-import {HiOutlineMail} from 'react-icons/hi';
 import {useState} from "react";
 import { updateAppointment, deleteAppointment } from "api";
 
@@ -59,8 +57,8 @@ const Card = ({data: {service, date, slot, name, email, _id, duration, instagram
                     <div>
                     {isEditing ? <Input type="text" value={serviceDate} onChange={(e) => setServiceDate(e.target.value)}/> : <Info>{serviceDate}</Info>}
                     <Name>{name} </Name>
-                    <Flex><HiOutlineMail/><Info>{email}</Info></Flex>
-                    {instagram && <Flex><BsInstagram/><Info>{instagram}</Info></Flex>}
+                    <Flex><Mail/><Info>{email}</Info></Flex>
+                    {instagram && <Flex><Insta/><Info>{instagram}</Info></Flex>}
                     <Info>{procedure(service)}</Info>
                     </div>
 

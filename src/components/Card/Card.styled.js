@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 import { colors } from '../../utils/theme';
+import {BsInstagram} from 'react-icons/bs';
+import {HiOutlineMail} from 'react-icons/hi';
+
+export const Instagram = styled(BsInstagram)`
+margin-right: 5px;
+`;
+
+export const Mail = styled(HiOutlineMail)`
+margin-right: 5px;
+`;
+
 
 export const Item = styled.li`
   padding: 20px 15px;  
@@ -12,7 +23,7 @@ export const Item = styled.li`
 `;
 
 export const Name = styled.p`
-    margin-bottom: 10px;
+    margin: 10px 0;
     color: ${colors.cardColor};
     font-weight: 700;
     font-size: 20px;
@@ -20,7 +31,6 @@ export const Name = styled.p`
 `;
 
 export const Info = styled.p`
-    margin-bottom: 10px;
     color: ${colors.textColor};
     font-size: 16px;
     font-weight: 500;
@@ -74,5 +84,5 @@ export const Input = styled.input`
 export const Flex = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 10px;
 `;
