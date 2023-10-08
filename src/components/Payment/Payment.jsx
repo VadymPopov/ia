@@ -16,14 +16,16 @@ import { useNavigate } from "react-router-dom";
     const email = appointmentInfo?.email;
     const navigate = useNavigate();
     
-    appointmentInfo.address = '155 Loretta Ave N, Ottawa, ON K1Y 3E5';
-
     useEffect (()=>{
         if(!service) {
             navigate('/booking/service')
         }
-    });
 
+        if(appointmentInfo){
+            appointmentInfo.address = '155 Loretta Ave N, Ottawa, ON K1Y 3E5';
+        }
+    });
+   
     useEffect (()=>{
         (async()=>{
             const publishableKey = await getPublishableKey();
