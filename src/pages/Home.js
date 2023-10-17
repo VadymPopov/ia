@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { MainTitle, HeroDescription, HeroSection, HeroContainer, Item, List, Description, Container, ToastContainer, ToastSpan } from "./Home.styled.js";
+import { MainTitle, HeroDescription, HeroSection, HeroContainer, Item, List, Description, Container, ToastContainer, ToastSpan, Link } from "./Home.styled.js";
 import { Text, Title, Suptitle, Section } from "components/CommonStyles";
 import Button from "components/Button/Button";
 import { useNavigate } from "react-router-dom";
@@ -14,13 +14,13 @@ export default function Home() {
         setTimeout(() =>{
           toast((t) => (
             <ToastContainer>
-            <span>Exciting News!</span> 
-            <p>Tattoo bookings for <b>Ottawa</b> from <b>October 12th to 15th</b> are now OPEN! </p>
-            <ToastSpan>Secure your spot today!</ToastSpan>
+            <span>Attention!</span> 
+            <p>Booking on this site is temporarily <b>CLOSED</b>!</p>
+            <ToastSpan>More information on <Link href="https://www.instagram.com/ivenko.alinaaa/" target='_blank' rel="noopener noreferrer" aria-label='instagram-page'>Instagram</Link>!</ToastSpan>
             <Button onClick={() => toast.dismiss(t.id)}>Dismiss</Button>
             </ToastContainer>
           ), {duration: 10000, position: 'bottom-center'});
-        }, 1000)
+        }, 500)
       }, [])
 
     const navigate = useNavigate();

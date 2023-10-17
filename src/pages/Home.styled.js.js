@@ -107,3 +107,12 @@ export const ToastContainer = styled.div`
 export const ToastSpan = styled.span`
     margin-bottom: 10px;
 `;
+
+export const Link = styled.a`
+  text-decoration: underline;
+  font-size: 18px;
+  line-height: 1.67;
+  letter-spacing: .02em;
+  color: ${colors.textColor};
+  text-align: justify;
+`
