@@ -1,5 +1,6 @@
 import Button from 'components/Button/Button';
 import { Card, Image, Item, Description, CardTitle,CardFooter } from './ServicesPrices.styled';
+import { LinkTo } from './FAQ.styled';
 import { Title, Text } from 'components/CommonStyles';
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -29,8 +30,9 @@ export default function Services() {
                 <CardFooter>
                     <Description>
                         <CardTitle>Small Tattoo</CardTitle>
+                        <p>Price range: CA$120-250</p>
                         <p>Deposit: CA$100</p>
-                        <p>Size: up to 12 cm</p>
+                        <p>Size: up to 10 cm</p>
                         <p>Duration: 1.2h</p>
                     </Description>
                     <Button primary="true" onClick={()=>navigate('/booking/service', {state: 'small-tattoo'})}>Book now</Button>
@@ -38,10 +40,13 @@ export default function Services() {
             </Card>
             <div>
                 <Title>Small Tattoo</Title>
+           
             <Text primary="true">
-            A small tattoo is a delicate and intimate form of body art. For instance, it can be a meaningful phrase written in the handwriting of a loved one or a paw print to commemorate a beloved pet. It could also be a flower symbolizing your birthdate. However, there are no limitations on choosing something adorable, like a heart, butterflies, or stars. After all, a small tattoo is your opportunity to express your creativity. These tattoos typically range from 1 to 12 cm in size, featuring minimal details and requiring a session duration of up to 80 minutes. 
+            A small tattoo is a delicate and intimate form of body art. For instance, it can be a meaningful phrase written in the handwriting of a loved one or a paw print to commemorate a beloved pet. It could also be a flower symbolizing your birthdate. However, there are no limitations on choosing something adorable, like a heart, butterflies, or stars. After all, a small tattoo is your opportunity to express your creativity. These tattoos typically range from 1 to 10 cm in size, featuring minimal details and requiring a session duration of up to 80 minutes. 
             </Text>
-            <Text primary="true">It's important to note that if a reservation is canceled with less than 48 hours' notice, the deposit is non-refundable.</Text>
+            <Text primary="true">It's important to note that if a reservation is canceled with less than 48 hours' notice, the deposit is non-refundable. </Text>
+            <Text primary="true"><b>The minimum price of a small tattoo is 120 CAD pre-tax, size 2-3 cm.</b> Please <LinkTo to='/contact'>contact</LinkTo> for more detailed information.</Text>
+           
 
             </div>
             
@@ -52,8 +57,9 @@ export default function Services() {
                 <CardFooter>
                 <Description>
                     <CardTitle>Large Tattoo</CardTitle>
+                    <p>Price: from CA$250 </p>
                     <p>Deposit: CA$120</p>
-                    <p>Size: more than 12 cm and detailed</p>
+                    <p>Size: more than 10 cm and detailed</p>
                     <p>Duration: 3h</p>
                 </Description>
                 <Button primary="true" onClick={()=>navigate('/booking/service', {state: 'large-tattoo'})}>Book now</Button>
@@ -65,6 +71,7 @@ export default function Services() {
             If you desire to elegantly emphasize your individuality, a large tattoo is the perfect choice. Compared to small tattoos, large ones provides more detail and can cover significant part of the body, as long as there is enough space available to accommodate the design. They are especially ideal for talismans, amulets, and enchanting tattoos that hold mystical significance. Given the complexity and scope, these tattoos may require multiple sessions spanning several days, as they demand both physical and spiritual preparation.
             </Text>
             <Text>It's important to note that if a reservation is canceled with less than 48 hours' notice, the deposit is non-refundable.</Text>
+            <Text><b>The minimum price of a large tattoo is 250 CAD pre-tax, size from 10 cm.</b> Please <LinkTo to='/contact'>contact</LinkTo> for more detailed information.</Text>
             </div>
         </Item>
         <Item>
@@ -72,8 +79,11 @@ export default function Services() {
                 <Image src={touchUp} alt="touch-up" />
                <CardFooter>
                 <Description>
-                    <CardTitle>Consultation/ Touch-up</CardTitle>
+                    <CardTitle>Touch-up</CardTitle>
+                    <p>Price: from CA$20 </p>
+                    <p>Deposit: CA$20</p>
                     <p>Duration: 30min</p>
+
                 </Description>
                 <Button primary="true" onClick={()=>navigate('/booking/service', {state: 'consultation'})}>Book now</Button>
                 </CardFooter>
@@ -82,13 +92,14 @@ export default function Services() {
             <div>
                 <Title>Consultation/ Touch-up</Title>
                 <Text primary="true">
-            The consultation process occurs online, where you will be required to describe your tattoo idea and share a relevant photo through Instagram. This initial step allows me to understand your vision and discuss the design possibilities before proceeding further. However, in unique situations, a personal meeting can be arranged, especially when the client wishes to create a custom and intricate design.
+            The consultation process occurs online, where you will be required to describe your tattoo idea and share a relevant photo through Instagram. This initial step allows me to understand your vision and discuss the design possibilities before proceeding further. However, in unique situations, a personal meeting can be arranged, especially when the client wishes to create a custom and intricate design. For more information and an appointment for a consultation, please <LinkTo to='/contact'>contact</LinkTo>.
+            </Text>
+            <Text primary="true"></Text>
+            <Text primary="true">
+            It's important to note that a separate fee is charged for tattoo correction (touch-up). Also, tattoo corrections are usually limited to work created by the original tattoo artist.
             </Text>
             <Text primary="true">
-            It's important to note that tattoo corrections are provided free of charge for a period of six months following the initial procedure. However, if a client fails to show up for two scheduled appointments, the opportunity for a free correction is forfeited. In addition, it is important to note that tattoo corrections are typically limited to the works created by the original tattoo artist.
-            </Text>
-            <Text primary="true">
-            Typically, when it comes to correcting a permanent tattoo, a separate fee is charged. For more detailed information about the correction process and associated costs, it is best to consult directly with your tattoo artist. 
+            For more detailed information about the correction process and associated costs, it is best to consult directly. 
             </Text>
             </div>
 

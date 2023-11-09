@@ -14,9 +14,9 @@ export default function Home() {
         setTimeout(() =>{
           toast((t) => (
             <ToastContainer>
-            <span>Attention!</span> 
-            <p>Booking on this site is temporarily <b>CLOSED</b>!</p>
-            <ToastSpan>More information on <Link href="https://www.instagram.com/ivenko.alinaaa/" target='_blank' rel="noopener noreferrer" aria-label='instagram-page'>Instagram</Link>!</ToastSpan>
+            <b>Discount 20% on your next tattoo!</b> 
+            <p>All you have to do is tag me on your social media <b>Instagram</b> or <b>TikTok</b></p>
+            <ToastSpan>More details on <Link href="https://www.instagram.com/ivenko.alinaaa/" target='_blank' rel="noopener noreferrer" aria-label='instagram-page'>Instagram</Link>!</ToastSpan>
             <Button onClick={() => toast.dismiss(t.id)}>Dismiss</Button>
             </ToastContainer>
           ), {duration: 10000, position: 'bottom-center'});

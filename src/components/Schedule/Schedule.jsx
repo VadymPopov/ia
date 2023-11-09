@@ -12,8 +12,8 @@ import { FormWrapper, SlotBtn, GridContainer, FlexCentered, CustomDatePicker, Se
 import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
 
   const ScheduleForm = ()=> {
-  const minDate = new Date(2023,9,12);
-  const maxDate = new Date(2023,9,15);
+  const minDate = new Date(2023,11,2);
+  const maxDate = new Date(2023,11,31);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(minDate);

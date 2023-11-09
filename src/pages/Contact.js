@@ -3,6 +3,7 @@ import {FlexContainer, StyledIcon, Link, Flex,FlexItem, Label} from './Contact.s
 
 import { FiMapPin, FiMail } from 'react-icons/fi';
 import {TfiTime} from 'react-icons/tfi';
+import {SiInstagram} from 'react-icons/si';
 
 import EmbeddedMap from '../components/EmbeddedMap';
 
@@ -13,11 +14,11 @@ export default function Contact() {
     <FlexContainer>
     <FlexItem>
       <Flex>
-      <Label>Clove Studio (Ottawa)</Label> 
+      <Label>Chronic Ink Tattoo Shop (Chronic House)</Label> 
       </Flex>
       <Flex>
       <StyledIcon as={FiMapPin}/>
-      <Label>155 Loretta Ave N, Ottawa, ON K1Y 3E5</Label> 
+      <Label>380 Bathurst St, Toronto, ON M5T 2S6</Label> 
       </Flex>
       <Flex>
       <StyledIcon as={FiMail}/>
@@ -25,7 +26,12 @@ export default function Contact() {
       </Flex>
       <Flex>
       <StyledIcon as={TfiTime}/>
-      <Label>Thu - Sun: 11PM - 8PM</Label>
+      <Label>11PM - 8PM</Label>
+      </Flex>
+      <Flex>
+      <StyledIcon as={SiInstagram}/>
+      <Link href="https://www.instagram.com/ivenko.alinaaa/" target='_blank' rel="noopener noreferrer" aria-label='instagram-page'>Instagram</Link>
+      
       </Flex>
     </FlexItem>
     <FlexItem><EmbeddedMap/></FlexItem>

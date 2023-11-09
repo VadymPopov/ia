@@ -35,23 +35,22 @@ export default function Service() {
             <ServiceItem onClick={()=>handleServiceClick('small-tattoo')} active={selectedService === 'small-tattoo' ? 'small-tattoo' : null}>
                 <p>Small Tattoo</p>
                 <Time>60 min</Time>
-                <Price>CA$100</Price>
+                <p>Deposit: <Price>CA$100</Price></p>
             </ServiceItem>
             <ServiceItem onClick={()=>handleServiceClick('large-tattoo')} active={selectedService === 'large-tattoo' ? 'large-tattoo' : null}>
                 <p>Large Tattoo</p>
                 <Time>120 min</Time>
-                <Price>CA$120</Price>
+                <p>Deposit: <Price>CA$120</Price></p>
             </ServiceItem>
             <ServiceItem onClick={()=>handleServiceClick('permanent')} active={selectedService === 'permanent' ? 'permanent' : null}>
                 <p>Permanent Makeup</p>
                 <Time>60 min</Time>
-                <Price>CA$100</Price>
+                <p>Deposit: <Price>CA$100</Price></p>
             </ServiceItem>
             <ServiceItem onClick={()=>handleServiceClick('consultation')} active={selectedService === 'consultation' ? 'consultation' : null}>
-                <div>
-                <p>Consultation</p>
+                <p>Touch-up</p>
                 <Time>30 min</Time>
-                </div>
+                <p>Deposit: <Price>CA$20</Price></p>
             </ServiceItem>
         </FlexContainer>
         <Button onClick={onBtnClick} style={{ opacity: selectedService ? 1 : 0,
