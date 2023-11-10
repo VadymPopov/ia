@@ -110,7 +110,6 @@ export const ToastSpan = styled.span`
 
 export const Link = styled.a`
   text-decoration: underline;
-  font-size: 18px;
   line-height: 1.67;
   letter-spacing: .02em;
   color: ${colors.textColor};
