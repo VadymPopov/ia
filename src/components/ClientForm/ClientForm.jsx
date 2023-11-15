@@ -36,15 +36,19 @@ import { useNavigate } from "react-router-dom";
 
   const handleSubmit = async(values) => {
     const {name, email, phone, description, sketch, instagram} = values;
+
       const appointmentInfo = {
-        sketch,
         name: name.trim(),
         email: email.trim(),
         phone: phone.trim(),
         service: service.trim(),
-        description: description.trim() || 'no description',
-        instagram: instagram.trim() || 'no instagram',
+        description: description.trim(),
+        instagram: instagram.trim(),
       };
+
+      if(sketch) {
+        appointmentInfo.sketch = sketch;
+      }
 
       setAppointmentInfo(appointmentInfo);
       navigate('/booking/schedule');
