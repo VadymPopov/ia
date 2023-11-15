@@ -54,7 +54,7 @@ const AddAppointmentForm = ()=> {
         ...trimmedValues,
         date: format(values.date, 'MM.dd.yyyy'),
         duration: trimmedValues.service === 'large-tattoo' ? trimmedValues.duration : pickDuration(trimmedValues.service),
-        address: '155 Loretta Ave N, Ottawa, ON K1Y 3E5',
+        address: '380 Bathurst St, Toronto, ON M5T 2S6',
       };
   
    await bookAppointment(info);

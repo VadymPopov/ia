@@ -85,7 +85,7 @@ export default function Services() {
                     <p>Duration: 30min</p>
 
                 </Description>
-                <Button primary="true" onClick={()=>navigate('/booking/service', {state: 'consultation'})}>Book now</Button>
+                <Button primary="true" onClick={()=>navigate('/booking/service', {state: 'touch-up'})}>Book now</Button>
                 </CardFooter>
             </Card>
             

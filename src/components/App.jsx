@@ -17,7 +17,7 @@ const BookingPage = lazy(() => import('../pages/Booking'));
 const FAQPage = lazy(() => import('../pages/FAQ'));
 const ContactPage = lazy(() => import('../pages/Contact'));
 const CompletionPage = lazy(() => import('../pages/Completion'));
-const Service = lazy(() => import('../pages/Service'));
+const Service = lazy(() => import('./Service/Service'));
 const Client = lazy(() => import('../components/ClientForm'));
 const Schedule = lazy(() => import('../components/Schedule'));
 const Payment = lazy(() => import('../components/Payment'));

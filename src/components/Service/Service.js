@@ -47,7 +47,7 @@ export default function Service() {
                 <Time>60 min</Time>
                 <p>Deposit: <Price>CA$100</Price></p>
             </ServiceItem>
-            <ServiceItem onClick={()=>handleServiceClick('consultation')} active={selectedService === 'consultation' ? 'consultation' : null}>
+            <ServiceItem onClick={()=>handleServiceClick('touch-up')} active={selectedService === 'touch-up' ? 'touch-up' : null}>
                 <p>Touch-up</p>
                 <Time>30 min</Time>
                 <p>Deposit: <Price>CA$20</Price></p>

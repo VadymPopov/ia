@@ -11,8 +11,8 @@ export const switchName = (selectedProcedure)=> {
       case 'permanent':
         procedureName = "Permanent Makeup";
         break;
-      case 'consultation':
-        procedureName = "Consultation";
+      case 'touch-up':
+        procedureName = "Touch-up";
         break;
       default:
        procedureName = "Small Tattoo";
@@ -34,8 +34,8 @@ export const calculatePrice = (selectedProcedure)=> {
       case 'permanent':
         price = 100;
         break;
-      case 'consultation':
-        price = 0;
+      case 'touch-up':
+        price = 20;
         break;
       default:
       price = 0;
@@ -57,7 +57,7 @@ export const pickDuration = (selectedProcedure)=> {
       case 'permanent':
       duration = 60;
       break;
-      case 'consultation':
+      case 'touch-up':
       duration = 30;
       break;
     default:

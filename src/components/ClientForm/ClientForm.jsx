@@ -42,8 +42,8 @@ import { useNavigate } from "react-router-dom";
         email: email.trim(),
         phone: phone.trim(),
         service: service.trim(),
-        description: description.trim(),
-        instagram: instagram.trim(),
+        description: description.trim() || 'no description',
+        instagram: instagram.trim() || 'no instagram',
       };
 
       setAppointmentInfo(appointmentInfo);

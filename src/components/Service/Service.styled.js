@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../utils/theme';
+import { colors } from '../../utils/theme';
 
 
 export  const ServiceContainer = styled.div`

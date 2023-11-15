@@ -3,7 +3,6 @@ import useGlobalState from "hooks/useGlobalState";
 import { getPublishableKey, createPaymentIntent } from "api";
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from "components/CheckoutForm/CheckoutForm";
-import CheckoutFormConsultation from "components/CheckoutForm/CheckoutFormConsultation"; 
 import Skeleton from '../Skeleton';
 import {loadStripe} from '@stripe/stripe-js';
 import { useNavigate } from "react-router-dom";
@@ -36,7 +35,7 @@ import { useNavigate } from "react-router-dom";
     useEffect (()=>{
         (async()=>{
 
-            if(!service || service === 'consultation'){
+            if(!service){
                 return
             };
 
@@ -45,10 +44,8 @@ import { useNavigate } from "react-router-dom";
         })();
     }, [email, service]);
 
-    if ((!stripePromise || !clientSecret) && service !== 'consultation') {
+    if (!stripePromise || !clientSecret) {
         return <Skeleton />;
-    } else if (service === 'consultation') {
-        return <CheckoutFormConsultation appointmentInfo={appointmentInfo} />;
     } else {
         return (
             <Elements stripe={stripePromise} options={{ clientSecret }}>
