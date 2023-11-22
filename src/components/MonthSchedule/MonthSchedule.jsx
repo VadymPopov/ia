@@ -28,7 +28,7 @@ const MonthScheduler = ()=> {
   useEffect(() => {
     (async () => {
       const appointments = await getAppointmentsByMonth(selectedMonth);
-      setData(appointments);
+      setData(appointments?.filter(appointment => appointment.name !== 'CLOSED'));
     })();
   }, [selectedMonth]);
 

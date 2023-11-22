@@ -43,8 +43,8 @@ const Card = ({data: {service, date, slot, name, email, _id, duration, instagram
         case 'permanent':
         procedureName = 'Permanent';
         break;
-        case 'consultation':
-        procedureName = 'Consultation';
+        case 'touch-up':
+        procedureName = 'Touch-up';
         break;
       default:
       procedureName = "Unknown";
@@ -64,7 +64,7 @@ const Card = ({data: {service, date, slot, name, email, _id, duration, instagram
 
                     <div>
                     {isEditing ? <Input type="text" value={serviceSlot} onChange={(e) => setServiceSlot(e.target.value)}/> : <Time>{serviceSlot}</Time>}
-                    {isEditing ? <Input type="number" min="30" step="30" value={Number(serviceDuration)} onChange={(e) => setServiceDuration(e.target.value)}/> : <Info>{duration} min</Info>}
+                    {isEditing ? <Input type="number" min="30" step="30" value={Number(serviceDuration)} onChange={(e) => setServiceDuration(e.target.value)}/> : <Info>{duration === 30 ? '30 min': `${duration/60} h` }</Info>}
                     </div>
                     </Container>
 

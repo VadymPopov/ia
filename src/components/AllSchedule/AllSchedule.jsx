@@ -9,7 +9,7 @@ const [data, setData] = useState(null);
   useEffect(() => {
  (async () => {
       const appointments = await getAppointments();
-      setData(appointments);
+      setData(appointments?.filter(appointment => appointment.name !== 'CLOSED'));
     })()
    
   }, []);
