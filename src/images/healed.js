@@ -9,6 +9,20 @@ import healedEight from './healed/healed-eight.jpg';
 import healedNine from './healed/healed-nine.jpg';
 import healedTen from './healed/healed-ten.jpg';
 import healedEleven from './healed/healed-eleven.jpg';
+import healedTwelve from './healed/healed-twelve.jpg';
+import healedThirteen from './healed/healed-thirteen.jpg';
+import healedFourteen from './healed/healed-fourteen.jpg';
+import healedFifteen from './healed/healed-fifteen.jpg';
+import healedSixteen from './healed/healed-sixteen.jpg';
+import healedSeventeen from './healed/healed-seventeen.jpg';
+import healedEighteen from './healed/healed-eighteen.jpg';
+import healedNineteen from './healed/healed-nineteen.jpg';
+import healedTwenty from './healed/healed-twenty.jpg';
+import healedTwentyOne from './healed/healed-twenty-one.jpg';
+import healedTwentyTwo from './healed/healed-twenty-two.jpg';
+import healedTwentyThree from './healed/healed-twenty-three.jpg';
+import healedTwentyFour from './healed/healed-twenty-four.jpg';
+import healedTwentyFive from './healed/healed-twenty-five.jpg';
+import healedTwentySix from './healed/healed-twenty-six.jpg';
 
-
-export const healedArray = [healedOne, healedTwo, healedThree, healedFour, healedFive, healedSix, healedSeven, healedEight, healedNine, healedTen, healedEleven];
+export const healedArray = [healedOne, healedTwo, healedThree, healedFour, healedFive, healedSix, healedSeven, healedEight, healedNine, healedTen, healedEleven,  healedTwelve,healedThirteen, healedFourteen, healedFifteen, healedSixteen, healedSeventeen, healedEighteen, healedNineteen, healedTwenty, healedTwentyOne, healedTwentyTwo, healedTwentyThree, healedTwentyFour, healedTwentyFive, healedTwentySix];

@@ -24,5 +24,10 @@ import freshTwentyThree from './fresh/fresh-twenty-three.jpg';
 import freshTwentyFour from './fresh/fresh-twenty-four.jpg';
 import freshTwentyFive from './fresh/fresh-twenty-five.jpg';
 import freshTwentySix from './fresh/fresh-twenty-six.jpg';
+import freshTwentySeven from './fresh/fresh-twenty-seven.jpg';
+import freshTwentyEight from './fresh/fresh-twenty-eight.jpg';
+import freshTwentyNine from './fresh/fresh-twenty-nine.jpg';
+import freshThirty from './fresh/fresh-thirty.jpg';
+import freshThirtyOne from './fresh/fresh-thirty-one.jpg';
 
-export const freshArray = [freshOne, freshTwo, freshThree, freshFour, freshFive, freshSix, freshSeven, freshEight, freshNine, freshTen, freshEleven, freshTwelve, freshThirteen, freshFourteen, freshFifteen, freshSixteen, freshSeventeen, freshEighteen, freshNineteen, freshTwenty, freshTwentyOne, freshTwentyTwo, freshTwentyThree, freshTwentyFour, freshTwentyFive, freshTwentySix];
+export const freshArray = [freshOne, freshTwo, freshThree, freshFour, freshFive, freshSix, freshSeven, freshEight, freshNine, freshTen, freshEleven, freshTwelve, freshThirteen, freshFourteen, freshFifteen, freshSixteen, freshSeventeen, freshEighteen, freshNineteen, freshTwenty, freshTwentyOne, freshTwentyTwo, freshTwentyThree, freshTwentyFour, freshTwentyFive, freshTwentySix, freshTwentySeven, freshTwentyEight, freshTwentyNine, freshThirty, freshThirtyOne,];
