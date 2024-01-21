@@ -5,12 +5,10 @@ const currentURL = window.location.protocol + "//" + window.location.hostname  +
 
 axios.defaults.baseURL = currentURL;
 
-// Utility to add JWT
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-// Utility to remove JWT
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
@@ -18,7 +16,6 @@ const clearAuthHeader = () => {
 export const logIn = async (credentials) => {
     try {
       const resp = await axios.post('/admin/login', credentials);
-      // After successful login, add the token to the HTTP header
       setAuthHeader(resp.data);
       localStorage.setItem('token', resp.data);
     } catch (error) {
@@ -31,7 +28,6 @@ export const logIn = async (credentials) => {
 export const logOut =  async () => {
   try {
     await axios.post('/admin/logout');
-    // After a successful logout, remove the token from the HTTP header
     clearAuthHeader();
     localStorage.clear();
   } catch (error) {

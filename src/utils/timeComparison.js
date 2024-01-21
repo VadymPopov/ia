@@ -9,7 +9,6 @@ export const isTimeWithinLastHour = (selectedDate,timeString) => {
     const parsedTimeMinusOneHour = subHours(selectedDate, 1);
     const currentTime = new Date();
     
-    // Compare the parsed time with the calculated time
     if (isBefore(currentTime, parsedTimeMinusOneHour) || isEqual(currentTime, parsedTimeMinusOneHour)) {
       return false;
     } else {

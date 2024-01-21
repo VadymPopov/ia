@@ -2,6 +2,7 @@ import { Item, Container, Name, Info, Time, ButtonContainer, Button, Input, Flex
 import {MdDelete, MdEdit} from 'react-icons/md';
 import {useState} from "react";
 import { updateAppointment, deleteAppointment } from "api";
+import {switchName} from '../../utils/helpers';
 
 const Card = ({data: {service, date, slot, name, email, _id, duration, instagram}, onDelete, onUpdate}) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -30,36 +31,14 @@ const Card = ({data: {service, date, slot, name, email, _id, duration, instagram
     setIsEditing(false);
   };
 
-  const procedure = (selectedProcedure)=> {
-    let procedureName;
-
-    switch (selectedProcedure) {
-      case 'small-tattoo':
-        procedureName = 'Small Tattoo';
-        break;
-        case 'large-tattoo':
-        procedureName = "Large Tattoo";
-        break;
-        case 'permanent':
-        procedureName = 'Permanent';
-        break;
-        case 'touch-up':
-        procedureName = 'Touch-up';
-        break;
-      default:
-      procedureName = "Unknown";
-    }
-  
-    return procedureName;
-  }
       return (<Item>
                   <Container>
                     <div>
                     {isEditing ? <Input type="text" value={serviceDate} onChange={(e) => setServiceDate(e.target.value)}/> : <Info>{serviceDate}</Info>}
-                    <Name>{name} </Name>
+                    <Name>{name}</Name>
                     <Flex><Mail/><Info>{email}</Info></Flex>
                     {instagram && <Flex><Instagram/><Info>{instagram}</Info></Flex>}
-                    <Info>{procedure(service)}</Info>
+                    <Info>{switchName(service)}</Info>
                     </div>
 
                     <div>

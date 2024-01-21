@@ -28,12 +28,20 @@ export const Name = styled.p`
     font-weight: 700;
     font-size: 20px;
     text-transform: uppercase;
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+    }
 `;
 
 export const Info = styled.p`
     color: ${colors.textColor};
     font-size: 16px;
     font-weight: 500;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
 `;
 
 
@@ -42,6 +50,10 @@ export const Time = styled.p`
     color: ${colors.cardColor};
     font-size: 20px;
     font-weight: 600;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
 `;
 
 export const Button = styled.button`

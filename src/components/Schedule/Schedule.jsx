@@ -13,7 +13,7 @@ import {  Input, Legend } from "../WaiverForm/WaiverForm.styled";
 
   const ScheduleForm = ()=> {
   const minDate = new Date();
-  const maxDate = new Date(2024,0,31);
+  const maxDate = new Date(2024,1,29);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(minDate);
