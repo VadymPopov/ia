@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
         }
 
         if(appointmentInfo){
-            appointmentInfo.address = '380 Bathurst St, Toronto, ON M5T 2S6';
+            appointmentInfo.address = '434 College St, Toronto, ON M5T 1S9';
         }
     });
    

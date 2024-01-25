@@ -14,11 +14,11 @@ export default function Contact() {
     <FlexContainer>
     <FlexItem>
       <Flex>
-      <Label>Chronic Ink Tattoo Shop (Chronic House)</Label> 
+      <Label>Chronic Ink Tattoo - Tattoo Shop College</Label> 
       </Flex>
       <Flex>
       <StyledIcon as={FiMapPin}/>
-      <Label>380 Bathurst St, Toronto, ON M5T 2S6</Label> 
+      <Label>434 College St 2nd Floor, Toronto, ON M5T 1S9</Label> 
       </Flex>
       <Flex>
       <StyledIcon as={FiMail}/>
