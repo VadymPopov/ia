@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { toast } from "react-hot-toast";
+import { toast } from 'react-hot-toast';
 
-const currentURL = window.location.protocol + "//" + window.location.hostname  + "/api/";
+const currentURL =
+  window.location.protocol + '//' + window.location.hostname + '/api/';
 
 axios.defaults.baseURL = currentURL;
 
@@ -13,19 +14,19 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-export const logIn = async (credentials) => {
-    try {
-      const resp = await axios.post('/admin/login', credentials);
-      setAuthHeader(resp.data);
-      localStorage.setItem('token', resp.data);
-    } catch (error) {
-      toast.error("The email address or password is incorrect. Please retry", {
-        duration: 3000,
-      });
-    }
-  };
+export const logIn = async credentials => {
+  try {
+    const resp = await axios.post('/admin/login', credentials);
+    setAuthHeader(resp.data);
+    localStorage.setItem('token', resp.data);
+  } catch (error) {
+    toast.error('The email address or password is incorrect. Please retry', {
+      duration: 3000,
+    });
+  }
+};
 
-export const logOut =  async () => {
+export const logOut = async () => {
   try {
     await axios.post('/admin/logout');
     clearAuthHeader();
@@ -43,10 +44,10 @@ export const refreshAdmin = async () => {
     const response = await axios.get('/admin/check');
     return response;
   } catch (error) {
-    if(error.response && error.response.status === 401) {
+    if (error.response && error.response.status === 401) {
       localStorage.clear();
     } else {
-      toast.error("Something went wrong. Please retry", {
+      toast.error('Something went wrong. Please retry', {
         duration: 3000,
       });
     }
@@ -55,69 +56,66 @@ export const refreshAdmin = async () => {
 };
 
 export const getAppointments = async () => {
-    try {
-      const resp = await axios.get('/appointments');
-      return resp.data;
-
-    } catch (error) {
-      toast.error("Oops! Something went wrong. Please retry later", {
-        duration: 3000,
-      });
-    }
-  };
-
-export const getAppointmentsByDate = async (date) => {
-    try {
-      if(!axios.defaults.headers.common.Authorization) {
-        return;
-      }
-      const resp = await axios.get(`/appointments?date=${date}`);
-      return resp.data;
-
-    } catch (error) {
-      toast.error("Oops! Something went wrong. Please retry later", {
-        duration: 3000,
-      });
-    }
+  try {
+    const resp = await axios.get('/appointments');
+    return resp.data;
+  } catch (error) {
+    toast.error('Oops! Something went wrong. Please retry later', {
+      duration: 3000,
+    });
+  }
 };
 
-export const getAppointmentsByMonth = async (month) => {
-    try {
-      if(!axios.defaults.headers.common.Authorization) {
-        return;
-      }
-      const resp = await axios.get(`/appointments?month=${month}`);
-      return resp.data;
-
-    } catch (error) {
-      toast.error("Oops! Something went wrong. Please retry later", {
-        duration: 3000,
-      });
+export const getAppointmentsByDate = async date => {
+  try {
+    if (!axios.defaults.headers.common.Authorization) {
+      return;
     }
-  };
+    const resp = await axios.get(`/appointments?date=${date}`);
+    return resp.data;
+  } catch (error) {
+    toast.error('Oops! Something went wrong. Please retry later', {
+      duration: 3000,
+    });
+  }
+};
 
-  export const updateAppointment = async (id,data) => {
-    try {
-      const response = await axios.put(`/appointments/${id}`, data);
-      return response;
-    } catch (error) {
-      toast.error(`${error.message}`, {
-        duration: 3000,
-      });
+export const getAppointmentsByMonth = async month => {
+  try {
+    if (!axios.defaults.headers.common.Authorization) {
+      return;
     }
-  };
-  
-  export const deleteAppointment = async (id) => {
-    try {
-      await axios.delete(`/appointments/${id}`);
-    } catch (error) {
-      toast.error(`${error.message}`, {
-        duration: 3000,
-      });
-    }
-  };
+    const resp = await axios.get(`/appointments?month=${month}`);
+    return resp.data;
+  } catch (error) {
+    toast.error('Oops! Something went wrong. Please retry later', {
+      duration: 3000,
+    });
+  }
+};
 
-export const sendFileToBackend = async (data) => {
+export const updateAppointment = async (id, data) => {
+  try {
+    const response = await axios.put(`/appointments/${id}`, data);
+    return response;
+  } catch (error) {
+    toast.error(`${error.message}`, {
+      duration: 3000,
+    });
+  }
+};
+
+export const deleteAppointment = async id => {
+  try {
+    await axios.delete(`/appointments/${id}`);
+  } catch (error) {
+    toast.error(`${error.message}`, {
+      duration: 3000,
+    });
+  }
+};
+
+export const sendFileToBackend = async data => {
   try {
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
@@ -133,12 +131,12 @@ export const sendFileToBackend = async (data) => {
   }
 };
 
-export const bookAppointment = async (data) => {
-  try { 
+export const bookAppointment = async data => {
+  try {
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, value);
-     });
+    });
     const response = await axios.post('/appointments', formData);
     return response;
   } catch (error) {
@@ -148,11 +146,13 @@ export const bookAppointment = async (data) => {
   }
 };
 
-export const getAvailableSlots = async(date,duration) => {
+export const getAvailableSlots = async (date, duration) => {
   try {
-    const response = await axios.get(`/appointments/slots?date=${date}&duration=${duration}`);
+    const response = await axios.get(
+      `/appointments/slots?date=${date}&duration=${duration}`
+    );
 
-    return response.data; 
+    return response.data;
   } catch (error) {
     toast.error(`${error.message}`, {
       duration: 3000,
@@ -161,19 +161,22 @@ export const getAvailableSlots = async(date,duration) => {
 };
 
 export const getPublishableKey = async () => {
- try {
-   const  response = await axios.get('/stripe/config');
-   return response.data.publishableKey;
- } catch (error) {
-  console.error(error)
- }
+  try {
+    const response = await axios.get('/stripe/config');
+    return response.data.publishableKey;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const createPaymentIntent = async (service, email) => {
   try {
-    const  response = await axios.post(`/stripe/create-payment-intent/${service}`, {email});
+    const response = await axios.post(
+      `/stripe/create-payment-intent/${service}`,
+      { email }
+    );
     return response.data.clientSecret;
   } catch (error) {
-   console.error(error)
+    console.error(error);
   }
 };

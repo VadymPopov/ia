@@ -7,10 +7,12 @@ export const AppProvider = ({ children }) => {
   const [appointmentInfo, setAppointmentInfo] = useState(null);
 
   return (
-    <AppContext.Provider value={{ service, setService, appointmentInfo, setAppointmentInfo }}>
+    <AppContext.Provider
+      value={{ service, setService, appointmentInfo, setAppointmentInfo }}
+    >
       {children}
     </AppContext.Provider>
   );
 };
 
-export default  AppContext;
+export default AppContext;

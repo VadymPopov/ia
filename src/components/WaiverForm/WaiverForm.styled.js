@@ -17,14 +17,14 @@ export const InputContainer = styled.div`
     margin-right: 20px;
   }
 
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     margin-bottom: 20px;
     text-align: start;
     font-size: 18px;
 
     &:first-child {
-    margin-right: 0;
-  }
+      margin-right: 0;
+    }
   }
 `;
 
@@ -35,18 +35,19 @@ export const Input = styled(Field)`
   border-radius: 10px;
   outline: none;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     border-color: ${colors.accentColor};
   }
 
-  &[type="checkbox"] {
+  &[type='checkbox'] {
     width: 20px;
     height: 20px;
     margin-right: 20px;
   }
 
-  @media (max-width: 767px){
-   font-size: 18px;
+  @media (max-width: 767px) {
+    font-size: 18px;
   }
 `;
 
@@ -58,26 +59,26 @@ export const StyledSelect = styled.select`
   outline: none;
   width: 100%;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     border-color: ${colors.accentColor};
   }
 
-  @media (max-width: 767px){
-   font-size: 18px;
+  @media (max-width: 767px) {
+    font-size: 18px;
   }
 `;
 
-
 export const CustomDatePicker = styled(DatePicker)`
-background-color: #f0f0f0;
-font-size: 20px;
-padding: 10px 15px;
-border: 2px solid ${colors.textColorDarkBg};
+  background-color: #f0f0f0;
+  font-size: 20px;
+  padding: 10px 15px;
+  border: 2px solid ${colors.textColorDarkBg};
   border-radius: 10px;
   outline: none;
 
-  @media (max-width: 767px){
-   font-size: 18px;
+  @media (max-width: 767px) {
+    font-size: 18px;
   }
 `;
 
@@ -88,19 +89,18 @@ export const ErrorText = styled.p`
   color: red;
 `;
 
-
 export const Button = styled.button`
   padding: 8px 14px;
   font-size: 20px;
   border-radius: 6px;
   border: none;
-  color: ${({theme}) => theme.body};
-  background-color:  ${({theme}) => theme.main};
+  color: ${({ theme }) => theme.body};
+  background-color: ${({ theme }) => theme.main};
   cursor: pointer;
 
   :hover {
-    background-color:  ${({theme}) => theme.hover};
-    box-shadow:  ${({theme}) => theme.shadow} 0px 0px 5px 2px;
+    background-color: ${({ theme }) => theme.hover};
+    box-shadow: ${({ theme }) => theme.shadow} 0px 0px 5px 2px;
   }
 `;
 
@@ -112,34 +112,33 @@ export const ButtonText = styled.div`
 
 export const Title = styled.h3`
   margin: 20px 0;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 600;
   font-size: 18px;
   line-height: 1.16;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
   color: ${colors.mainDarkColor};
   text-align: start;
 
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     margin: 10px 0;
   }
 `;
 
 export const InputLabel = styled.label`
- text-align: start;
- margin-bottom: 5px;
- font-size: 16px;
+  text-align: start;
+  margin-bottom: 5px;
+  font-size: 16px;
 `;
 
 export const CheckboxLabel = styled.label`
   margin-bottom: 5px;
   font-size: 18px;
   line-height: 1.67;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   color: ${colors.mainDarkColor};
   text-align: justify;
 `;
-
 
 export const FlexContainer = styled.div`
   display: flex;
@@ -147,7 +146,7 @@ export const FlexContainer = styled.div`
   align-items: center;
   margin-bottom: 20px;
 
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     display: block;
   }
 `;
@@ -156,20 +155,20 @@ export const Text = styled.p`
   margin-bottom: 20px;
   font-size: 18px;
   line-height: 1.67;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   color: ${colors.mainDarkColor};
   text-align: justify;
 `;
 
 export const Container = styled.div`
- margin-top: 20px;
+  margin-top: 20px;
 `;
 
 export const ModalFormText = styled.p`
   margin: 10px;
   font-size: 18px;
   line-height: 1.67;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   color: ${colors.mainDarkColor};
   text-align: justify;
 
@@ -191,17 +190,17 @@ export const CloseBtn = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 25px;
-  border: 1px solid  ${colors.accentColor};
-  background-color:  ${colors.accentColor};
+  border: 1px solid ${colors.accentColor};
+  background-color: ${colors.accentColor};
   z-index: 1000;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border: 1px solid ${colors.textColorDarkBg};
     background-color: ${colors.backgroundColor};
     color: ${colors.accentColor};
   }
 `;
-
 
 export const SubmitBtn = styled.button`
   font-size: 12px;
@@ -213,10 +212,11 @@ export const SubmitBtn = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 25px;
-  border: 1px solid  ${colors.accentColor};
-  background-color:  ${colors.mainLightColor};
+  border: 1px solid ${colors.accentColor};
+  background-color: ${colors.mainLightColor};
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: ${colors.accentColor};
     color: ${colors.mainLightColor};
     box-shadow: black 0px 0px 5px 2px;
@@ -231,39 +231,39 @@ export const SubmitBtn = styled.button`
 `;
 
 export const ModalFlex = styled.div`
- display: flex;
- align-items: center;
- padding: 10px;
- justify-content: center;
- z-index: 999;
- background-color: ${colors.mainLightColor};
- box-shadow: black 0px 0px 5px 2px;
- 
- @media (max-width: 767px) {
-  display: block;
-  text-align: center;
-  padding: 5px;
- }
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: center;
+  z-index: 999;
+  background-color: ${colors.mainLightColor};
+  box-shadow: black 0px 0px 5px 2px;
+
+  @media (max-width: 767px) {
+    display: block;
+    text-align: center;
+    padding: 5px;
+  }
 `;
 
 export const Legend = styled.legend`
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 600;
   font-size: 24px;
   line-height: 1.16;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
   color: ${colors.mainDarkColor};
   text-align: start;
 
-  @media (max-width:768px) {
+  @media (max-width: 768px) {
     font-size: 18px;
   }
 `;
 
 export const FieldSet = styled.fieldset`
- margin: 20px 0 ;
- border-radius: 20px;
- border: 2px solid ${colors.textColorDarkBg};
+  margin: 20px 0;
+  border-radius: 20px;
+  border: 2px solid ${colors.textColorDarkBg};
 `;
 
 export const ErrorMain = styled.p`

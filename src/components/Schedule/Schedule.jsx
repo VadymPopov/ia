@@ -18,10 +18,11 @@ import {
   FieldSet,
 } from './Schedule.styled';
 import { Input, Legend } from '../WaiverForm/WaiverForm.styled';
+import toast from 'react-hot-toast';
 
 const ScheduleForm = () => {
   const minDate = new Date();
-  const maxDate = new Date(2024, 2, 31);
+  const maxDate = new Date(2024, 3, 30);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(minDate);
@@ -29,6 +30,8 @@ const ScheduleForm = () => {
   const { appointmentInfo, setAppointmentInfo } = useGlobalState();
   const navigate = useNavigate();
   const selectedService = appointmentInfo?.service;
+
+  const dateRange = [23, 24, 25, 26, 27];
 
   useEffect(() => {
     if (!appointmentInfo) {
@@ -55,6 +58,19 @@ const ScheduleForm = () => {
   };
 
   const handleDataChange = (date, field, form) => {
+    const month = new Date(date).getMonth();
+    const dayNumber = new Date(date).getDate();
+
+    if (dateRange.includes(dayNumber) && month === 3) {
+      toast('April 23-27 open for Ottawa bookings only.', {
+        icon: '👏',
+        style: {
+          borderRadius: '10px',
+          background: 'red',
+          color: '#fff',
+        },
+      });
+    }
     form.setFieldValue(field.name, date);
     setSelectedDate(date);
   };

@@ -12,14 +12,14 @@ export const FormWrapper = styled(Form)`
 `;
 
 export const FieldSet = styled.fieldset`
- margin: 20px 0 ;
- border-radius: 20px;
- border: 2px solid ${colors.textColorDarkBg};
- display: flex;
- align-items: center;
- justify-content: space-around;
+  margin: 20px 0;
+  border-radius: 20px;
+  border: 2px solid ${colors.textColorDarkBg};
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 
- @media (max-width: 1024px) {
+  @media (max-width: 1024px) {
     display: block;
   }
 `;
@@ -40,9 +40,10 @@ export const SlotBtn = styled.button`
   font-size: 12px;
   line-height: 1.33;
   width: 90px;
-  border: 1px solid ${colors.accentColor};;
+  border: 1px solid ${colors.accentColor};
   border-radius: 15px;
-  background:  ${props => (props.active ? `${colors.accentColor}` : `${colors.cardColor}`)};
+  background: ${props =>
+    props.active ? `${colors.accentColor}` : `${colors.cardColor}`};
   transition: background-color 250ms linear;
   cursor: pointer;
   color: ${colors.mainLightColor};
@@ -60,7 +61,7 @@ export const SlotBtn = styled.button`
   }
 `;
 
-export  const GridContainer = styled.div`
+export const GridContainer = styled.div`
   display: grid;
   width: 400px;
   grid-template-columns: 90px 90px 90px 90px;
@@ -80,15 +81,13 @@ export  const GridContainer = styled.div`
   }
 `;
 
-
-export  const FlexCentered = styled.div`
+export const FlexCentered = styled.div`
   @media (max-width: 480px) {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 `;
-
 
 export const ServiceContainer = styled.div`
   height: 100%;
@@ -108,14 +107,13 @@ export const ServiceContainer = styled.div`
   border-radius: 12px;
   background: ${colors.backgroundColor};
 
-  @media (max-width:1023px) {
+  @media (max-width: 1023px) {
     width: auto;
     margin-left: 0;
   }
 `;
 
-
-export  const ServiceTitle = styled.p`
+export const ServiceTitle = styled.p`
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -123,7 +121,7 @@ export  const ServiceTitle = styled.p`
   margin-bottom: 18px;
 `;
 
-export  const ServiceText = styled.p`
+export const ServiceText = styled.p`
   font-size: 16px;
   line-height: 18px;
   letter-spacing: 0.5px;
@@ -158,6 +156,5 @@ export const PaymentContainer = styled.div`
 `;
 
 export const PaymentElements = styled(PaymentElement)`
- margin-bottom: 20px;
+  margin-bottom: 20px;
 `;
-

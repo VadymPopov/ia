@@ -11,10 +11,8 @@ export const Main = styled.main`
   @media (min-width: 480px) and (max-width: 1024px) {
     margin-top: 74px;
   }
-  
+
   @media screen and (max-width: 479px) {
     margin-top: 72px;
   }
 `;
-
-

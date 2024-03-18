@@ -13,7 +13,6 @@ export const ImgPreview = styled.img`
   border-radius: 10px;
 `;
 
-
 export const FileInput = styled.input`
   margin: 0 auto;
   padding: 10px 15px;
@@ -22,7 +21,8 @@ export const FileInput = styled.input`
   border-radius: 10px;
   outline: none;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     border-color: ${colors.accentColor};
   }
 

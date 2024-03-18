@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { colors } from 'utils/theme';
-import {CgMenu, CgClose} from 'react-icons/cg';
+import { CgMenu, CgClose } from 'react-icons/cg';
 
 export const Header = styled.header`
   width: 100%;
@@ -9,7 +9,7 @@ export const Header = styled.header`
   padding-top: 16px;
   padding-bottom: 16px;
   position: fixed;
-  background-color: ${props => props.mobile ? "#000" : "#fff"}; 
+  background-color: ${props => (props.mobile ? '#000' : '#fff')};
   overflow: hidden;
   top: 0;
   z-index: 100;
@@ -20,7 +20,7 @@ export const Header = styled.header`
     overflow: auto;
     max-height: 100vh;
   }
-  
+
   @media screen and (max-width: 479px) {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -33,13 +33,13 @@ export const Link = styled(NavLink)`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.33;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   white-space: nowrap;
   transition: color 250ms linear;
   text-decoration: none;
   padding: 5px 10px;
 
-  &.active{
+  &.active {
     border-radius: 8px;
     border: 1px solid ${colors.textColorDarkBg};
     background-color: ${colors.backgroundColor};
@@ -50,18 +50,19 @@ export const Link = styled(NavLink)`
     padding: 5px 8px;
   }
 
-   @media (max-width: 767px) {
-   color: ${colors.mainLightColor};
-   font-size: 24px;
+  @media (max-width: 767px) {
+    color: ${colors.mainLightColor};
+    font-size: 24px;
 
-   &.active{
-    border: none;
-    background-color: transparent;
+    &.active {
+      border: none;
+      background-color: transparent;
+    }
   }
-  }
-  
-  &:focus, &:hover{
-   color: ${colors.accentColor};
+
+  &:focus,
+  &:hover {
+    color: ${colors.accentColor};
   }
 `;
 
@@ -73,30 +74,29 @@ export const List = styled.ul`
   margin-right: 20px;
 
   @media (max-width: 767px) {
-  flex-direction: column;
-  margin: 0;
-  align-items: center;
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
   }
 `;
 
 export const Item = styled.li`
-&:not(:last-child) {
+  &:not(:last-child) {
     margin-right: 30px;
   }
 
-@media (max-width: 767px) {
-  &:not(:last-child) {
-    margin-bottom: 30px;
-    margin-right: 0;
-  }
+  @media (max-width: 767px) {
+    &:not(:last-child) {
+      margin-bottom: 30px;
+      margin-right: 0;
+    }
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
-  &:not(:last-child) {
-    margin-right: 15px;
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
   }
-}
-
 `;
 
 export const Nav = styled.nav`
@@ -115,8 +115,8 @@ export const LogoLink = styled(NavLink)`
     margin-right: 20px;
     margin-left: 10px;
   }
-  
-  &.active{
+
+  &.active {
     border-radius: 8px;
   }
 `;
@@ -143,28 +143,30 @@ export const MobileBtn = styled.button`
   cursor: pointer;
 `;
 
-
-export const  BurgerIcon = styled(CgMenu)`
+export const BurgerIcon = styled(CgMenu)`
   width: 30px;
   height: 30px;
 `;
 
-export const  CrossIcon = styled(CgClose)`
+export const CrossIcon = styled(CgClose)`
   width: 30px;
   height: 30px;
 `;
 
-export const  MobileContainer = styled.div`
-position: ${props => props.open ? "flex"  : "fixed"};
-background-color: ${colors.cardColor};
-right: 0; 
-z-index: 1000;
- padding: 50px 20px;
- height: ${props => props.height && `${Number(props.height) - Number(174)}px` };
- overflow: auto;
- transition: opacity 1s ease-in-out, transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
- transform:  ${props => props.open ? "translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)" : "translate3d(100%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)"
-};
-opacity: ${props => (props.open ? 1 : 0)};
-transform-style: preserve-3d;
+export const MobileContainer = styled.div`
+  position: ${props => (props.open ? 'flex' : 'fixed')};
+  background-color: ${colors.cardColor};
+  right: 0;
+  z-index: 1000;
+  padding: 50px 20px;
+  height: ${props => props.height && `${Number(props.height) - Number(174)}px`};
+  overflow: auto;
+  transition: opacity 1s ease-in-out,
+    transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: ${props =>
+    props.open
+      ? 'translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)'
+      : 'translate3d(100%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)'};
+  opacity: ${props => (props.open ? 1 : 0)};
+  transform-style: preserve-3d;
 `;

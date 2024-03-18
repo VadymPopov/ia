@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import AppContext from "context/AppProvider";
+import { useContext } from 'react';
+import AppContext from 'context/AppProvider';
 
 const useGlobalState = () => {
-    return useContext(AppContext);
-}
+  return useContext(AppContext);
+};
 
-export default useGlobalState; 
+export default useGlobalState;

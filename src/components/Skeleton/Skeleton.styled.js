@@ -13,8 +13,8 @@ export const Info = styled.div`
   margin-bottom: 20px;
 
   @media (max-width: 1023px) {
-  width: auto;
-}
+    width: auto;
+  }
 `;
 
 export const Service = styled.div`
@@ -24,8 +24,8 @@ export const Service = styled.div`
   margin-bottom: 20px;
 
   @media (max-width: 1023px) {
-  width: auto;
-}
+    width: auto;
+  }
 `;
 
 export const Time = styled.div`
@@ -35,8 +35,8 @@ export const Time = styled.div`
   margin-bottom: 20px;
 
   @media (max-width: 1023px) {
-  width: auto;
-}
+    width: auto;
+  }
 `;
 
 export const Payment = styled.div`
@@ -46,10 +46,10 @@ export const Payment = styled.div`
   margin-bottom: 20px;
 
   @media (min-width: 1024px) and (max-width: 1100px) {
-  width: 390px;
-}
+    width: 390px;
+  }
 
   @media (max-width: 1023px) {
-  width: 300px;
-}
+    width: 300px;
+  }
 `;

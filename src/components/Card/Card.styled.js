@@ -1,59 +1,57 @@
 import styled from 'styled-components';
 import { colors } from '../../utils/theme';
-import {BsInstagram} from 'react-icons/bs';
-import {HiOutlineMail} from 'react-icons/hi';
+import { BsInstagram } from 'react-icons/bs';
+import { HiOutlineMail } from 'react-icons/hi';
 
 export const Instagram = styled(BsInstagram)`
-margin-right: 5px;
+  margin-right: 5px;
 `;
 
 export const Mail = styled(HiOutlineMail)`
-margin-right: 5px;
+  margin-right: 5px;
 `;
 
-
 export const Item = styled.li`
-  padding: 20px 15px;  
+  padding: 20px 15px;
   border: 1px solid ${colors.accentColor};
   border-radius: 15px;
-  
+
   @media screen and (max-width: 599px) {
     margin-bottom: 20px;
   }
 `;
 
 export const Name = styled.p`
-    margin: 10px 0;
-    color: ${colors.cardColor};
-    font-weight: 700;
-    font-size: 20px;
-    text-transform: uppercase;
+  margin: 10px 0;
+  color: ${colors.cardColor};
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
 
-    @media (max-width: 480px) {
-      font-size: 18px;
-    }
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 export const Info = styled.p`
-    color: ${colors.textColor};
-    font-size: 16px;
-    font-weight: 500;
+  color: ${colors.textColor};
+  font-size: 16px;
+  font-weight: 500;
 
-    @media (max-width: 480px) {
-      font-size: 12px;
-    }
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
-
 export const Time = styled.p`
-    margin-bottom: 10px;
-    color: ${colors.cardColor};
-    font-size: 20px;
-    font-weight: 600;
+  margin-bottom: 10px;
+  color: ${colors.cardColor};
+  font-size: 20px;
+  font-weight: 600;
 
-    @media (max-width: 480px) {
-      font-size: 14px;
-    }
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 export const Button = styled.button`

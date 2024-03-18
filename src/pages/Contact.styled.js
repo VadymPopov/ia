@@ -2,27 +2,26 @@ import styled from 'styled-components';
 import { colors } from 'utils/theme';
 
 export const FlexContainer = styled.div`
-    display: flex;
+  display: flex;
 
-    @media (max-width: 1024px) {
-      display: block;
-
-    }
+  @media (max-width: 1024px) {
+    display: block;
+  }
 `;
 
 export const Flex = styled.div`
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    font-weight: 500;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 500;
 `;
 
 export const Label = styled.p`
-    font-size: 18px;
-    line-height: 1.67;
-    letter-spacing: .02em;
-    color: ${colors.textColor};
-    text-align: justify;
+  font-size: 18px;
+  line-height: 1.67;
+  letter-spacing: 0.02em;
+  color: ${colors.textColor};
+  text-align: justify;
 `;
 
 export const StyledIcon = styled.div`
@@ -36,11 +35,10 @@ export const Link = styled.a`
   text-decoration: none;
   font-size: 18px;
   line-height: 1.67;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   text-align: justify;
 `;
 
 export const FlexItem = styled.div`
   flex: 1;
 `;
-

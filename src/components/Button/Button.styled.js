@@ -16,22 +16,19 @@ export const ButtonStyled = styled.button`
   background: transparent;
   transition: background-color 250ms linear;
   cursor: pointer;
-  color: ${props => props.primary ? '#fff':'#000'};
+  color: ${props => (props.primary ? '#fff' : '#000')};
 
   &:hover {
     background-color: rgba(255, 108, 0, 1);
     box-shadow: black 0px 0px 5px 2px;
-    color: ${props => props.primary ? '#000' : '#fff'};
+    color: ${props => (props.primary ? '#000' : '#fff')};
   }
 
   &:disabled {
     background-color: rgba(255, 108, 0, 1);
-    color: ${props => props.primary ? '#000' : '#fff'};
+    color: ${props => (props.primary ? '#000' : '#fff')};
     box-shadow: none;
     cursor: not-allowed;
     opacity: 0.7;
   }
 `;
-
-
-  

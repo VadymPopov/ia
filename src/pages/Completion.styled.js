@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {BsFillCheckCircleFill} from 'react-icons/bs';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 
 export const Container = styled.div`
   display: flex;
@@ -43,9 +43,4 @@ export const BackBtn = styled.button`
     box-shadow: black 0px 0px 5px 2px;
     color: '#000';
   }
- 
 `;
-
-
-
-

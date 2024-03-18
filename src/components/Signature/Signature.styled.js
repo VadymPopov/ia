@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../../utils/theme';
 
-
 export const SignaturePlaceholder = styled.div`
   position: absolute;
   top: 0;
@@ -26,15 +25,16 @@ export const ClearBtn = styled.button`
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
-  border: 1px solid  ${colors.accentColor};
+  border: 1px solid ${colors.accentColor};
   border-radius: 25px;
   background: transparent;
   transition: background-color 250ms linear;
   cursor: pointer;
   color: ${colors.mainLightColor};
-  background-color:  ${colors.accentColor};
+  background-color: ${colors.accentColor};
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border: 1px solid ${colors.textColorDarkBg};
     background-color: ${colors.backgroundColor};
     color: ${colors.accentColor};

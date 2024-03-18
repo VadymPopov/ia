@@ -13,4 +13,3 @@ export const CustomDatePicker = styled.select`
   cursor: pointer;
   margin-bottom: 20px;
 `;
-

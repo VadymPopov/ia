@@ -5,14 +5,14 @@ const pathNames = [
   '/booking/service',
   '/booking/client-info',
   '/booking/schedule',
-  '/booking/payment'
+  '/booking/payment',
 ];
 
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if(pathNames.includes(pathname)){
+    if (pathNames.includes(pathname)) {
       return;
     }
 

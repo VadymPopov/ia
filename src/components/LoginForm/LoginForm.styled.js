@@ -1,7 +1,7 @@
-import { Field,Form } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
 import { colors } from '../../utils/theme';
-import {MdLogin} from 'react-icons/md'
+import { MdLogin } from 'react-icons/md';
 
 export const Container = styled.div`
   display: flex;
@@ -24,12 +24,13 @@ export const Input = styled(Field)`
   border: 2px solid ${colors.textColorDarkBg};
   border-radius: 10px;
   outline: none;
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     border-color: ${colors.accentColor};
   }
 
-  @media (max-width: 767px){
-   font-size: 18px;
+  @media (max-width: 767px) {
+    font-size: 18px;
   }
 `;
 
@@ -40,7 +41,7 @@ export const FlexContainer = styled.div`
   align-items: center;
   margin-bottom: 20px;
 
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     display: block;
   }
 `;

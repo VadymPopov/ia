@@ -2,28 +2,27 @@ import styled from 'styled-components';
 import { colors } from 'utils/theme';
 
 export const Item = styled.li`
-   display: flex;
-   margin-bottom: 30px;
-   padding: 20px;
-   
-   &:nth-of-type(2n){
+  display: flex;
+  margin-bottom: 30px;
+  padding: 20px;
+
+  &:nth-of-type(2n) {
     background-color: ${colors.backgroundColor};
-   }
+  }
 
-   @media (max-width: 1023px) {
-      flex-direction: column-reverse;
-       margin-bottom: 0;
-
-   }
+  @media (max-width: 1023px) {
+    flex-direction: column-reverse;
+    margin-bottom: 0;
+  }
 `;
 
 export const Image = styled.img`
-   border-radius: 5px;
-   max-width: 320px;
+  border-radius: 5px;
+  max-width: 320px;
 
-   @media (max-width: 599px) {
-      max-width: 100%;
-   }
+  @media (max-width: 599px) {
+    max-width: 100%;
+  }
 `;
 
 export const Card = styled.div`
@@ -35,43 +34,43 @@ export const Card = styled.div`
   color: ${colors.mainLightColor};
 
   @media (max-width: 1023px) {
-      display: flex;
-      margin-right: 0;
-      margin-top: 20px;
-   }
+    display: flex;
+    margin-right: 0;
+    margin-top: 20px;
+  }
 
-    @media (max-width: 599px) {
-      display: block;
-   }
+  @media (max-width: 599px) {
+    display: block;
+  }
 `;
 
 export const Description = styled.div`
-    font-size: 18px;
-    /* font-weight: 400; */
-    letter-spacing: .02em;
-    line-height: 1.3;
-    color: ${colors.mainLightColor};
-    margin-top: 16px;
-    padding: 10px;
-    text-align: start;
+  font-size: 18px;
+  /* font-weight: 400; */
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  color: ${colors.mainLightColor};
+  margin-top: 16px;
+  padding: 10px;
+  text-align: start;
 `;
 
 export const CardTitle = styled.p`
-    font-size: 24px;
-    font-weight: 600;
-    color: ${colors.textColorDarkBg};
-    margin-bottom: 10px;
-    text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: ${colors.textColorDarkBg};
+  margin-bottom: 10px;
+  text-align: center;
 `;
 
 export const CardFooter = styled.div`
-   text-align: center;
+  text-align: center;
 
-   @media (min-width: 600px) and (max-width: 1023px) {
+  @media (min-width: 600px) and (max-width: 1023px) {
     flex: 1;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
-   }
+  }
 `;

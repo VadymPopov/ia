@@ -4,7 +4,7 @@ import { colors } from '../../utils/theme';
 import { PaymentElement } from '@stripe/react-stripe-js';
 
 export const FormWrapper = styled.form`
-  display:flex;
+  display: flex;
   justify-content: center;
 `;
 
@@ -19,13 +19,12 @@ export const ServiceContainer = styled.div`
   border-radius: 12px;
   background: ${colors.backgroundColor};
 
-  @media (max-width:1023px) {
+  @media (max-width: 1023px) {
     width: auto;
   }
 `;
 
-
-export  const ServiceTitle = styled.p`
+export const ServiceTitle = styled.p`
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -33,7 +32,7 @@ export  const ServiceTitle = styled.p`
   margin-bottom: 18px;
 `;
 
-export  const ServiceText = styled.p`
+export const ServiceText = styled.p`
   font-size: 16px;
   line-height: 18px;
   letter-spacing: 0.5px;
@@ -68,12 +67,12 @@ export const PaymentContainer = styled.div`
 `;
 
 export const PaymentElements = styled(PaymentElement)`
- margin-bottom: 20px;
+  margin-bottom: 20px;
 `;
 
 export const ErrorMessage = styled.div`
-    margin-top: 20px;
-    color: red;
-    text-align: center;
-    font-weight: 600;
+  margin-top: 20px;
+  color: red;
+  text-align: center;
+  font-weight: 600;
 `;
