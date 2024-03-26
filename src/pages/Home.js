@@ -29,7 +29,7 @@ export default function Home() {
           <ToastContainer>
             <b>Dear Clients!</b>
             <p>
-              <b>April 23 - 27</b> for <b>Ottawa</b> bookings only.
+              <b>April 23 - 28</b> for <b>Ottawa</b> bookings only.
             </p>
             <ToastSpan>
               More details on{' '}

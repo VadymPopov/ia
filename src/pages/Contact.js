@@ -21,7 +21,7 @@ export default function Contact() {
       <FlexContainer>
         <FlexItem>
           <Flex>
-            <Label>Ottawa (April 23 - 27)</Label>
+            <Label>Ottawa (April 23 - 28)</Label>
           </Flex>
           <Flex>
             <Label>Clove Studio</Label>

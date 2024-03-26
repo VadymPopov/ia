@@ -63,7 +63,7 @@ const AddAppointmentForm = () => {
 
     const checkDay = () => {
       const date = format(values.date, 'MM.dd.yyyy');
-      const ottawaDateRange = [23, 24, 25, 26, 27];
+      const ottawaDateRange = [23, 24, 25, 26, 27, 28];
       const torontoDateRange = [
         3, 4, 6, 7, 11, 12, 13, 14, 17, 18, 19, 20, 21, 29, 30,
       ];

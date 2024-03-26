@@ -31,7 +31,7 @@ const ScheduleForm = () => {
   const navigate = useNavigate();
   const selectedService = appointmentInfo?.service;
 
-  const dateRange = [23, 24, 25, 26, 27];
+  const dateRange = [23, 24, 25, 26, 27, 28];
 
   useEffect(() => {
     if (!appointmentInfo) {
@@ -62,7 +62,7 @@ const ScheduleForm = () => {
     const dayNumber = new Date(date).getDate();
 
     if (dateRange.includes(dayNumber) && month === 3) {
-      toast('April 23-27 open for Ottawa bookings only.', {
+      toast('April 23-28 open for Ottawa bookings only.', {
         icon: '👏',
         style: {
           borderRadius: '10px',
