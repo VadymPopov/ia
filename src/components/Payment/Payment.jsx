@@ -17,9 +17,7 @@ const Payment = () => {
 
   const checkDay = () => {
     const ottawaDateRange = [23, 24, 25, 26, 27];
-    const torontoDateRange = [
-      3, 4, 6, 7, 11, 12, 13, 14, 17, 18, 19, 20, 21, 29, 30,
-    ];
+    const torontoDateRange = [18, 19, 20, 21, 29, 30];
     const day = Number(appointmentInfo?.date.split('.')[1]);
     const month = Number(appointmentInfo?.date.split('.')[0]);
     if (ottawaDateRange.includes(day) && month === 4) {
@@ -27,10 +25,10 @@ const Payment = () => {
     }
 
     if (torontoDateRange.includes(day) && month === 4) {
-      return '378 Yonge Street, 2nd floor. Toronto, Ontario. M5B 1S6';
+      return '434 College St, Toronto, ON M5T 1S9';
     }
 
-    return '434 College St, Toronto, ON M5T 1S9';
+    return '689 St. Clair Avenue West, Toronto, Ontario M6C 1B2, Canada';
   };
 
   useEffect(() => {

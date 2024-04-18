@@ -40,7 +40,7 @@ export default function Contact() {
           <br />
 
           <Flex>
-            <Label>Toronto</Label>
+            <Label>Toronto (April)</Label>
           </Flex>
           <Flex>
             <Label>Chronic Ink Tattoo - Tattoo Shop College</Label>
@@ -57,13 +57,33 @@ export default function Contact() {
             />
           </FlexItem>
           <br />
+
+          <Flex>
+            <Label>Toronto (Starting from May 1st)</Label>
+          </Flex>
+          <Flex>
+            <Label>Lara Jade Beauty</Label>
+          </Flex>
+          <Flex>
+            <StyledIcon as={FiMapPin} />
+            <Label>689 St Clair Ave W 2nd Floor, Toronto, ON M6C 1B2</Label>
+          </Flex>
+          <FlexItem>
+            <EmbeddedMap
+              latitude="43.682014043129215"
+              longitude="-79.42608935396728"
+              query="Lara+Jade+Beauty+StClair+Toronto"
+            />
+          </FlexItem>
+          <br />
+
           <Flex>
             <StyledIcon as={FiMail} />
             <Link href="mailto:InkedbyAlina@gmail.com">Email me</Link>
           </Flex>
           <Flex>
             <StyledIcon as={TfiTime} />
-            <Label>11PM - 8PM</Label>
+            <Label>11AM - 8PM</Label>
           </Flex>
           <Flex>
             <StyledIcon as={SiInstagram} />
