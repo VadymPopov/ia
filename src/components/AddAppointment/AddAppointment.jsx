@@ -72,7 +72,7 @@ const AddAppointmentForm = () => {
       }
 
       if (torontoDateRange.includes(day) && month === 4) {
-        return '434 College St, Toronto, ON M5T 1S9';
+        return '378 Yonge St, Toronto, ON M5B 1S6, Toronto, Ontario';
       }
 
       return '689 St. Clair Avenue West, Toronto, Ontario M6C 1B2, Canada';

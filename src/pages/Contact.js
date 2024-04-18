@@ -43,17 +43,17 @@ export default function Contact() {
             <Label>Toronto (April)</Label>
           </Flex>
           <Flex>
-            <Label>Chronic Ink Tattoo - Tattoo Shop College</Label>
+            <Label>Chronic Ink - Tattoo Shop Downtown Toronto</Label>
           </Flex>
           <Flex>
             <StyledIcon as={FiMapPin} />
-            <Label>434 College St 2nd Floor, Toronto, ON M5T 1S9</Label>
+            <Label>378 Yonge St, Toronto, ON M5B 1S6, Toronto, Ontario</Label>
           </Flex>
           <FlexItem>
             <EmbeddedMap
-              latitude="43.656777251560946"
-              longitude="-79.40727752380309"
-              query="Chronic+Ink+Tattoo+Shop+CollegeToronto"
+              latitude="43.659332236943165"
+              longitude="-79.38216454655762"
+              query="Chronic+Ink+Tattoo+Shop+Downtown+Toronto"
             />
           </FlexItem>
           <br />
