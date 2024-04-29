@@ -17,7 +17,7 @@ import { useMedia, useWindowSize } from 'react-use';
 import logo from '../../images/logo-circle.svg';
 
 const Navigation = () => {
-  const isMobile = useMedia('(max-width: 767px)');
+  const isMobile = useMedia('(max-width: 1024px)');
   const [isOpen, setIsOpen] = useState(false);
   const { height } = useWindowSize();
 
@@ -71,6 +71,9 @@ const Navigation = () => {
             <Item>
               <Link to="/contact">Contact</Link>
             </Item>
+            <Item>
+              <Link to="/payment/client-info">Payment</Link>
+            </Item>
           </List>
         )}
       </Nav>
@@ -110,6 +113,11 @@ const Navigation = () => {
           <Item>
             <Link onClick={toggleMenu} to="/contact">
               Contact
+            </Link>
+          </Item>
+          <Item>
+            <Link onClick={toggleMenu} to="/payment/client-info">
+              Payment
             </Link>
           </Item>
         </List>

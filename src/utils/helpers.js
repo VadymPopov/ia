@@ -66,3 +66,18 @@ export const pickDuration = selectedProcedure => {
 
   return duration;
 };
+
+export const calculateTip = (amount, percentage) => {
+  switch (percentage) {
+    case 15:
+      return amount * 0.15;
+    case 20:
+      return amount * 0.2;
+    case 25:
+      return amount * 0.25;
+    case 30:
+      return amount * 0.3;
+    default:
+      throw new Error('Invalid tip percentage');
+  }
+};

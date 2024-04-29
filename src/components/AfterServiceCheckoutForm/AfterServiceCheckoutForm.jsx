@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
-import { format } from 'date-fns';
-import { bookAppointment } from 'api';
-import { switchName, calculatePrice } from 'utils/helpers';
+import useGlobalState from 'hooks/useGlobalState';
 import { useNavigate } from 'react-router';
-
+import { paymentConfirmation } from 'api';
 import Loader from 'components/BtnLoader';
 import Button from 'components/Button';
 import {
@@ -18,24 +16,22 @@ import {
   PaymentDivider,
   PaymentElements,
   ErrorMessage,
-} from './CheckoutForm.styled';
+} from '../CheckoutForm/CheckoutForm.styled';
 import { Container } from '../WaiverForm/WaiverForm.styled';
 import { BtnContainer } from '../LoginForm/LoginForm.styled';
 
-const CheckoutForm = ({ appointmentInfo }) => {
+const AfterServiceCheckoutForm = () => {
+  const { paymentInfo } = useGlobalState();
+  const subtotal = paymentInfo?.amount;
+  const tip = paymentInfo?.tip;
+  const taxes = paymentInfo?.taxes;
+  const total = paymentInfo?.total;
+
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const selectedService = appointmentInfo.service;
-  const selectedSlot = appointmentInfo.slot;
-  const selectedDate = appointmentInfo.date.replace(/\./g, '/');
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
-
-  const price = calculatePrice(selectedService) || 0;
-  const tax = Number((price * 0.13).toFixed(2)) || 0;
-  const totalPrice = price + tax;
-  const procedureName = switchName(selectedService);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -59,8 +55,8 @@ const CheckoutForm = ({ appointmentInfo }) => {
     ) {
       setMessage(error.message);
     } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-      await bookAppointment(appointmentInfo);
-      navigate('/payment-succeeded', { state: { booking: true } });
+      await paymentConfirmation(paymentInfo);
+      navigate('/payment-succeeded');
     } else {
       setMessage('Unexpected state');
     }
@@ -72,29 +68,29 @@ const CheckoutForm = ({ appointmentInfo }) => {
     <FormWrapper id="payment-form" onSubmit={handleSubmit}>
       <ServiceContainer>
         <ServiceDivider>
-          <ServiceTitle>Service Details</ServiceTitle>
-          <ServiceText>{procedureName} Appointment Deposit</ServiceText>
-          <ServiceText>
-            {selectedSlot && format(new Date(selectedDate), 'MMMM dd, yyyy')}{' '}
-            {selectedSlot && <span>at {selectedSlot}</span>}
-          </ServiceText>
+          <ServiceTitle>Your order</ServiceTitle>
+          <ServiceText>Tattoo service payment</ServiceText>
         </ServiceDivider>
 
         <PaymentContainer>
-          <ServiceTitle>Payment Details</ServiceTitle>
+          <ServiceTitle>Price breakdown</ServiceTitle>
           <PaymentDivider>
             <PriceContainer>
               <ServiceText>Subtotal</ServiceText>
-              <ServiceText>CA${price}</ServiceText>
+              <ServiceText>CA${subtotal}</ServiceText>
             </PriceContainer>
             <PriceContainer>
-              <ServiceText>Tax</ServiceText>
-              <ServiceText>CA${tax}</ServiceText>
+              <ServiceText>Tips</ServiceText>
+              <ServiceText>CA${tip}</ServiceText>
+            </PriceContainer>
+            <PriceContainer>
+              <ServiceText>Taxes & Fees</ServiceText>
+              <ServiceText>CA${taxes}</ServiceText>
             </PriceContainer>
           </PaymentDivider>
           <PriceContainer>
             <ServiceTitle>Total</ServiceTitle>
-            <p>CA${totalPrice}</p>
+            <p>CA${total}</p>
           </PriceContainer>
         </PaymentContainer>
         <Container>
@@ -118,4 +114,4 @@ const CheckoutForm = ({ appointmentInfo }) => {
   );
 };
 
-export default CheckoutForm;
+export default AfterServiceCheckoutForm;

@@ -169,13 +169,34 @@ export const getPublishableKey = async () => {
   }
 };
 
-export const createPaymentIntent = async (service, email) => {
+export const createPaymentIntentBooking = async (service, email) => {
   try {
     const response = await axios.post(
       `/stripe/create-payment-intent/${service}`,
       { email }
     );
     return response.data.clientSecret;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const createPaymentIntentAfterService = async (email, total) => {
+  try {
+    const response = await axios.post('/stripe/create-payment-intent/', {
+      email,
+      total,
+    });
+    return response.data.clientSecret;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const paymentConfirmation = async data => {
+  try {
+    const response = await axios.post('/payment-confirmation/', data);
+    return response;
   } catch (error) {
     console.error(error);
   }

@@ -20,14 +20,19 @@ const CompletionPage = lazy(() => import('../pages/Completion'));
 const Service = lazy(() => import('./Service/Service'));
 const Client = lazy(() => import('../components/ClientForm'));
 const Schedule = lazy(() => import('../components/Schedule'));
-const Payment = lazy(() => import('../components/Payment'));
+const BookingPayment = lazy(() => import('../components/BookingPayment'));
 const Login = lazy(() => import('../components/LoginForm'));
 const Admin = lazy(() => import('../pages/Admin'));
 const DaySchedule = lazy(() => import('./DaySchedule'));
 const MonthSchedule = lazy(() => import('../components/MonthSchedule'));
 const AllSchedule = lazy(() => import('../components/AllSchedule'));
 const AddAppointment = lazy(() => import('../components/AddAppointment'));
-
+const PaymentPage = lazy(() => import('../pages/Payment'));
+const PaymentForm = lazy(() => import('../components/PaymentForm'));
+const Tip = lazy(() => import('../components/Tip'));
+const AfterServicePayment = lazy(() =>
+  import('../components/AfterServicePayment')
+);
 export const App = () => {
   return (
     <>
@@ -45,14 +50,19 @@ export const App = () => {
             <Route path="service" element={<Service />} />
             <Route path="client-info" element={<Client />} />
             <Route path="schedule" element={<Schedule />} />
-            <Route path="payment" element={<Payment />} />
+            <Route path="payment" element={<BookingPayment />} />
           </Route>
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/payment" element={<PaymentPage />}>
+            <Route path="client-info" element={<PaymentForm />} />
+            <Route path="tip-amount" element={<Tip />} />
+            <Route path="confirmation" element={<AfterServicePayment />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
 
-        <Route path="/booking-succeeded" element={<CompletionPage />} />
+        <Route path="/payment-succeeded" element={<CompletionPage />} />
         <Route
           path="/gatita/admin"
           element={

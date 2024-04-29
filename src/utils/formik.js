@@ -242,3 +242,18 @@ export const validationSchemaAdmin = Yup.object().shape({
     }
   ),
 });
+
+export const validationSchemaPaymentForm = () => {
+  return Yup.object().shape({
+    name: Yup.string()
+      .min(2, 'Name must be at least 2 characters')
+      .matches(nameRegExp, 'Please enter a valid name')
+      .required('Name is required'),
+    email: Yup.string()
+      .matches(emailRegExp, 'Please enter a valid email')
+      .required('Email is required'),
+    amount: Yup.number()
+      .positive('Amount must be a positive number')
+      .required('Amount is required'),
+  });
+};

@@ -5,10 +5,18 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [service, setService] = useState(null);
   const [appointmentInfo, setAppointmentInfo] = useState(null);
+  const [paymentInfo, setPaymentInfo] = useState(null);
 
   return (
     <AppContext.Provider
-      value={{ service, setService, appointmentInfo, setAppointmentInfo }}
+      value={{
+        service,
+        setService,
+        appointmentInfo,
+        setAppointmentInfo,
+        paymentInfo,
+        setPaymentInfo,
+      }}
     >
       {children}
     </AppContext.Provider>

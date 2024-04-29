@@ -14,16 +14,9 @@ export const Header = styled.header`
   top: 0;
   z-index: 100;
 
-  @media (min-width: 480px) and (max-width: 1024px) {
+  @media (min-width: 1024px) and (max-width: 1280px) {
     padding-top: 12px;
     padding-bottom: 12px;
-    overflow: auto;
-    max-height: 100vh;
-  }
-
-  @media screen and (max-width: 479px) {
-    padding-top: 8px;
-    padding-bottom: 8px;
   }
 `;
 
@@ -45,12 +38,11 @@ export const Link = styled(NavLink)`
     background-color: ${colors.backgroundColor};
   }
 
-  @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 12px;
+  @media (min-width: 1024px) and (max-width: 1280px) {
     padding: 5px 8px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     color: ${colors.mainLightColor};
     font-size: 24px;
 
@@ -64,6 +56,10 @@ export const Link = styled(NavLink)`
   &:hover {
     color: ${colors.accentColor};
   }
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const List = styled.ul`
@@ -73,7 +69,7 @@ export const List = styled.ul`
   list-style: none;
   margin-right: 20px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
     margin: 0;
     align-items: center;
@@ -85,16 +81,10 @@ export const Item = styled.li`
     margin-right: 30px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     &:not(:last-child) {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       margin-right: 0;
-    }
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    &:not(:last-child) {
-      margin-right: 15px;
     }
   }
 `;
@@ -125,11 +115,6 @@ export const Logo = styled.img`
   max-width: 60px;
   max-height: 60px;
   border-radius: 50%;
-
-  @media (min-width: 480px) and (max-width: 1024px) {
-    max-width: 50px;
-    max-height: 50px;
-  }
 `;
 
 export const MobileBtn = styled.button`
@@ -154,13 +139,17 @@ export const CrossIcon = styled(CgClose)`
 `;
 
 export const MobileContainer = styled.div`
-  position: ${props => (props.open ? 'flex' : 'fixed')};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: ${props => (props.open ? '' : 'fixed')};
   background-color: ${colors.cardColor};
   right: 0;
   z-index: 1000;
-  padding: 50px 20px;
-  height: ${props => props.height && `${Number(props.height) - Number(174)}px`};
+  padding: 40px 20px;
   overflow: auto;
+
+  height: ${props => props.height && `${Number(props.height) - Number(160)}px`};
   transition: opacity 1s ease-in-out,
     transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   transform: ${props =>
