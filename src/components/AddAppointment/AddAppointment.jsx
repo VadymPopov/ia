@@ -61,23 +61,6 @@ const AddAppointmentForm = () => {
       return acc;
     }, {});
 
-    const checkDay = () => {
-      const date = format(values.date, 'MM.dd.yyyy');
-      const ottawaDateRange = [23, 24, 25, 26, 27, 28];
-      const torontoDateRange = [18, 19, 20, 21, 29, 30];
-      const day = Number(date.split('.')[1]);
-      const month = Number(date.split('.')[0]);
-      if (ottawaDateRange.includes(day) && month === 4) {
-        return '155 Loretta Ave N, Ottawa, ON K1Y 3E5';
-      }
-
-      if (torontoDateRange.includes(day) && month === 4) {
-        return '378 Yonge St, Toronto, ON M5B 1S6, Toronto, Ontario';
-      }
-
-      return '689 St. Clair Avenue West, Toronto, Ontario M6C 1B2, Canada';
-    };
-
     const info = {
       ...trimmedValues,
       date: format(values.date, 'MM.dd.yyyy'),
@@ -85,7 +68,7 @@ const AddAppointmentForm = () => {
         trimmedValues.service === 'large-tattoo'
           ? trimmedValues.duration
           : pickDuration(trimmedValues.service),
-      address: checkDay(),
+      address: '689 St. Clair Avenue West, Toronto, Ontario M6C 1B2, Canada',
     };
 
     await bookAppointment(info);

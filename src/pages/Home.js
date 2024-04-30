@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   MainTitle,
   HeroDescription,
@@ -8,49 +7,16 @@ import {
   List,
   Description,
   Container,
-  ToastContainer,
-  ToastSpan,
-  Link,
 } from './Home.styled.js';
 import { Text, Title, Suptitle, Section } from 'components/CommonStyles';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import toast from 'react-hot-toast';
 
 import aboutMe from '../images/about-me-one.jpg';
 import aboutMeTwo from '../images/about-me-two.jpg';
 
 export default function Home() {
-  useEffect(() => {
-    setTimeout(() => {
-      toast(
-        t => (
-          <ToastContainer>
-            <b>Dear Clients!</b>
-            <p>
-              <b>April 23 - 28</b> for <b>Ottawa</b> bookings only.
-            </p>
-            <ToastSpan>
-              More details on{' '}
-              <Link
-                href="https://www.instagram.com/ivenko.alinaaa/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="instagram-page"
-              >
-                Instagram
-              </Link>
-              !
-            </ToastSpan>
-            <Button onClick={() => toast.dismiss(t.id)}>Dismiss</Button>
-          </ToastContainer>
-        ),
-        { duration: 10000, position: 'bottom-center' }
-      );
-    }, 500);
-  }, []);
-
   const navigate = useNavigate();
 
   return (

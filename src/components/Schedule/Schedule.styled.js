@@ -15,9 +15,9 @@ export const FieldSet = styled.fieldset`
   margin: 20px 0;
   border-radius: 20px;
   border: 2px solid ${colors.textColorDarkBg};
-  display: flex;
   align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   @media (max-width: 1024px) {
     display: block;

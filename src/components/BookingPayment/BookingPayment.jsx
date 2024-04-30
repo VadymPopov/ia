@@ -15,29 +15,14 @@ const BookingPayment = () => {
   const email = appointmentInfo?.email;
   const navigate = useNavigate();
 
-  const checkDay = () => {
-    const ottawaDateRange = [23, 24, 25, 26, 27];
-    const torontoDateRange = [18, 19, 20, 21, 29, 30];
-    const day = Number(appointmentInfo?.date.split('.')[1]);
-    const month = Number(appointmentInfo?.date.split('.')[0]);
-    if (ottawaDateRange.includes(day) && month === 4) {
-      return '155 Loretta Ave N, Ottawa, ON K1Y 3E5';
-    }
-
-    if (torontoDateRange.includes(day) && month === 4) {
-      return '378 Yonge St, Toronto, ON M5B 1S6, Toronto, Ontario';
-    }
-
-    return '689 St. Clair Avenue West, Toronto, Ontario M6C 1B2, Canada';
-  };
-
   useEffect(() => {
     if (!service) {
       navigate('/booking/service');
     }
 
     if (appointmentInfo) {
-      appointmentInfo.address = checkDay();
+      appointmentInfo.address =
+        '689 St. Clair Avenue West, Toronto, Ontario M6C 1B2, Canada';
     }
   });
 
