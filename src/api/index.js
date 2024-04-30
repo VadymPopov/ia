@@ -181,11 +181,11 @@ export const createPaymentIntentBooking = async (service, email) => {
   }
 };
 
-export const createPaymentIntentAfterService = async (email, total) => {
+export const createPaymentIntentAfterService = async (email, amount) => {
   try {
     const response = await axios.post('/stripe/create-payment-intent/', {
       email,
-      total,
+      amount,
     });
     return response.data.clientSecret;
   } catch (error) {

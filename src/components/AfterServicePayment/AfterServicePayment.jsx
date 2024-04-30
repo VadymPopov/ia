@@ -12,11 +12,11 @@ const AfterServicePayment = () => {
   const [clientSecret, setClientSecret] = useState(null);
   const { paymentInfo } = useGlobalState();
   const email = paymentInfo?.email;
-  const total = paymentInfo?.total;
+  const amount = paymentInfo?.total;
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!total && !email) {
+    if (!amount && !email) {
       navigate('/payment/client-info');
     }
   });
@@ -30,14 +30,14 @@ const AfterServicePayment = () => {
 
   useEffect(() => {
     (async () => {
-      if (!total) {
+      if (!amount) {
         return;
       }
 
-      const clientSecret = await createPaymentIntentAfterService(email, total);
+      const clientSecret = await createPaymentIntentAfterService(email, amount);
       setClientSecret(clientSecret);
     })();
-  }, [email, total]);
+  }, [email, amount]);
 
   if (!stripePromise || !clientSecret) {
     return <Skeleton />;
