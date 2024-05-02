@@ -44,7 +44,7 @@ const PaymentForm = () => {
         validationSchema={validationSchemaPaymentForm}
         onSubmit={handleSubmit}
       >
-        <FormWrapper autoComplete="off">
+        <FormWrapper>
           <FieldSet>
             <Legend>Fill out your information:</Legend>
 

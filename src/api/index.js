@@ -195,7 +195,7 @@ export const createPaymentIntentAfterService = async (email, amount) => {
 
 export const paymentConfirmation = async data => {
   try {
-    const response = await axios.post('/payment-confirmation/', data);
+    const response = await axios.post('/send/payment-confirmation/', data);
     return response;
   } catch (error) {
     console.error(error);
