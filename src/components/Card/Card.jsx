@@ -18,7 +18,7 @@ import { useState } from 'react';
 import { updateAppointment, deleteAppointment } from 'api';
 import { switchName } from '../../utils/helpers';
 import { slots } from 'components/AddAppointment/AddAppointment';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 
 const Card = ({
   data: { service, date, slot, name, email, _id, duration, instagram },
@@ -69,7 +69,7 @@ const Card = ({
             <Input name="date" aria-label="appointment-date" id="date">
               <CustomDatePicker
                 showIcon
-                selected={serviceDate}
+                selected={parse(serviceDate, 'MM.dd.yyyy', new Date())}
                 onChange={date => handleDateChange(date)}
                 minDate={new Date()}
               />
