@@ -96,3 +96,11 @@ export const Flex = styled.div`
   align-items: center;
   margin-bottom: 10px;
 `;
+
+export const Select = styled.select`
+  color: ${colors.cardColor};
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  max-width: 80px;
+`;

@@ -7,14 +7,18 @@ import {
   ButtonContainer,
   Button,
   Input,
+  Select,
   Flex,
   Instagram,
   Mail,
 } from './Card.styled';
+import { CustomDatePicker } from '../WaiverForm/WaiverForm.styled';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useState } from 'react';
 import { updateAppointment, deleteAppointment } from 'api';
 import { switchName } from '../../utils/helpers';
+import { slots } from 'components/AddAppointment/AddAppointment';
+import { format } from 'date-fns';
 
 const Card = ({
   data: { service, date, slot, name, email, _id, duration, instagram },
@@ -41,17 +45,19 @@ const Card = ({
     setDeleteFlag(false);
   };
 
+  const handleDateChange = date => {
+    const formattedDate = format(date, 'MM.dd.yyyy');
+    setServiceDate(formattedDate);
+  };
+
   const handleSaveClick = () => {
-    updateAppointment(_id, {
+    const appointmentInfo = {
       date: serviceDate,
       slot: serviceSlot,
       duration: serviceDuration,
-    });
-    onUpdate(_id, {
-      date: serviceDate,
-      slot: serviceSlot,
-      duration: serviceDuration,
-    });
+    };
+    updateAppointment(_id, appointmentInfo);
+    onUpdate(_id, appointmentInfo);
     setIsEditing(false);
   };
 
@@ -60,11 +66,14 @@ const Card = ({
       <Container>
         <div>
           {isEditing ? (
-            <Input
-              type="text"
-              value={serviceDate}
-              onChange={e => setServiceDate(e.target.value)}
-            />
+            <Input name="date" aria-label="appointment-date" id="date">
+              <CustomDatePicker
+                showIcon
+                selected={serviceDate}
+                onChange={date => handleDateChange(date)}
+                minDate={new Date()}
+              />
+            </Input>
           ) : (
             <Info>{serviceDate}</Info>
           )}
@@ -84,11 +93,18 @@ const Card = ({
 
         <div>
           {isEditing ? (
-            <Input
-              type="text"
+            <Select
               value={serviceSlot}
               onChange={e => setServiceSlot(e.target.value)}
-            />
+            >
+              {slots.map(slot => {
+                return (
+                  <option key={slot} value={slot}>
+                    {slot}
+                  </option>
+                );
+              })}
+            </Select>
           ) : (
             <Time>{serviceSlot}</Time>
           )}
