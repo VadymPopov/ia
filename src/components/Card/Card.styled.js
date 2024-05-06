@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { colors } from '../../utils/theme';
 import { BsInstagram } from 'react-icons/bs';
 import { HiOutlineMail } from 'react-icons/hi';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const Instagram = styled(BsInstagram)`
   margin-right: 5px;
@@ -89,6 +91,14 @@ export const Input = styled.input`
   font-weight: 500;
   margin-bottom: 10px;
   max-width: 80px;
+  border: 2px solid ${colors.textColorDarkBg};
+  border-radius: 10px;
+  padding: 6px 10px;
+  background-color: #f0f0f0;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 export const Flex = styled.div`
@@ -102,5 +112,27 @@ export const Select = styled.select`
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
-  max-width: 80px;
+  margin-right: 5px;
+  border: 2px solid ${colors.textColorDarkBg};
+  border-radius: 10px;
+  padding: 6px;
+  background-color: #f0f0f0;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+`;
+
+export const CardDatePicker = styled(DatePicker)`
+  background-color: #f0f0f0;
+  font-size: 16px;
+  padding: 10px 15px;
+  border: 2px solid ${colors.textColorDarkBg};
+  border-radius: 10px;
+  outline: none;
+  width: 100px;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
 `;

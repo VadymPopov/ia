@@ -11,8 +11,8 @@ import {
   Flex,
   Instagram,
   Mail,
+  CardDatePicker,
 } from './Card.styled';
-import { CustomDatePicker } from '../WaiverForm/WaiverForm.styled';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useState } from 'react';
 import { updateAppointment, deleteAppointment } from 'api';
@@ -66,14 +66,12 @@ const Card = ({
       <Container>
         <div>
           {isEditing ? (
-            <Input name="date" aria-label="appointment-date" id="date">
-              <CustomDatePicker
-                showIcon
-                selected={parse(serviceDate, 'MM.dd.yyyy', new Date())}
-                onChange={date => handleDateChange(date)}
-                minDate={new Date()}
-              />
-            </Input>
+            <CardDatePicker
+              showIcon
+              selected={parse(serviceDate, 'MM.dd.yyyy', new Date())}
+              onChange={date => handleDateChange(date)}
+              minDate={new Date()}
+            />
           ) : (
             <Info>{serviceDate}</Info>
           )}
