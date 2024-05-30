@@ -108,7 +108,7 @@ const AddAppointmentForm = () => {
                   </option>
                   <option value="large-tattoo">Large Tattoo</option>
                   <option value="permanent">Permanent</option>
-                  <option value="consultation">Consultation</option>
+                  <option value="touch-up">Touch-up/Consultation</option>
                 </Field>
                 <FormError name="service" component="span" />
               </InputContainer>

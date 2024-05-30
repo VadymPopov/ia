@@ -20,8 +20,8 @@ import {
 import { Input, Legend } from '../WaiverForm/WaiverForm.styled';
 
 const ScheduleForm = () => {
-  const minDate = new Date();
-  const maxDate = new Date(2024, 4, 31);
+  const minDate = new Date(2024, 6, 4);
+  const maxDate = new Date(2024, 6, 31);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(minDate);
@@ -81,6 +81,11 @@ const ScheduleForm = () => {
     navigate('/booking/payment');
   };
 
+  const isNotMonTueWed = date => {
+    const day = date.getDay();
+    return day !== 1 && day !== 2 && day !== 3;
+  };
+
   return (
     <>
       <Formik
@@ -100,6 +105,7 @@ const ScheduleForm = () => {
                   showPopperArrow={false}
                   minDate={minDate}
                   maxDate={maxDate}
+                  filterDate={isNotMonTueWed}
                   dateFormat="dd/MM/yyyy"
                   inline
                 />
