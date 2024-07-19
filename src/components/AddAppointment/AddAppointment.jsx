@@ -18,6 +18,7 @@ import { validationSchemaAdmin, FormError } from 'utils/formik';
 import { bookAppointment } from '../../api';
 import { useNavigate } from 'react-router-dom';
 import { pickDuration } from 'utils/helpers';
+import { checkDay } from 'utils/checkDay';
 
 export const slots = [
   '11:00am',
@@ -61,27 +62,16 @@ const AddAppointmentForm = () => {
         typeof values[key] === 'string' ? values[key].trim() : values[key];
       return acc;
     }, {});
-
-    const checkDay = () => {
-      const date = format(values.date, 'MM.dd.yyyy');
-      const ottawaDateRange = [14, 15, 16, 17, 18];
-      const day = Number(date.split('.')[1]);
-      const month = Number(date.split('.')[0]);
-      if (ottawaDateRange.includes(day) && month === 7) {
-        return '155 Loretta Ave N, Ottawa, ON K1Y 3E5';
-      }
-
-      return '689 St. Clair Avenue West, Toronto, Ontario M6C 1B2, Canada';
-    };
+    const date = format(values.date, 'MM.dd.yyyy');
 
     const info = {
       ...trimmedValues,
-      date: format(values.date, 'MM.dd.yyyy'),
+      date: date,
       duration:
         trimmedValues.service === 'large-tattoo'
           ? trimmedValues.duration
           : pickDuration(trimmedValues.service),
-      address: checkDay(),
+      address: checkDay(date),
     };
 
     await bookAppointment(info);

@@ -6,6 +6,7 @@ import CheckoutForm from 'components/CheckoutForm/CheckoutForm';
 import Skeleton from '../Skeleton';
 import { loadStripe } from '@stripe/stripe-js';
 import { useNavigate } from 'react-router-dom';
+import { checkDay } from 'utils/checkDay';
 
 const BookingPayment = () => {
   const [stripePromise, setStripePromise] = useState(null);
@@ -13,6 +14,7 @@ const BookingPayment = () => {
   const { appointmentInfo } = useGlobalState();
   const service = appointmentInfo?.service;
   const email = appointmentInfo?.email;
+  const date = appointmentInfo?.date;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,8 +23,7 @@ const BookingPayment = () => {
     }
 
     if (appointmentInfo) {
-      appointmentInfo.address =
-        '689 St. Clair Avenue West, Toronto, Ontario M6C 1B2, Canada';
+      appointmentInfo.address = checkDay(date);
     }
   });
 
