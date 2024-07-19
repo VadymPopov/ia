@@ -21,6 +21,25 @@ export default function Contact() {
       <FlexContainer>
         <FlexItem>
           <Flex>
+            <Label>Ottawa (August 14 - 18)</Label>
+          </Flex>
+          <Flex>
+            <Label>Clove Studio</Label>
+          </Flex>
+          <Flex>
+            <StyledIcon as={FiMapPin} />
+            <Label>155 Loretta Ave N, Ottawa, ON K1Y 3E5</Label>
+          </Flex>
+          <FlexItem>
+            <EmbeddedMap
+              latitude="45.404117694979895"
+              longitude="-75.71567117471214"
+              query="Clove+Studio+Ottawa"
+            />
+          </FlexItem>
+          <br />
+
+          <Flex>
             <Label>Toronto</Label>
           </Flex>
           <Flex>

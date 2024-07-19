@@ -18,10 +18,11 @@ import {
   FieldSet,
 } from './Schedule.styled';
 import { Input, Legend } from '../WaiverForm/WaiverForm.styled';
+import toast from 'react-hot-toast';
 
 const ScheduleForm = () => {
-  const minDate = new Date(2024, 6, 4);
-  const maxDate = new Date(2024, 6, 31);
+  const minDate = new Date();
+  const maxDate = new Date(2024, 7, 31);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(minDate);
@@ -29,6 +30,8 @@ const ScheduleForm = () => {
   const { appointmentInfo, setAppointmentInfo } = useGlobalState();
   const navigate = useNavigate();
   const selectedService = appointmentInfo?.service;
+
+  const dateRange = [14, 15, 16, 17, 18];
 
   useEffect(() => {
     if (!appointmentInfo) {
@@ -55,6 +58,20 @@ const ScheduleForm = () => {
   };
 
   const handleDataChange = (date, field, form) => {
+    const month = new Date(date).getMonth();
+    const dayNumber = new Date(date).getDate();
+
+    if (dateRange.includes(dayNumber) && month === 7) {
+      toast('August 14-18 open for Ottawa bookings only.', {
+        icon: '👏',
+        style: {
+          borderRadius: '10px',
+          background: 'red',
+          color: '#fff',
+        },
+      });
+    }
+
     form.setFieldValue(field.name, date);
     setSelectedDate(date);
   };
@@ -83,7 +100,18 @@ const ScheduleForm = () => {
 
   const isNotMonTueWed = date => {
     const day = date.getDay();
-    return day !== 1 && day !== 2 && day !== 3;
+    const month = date.getMonth();
+    const dayNumber = date.getDate();
+    if (day === 1 || day === 2) {
+      return false;
+    }
+
+    if (day === 3 && !(month === 7 && dayNumber === 14)) {
+      return false;
+    }
+
+    // return day !== 1 && day !== 2 && day !== 3;
+    return true;
   };
 
   return (

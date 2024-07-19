@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   MainTitle,
   HeroDescription,
@@ -7,17 +8,47 @@ import {
   List,
   Description,
   Container,
+  ToastContainer,
+  ToastSpan,
+  Link,
 } from './Home.styled.js';
 import { Text, Title, Suptitle, Section } from 'components/CommonStyles';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
 
 import aboutMe from '../images/about-me-one.jpg';
 import aboutMeTwo from '../images/about-me-two.jpg';
 
 export default function Home() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      toast(
+        t => (
+          <ToastContainer>
+            <span>Exciting News!</span>
+            <p>
+              Tattoo bookings for <b>Ottawa</b> from <b>August 14th to 18th</b>{' '}
+              are now OPEN!{' '}
+            </p>
+            <ToastSpan>Secure your spot today!</ToastSpan>
+            <Button
+              onClick={() => {
+                navigate('/booking/service');
+                toast.dismiss(t.id);
+              }}
+            >
+              Book now!
+            </Button>
+          </ToastContainer>
+        ),
+        { duration: 10000, position: 'bottom-center' }
+      );
+    }, 500);
+  }, [navigate]);
 
   return (
     <>
