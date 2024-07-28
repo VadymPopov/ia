@@ -42,6 +42,11 @@ export default function Booking() {
           to cancel or reschedule a tattoo or cosmetic appointment; otherwise, a
           new deposit might be required.
         </Text>
+        <Text>
+          <b>Please note:</b> I do not offer finger tattoos, inner lip tattoos,
+          or tattoos in intimate areas due to poor healing outcomes. Thank you
+          for understanding.
+        </Text>
 
         <FlexContainer>
           <Button

@@ -87,6 +87,11 @@ export default function Services() {
               Please <LinkTo to="/contact">contact</LinkTo> for more detailed
               information.
             </Text>
+            <Text primary="true">
+              <b>Please note:</b> I do not offer finger tattoos, inner lip
+              tattoos, or tattoos in intimate areas due to poor healing
+              outcomes. Thank you for understanding.
+            </Text>
           </div>
         </Item>
         <Item>

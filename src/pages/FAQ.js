@@ -119,14 +119,13 @@ export default function FAQ() {
           <Item>
             <Question>Do you do finger tattoos or inner lip tattoos?</Question>
             <Text primary={'primary'}>
-              Finger tattoos and inner-lip tattoos are possible, but they tend
-              to have poor healing outcomes. Fingers have non-porous skin and
-              experience constant movement and wear, leading to the ink
-              spreading or fading over time. Similarly, the nature of tissue in
-              the inner lip makes it challenging for tattoos to heal well, as
-              it's constantly rubbing against teeth and remains wet. Therefore,
-              I cannot guarantee the final quality of these tattoos, and any
-              touch-ups will be at your expense.
+              I'm sorry, but I don't offer finger tattoos, inner lip tattoos, or
+              tattoos in intimate areas. These locations tend to have poor
+              healing outcomes. Finger tattoos often fade or spread due to the
+              constant movement and wear of the skin. Inner lip tattoos face
+              similar challenges because the tissue is constantly rubbing
+              against teeth and remains wet. For these reasons, I do not provide
+              tattoos in these areas.
             </Text>
           </Item>
         </List>
