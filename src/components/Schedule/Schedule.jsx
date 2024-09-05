@@ -19,6 +19,7 @@ import {
 } from './Schedule.styled';
 import { Input, Legend } from '../WaiverForm/WaiverForm.styled';
 import toast from 'react-hot-toast';
+import { ToastContainer, ToastSpan } from 'pages/Home.styled.js';
 
 const ScheduleForm = () => {
   const minDate = new Date();
@@ -31,13 +32,45 @@ const ScheduleForm = () => {
   const navigate = useNavigate();
   const selectedService = appointmentInfo?.service;
 
-  const dateRange = [14, 15, 16, 17, 18];
-
   useEffect(() => {
     if (!appointmentInfo) {
       navigate('/booking/service');
     }
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      toast(
+        t => (
+          <ToastContainer>
+            <span>
+              <b style={{ fontSize: '24px', color: 'rgba(255, 108, 0, 1)' }}>
+                Promo Friday!
+              </b>
+            </span>
+            <p>Get 2 tattoos (1-inch size) for just $100!</p>
+
+            <ToastSpan>
+              {' '}
+              <b>For one person only.</b>
+            </ToastSpan>
+            <p style={{ fontSize: '12px', marginBottom: '10px', color: 'red' }}>
+              *Black ink, simple designs only. No finger, face, inner lip, or
+              intimate areas.
+            </p>
+            <Button
+              onClick={() => {
+                toast.dismiss(t.id);
+              }}
+            >
+              Dismiss!
+            </Button>
+          </ToastContainer>
+        ),
+        { duration: 10000, position: 'top-center' }
+      );
+    }, 500);
+  }, []);
 
   const duration = pickDuration(selectedService);
 
@@ -60,17 +93,6 @@ const ScheduleForm = () => {
   const handleDataChange = (date, field, form) => {
     const month = new Date(date).getMonth();
     const dayNumber = new Date(date).getDate();
-
-    if (dateRange.includes(dayNumber) && month === 7) {
-      toast('August 14-18 open for Ottawa bookings only.', {
-        icon: '👏',
-        style: {
-          borderRadius: '10px',
-          background: 'red',
-          color: '#fff',
-        },
-      });
-    }
 
     form.setFieldValue(field.name, date);
     setSelectedDate(date);
@@ -100,18 +122,7 @@ const ScheduleForm = () => {
 
   const isNotMonTueWed = date => {
     const day = date.getDay();
-    const month = date.getMonth();
-    const dayNumber = date.getDate();
-    if (day === 1 || day === 2) {
-      return false;
-    }
-
-    if (day === 3 && !(month === 7 && dayNumber === 14)) {
-      return false;
-    }
-
-    // return day !== 1 && day !== 2 && day !== 3;
-    return true;
+    return day !== 1 && day !== 2 && day !== 3;
   };
 
   return (

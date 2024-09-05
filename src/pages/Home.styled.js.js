@@ -98,7 +98,7 @@ export const ToastContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
+  text-align: justify;
 `;
 
 export const ToastSpan = styled.span`
