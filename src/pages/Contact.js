@@ -21,6 +21,25 @@ export default function Contact() {
       <FlexContainer>
         <FlexItem>
           <Flex>
+            <Label>Vancouver (October 18 - 20)</Label>
+          </Flex>
+          <Flex>
+            <Label>Studio Artisphere</Label>
+          </Flex>
+          <Flex>
+            <StyledIcon as={FiMapPin} />
+            <Label>337 E Broadway, Vancouver, BC V5T 1W5</Label>
+          </Flex>
+          <FlexItem>
+            <EmbeddedMap
+              latitude="49.263137023190694"
+              longitude="-123.09700383180092"
+              query="Studio+Artisphere+Vancouver"
+            />
+          </FlexItem>
+          <br />
+
+          <Flex>
             <Label>Toronto</Label>
           </Flex>
           <Flex>
