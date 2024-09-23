@@ -10,7 +10,6 @@ import {
   Container,
   ToastContainer,
   ToastSpan,
-  Link,
 } from './Home.styled.js';
 import { Text, Title, Suptitle, Section } from 'components/CommonStyles';
 import Button from 'components/Button/Button';
@@ -29,30 +28,19 @@ export default function Home() {
       toast(
         t => (
           <ToastContainer>
-            <span style={{ marginBottom: '10px' }}>
-              <b
-                style={{
-                  fontSize: '24px',
-                  color: 'rgba(255, 108, 0, 1)',
-                }}
-              >
-                Vancouver!
+            <span>
+              <b style={{ fontSize: '24px', color: 'rgba(255, 108, 0, 1)' }}>
+                Promo Friday!
               </b>
             </span>
-            <p>
-              Tattoo bookings for <b>Vancouver</b> from{' '}
-              <b>October 18th to 20th</b> are now OPEN!{' '}
-            </p>
-
-            <p
-              style={{
-                fontSize: '12px',
-                marginBottom: '10px',
-                marginTop: '10px',
-                color: 'red',
-              }}
-            >
-              *Limited slots available. Don't miss out!
+            <p>Get 2 tattoos (1-inch size) for just $100!</p>
+            <ToastSpan>
+              {' '}
+              <b>For one person only.</b>
+            </ToastSpan>
+            <p style={{ fontSize: '12px', marginBottom: '10px', color: 'red' }}>
+              *Black ink, simple designs only. No finger, face, inner lip, or
+              intimate areas.
             </p>
             <Button
               onClick={() => {

@@ -31,8 +31,6 @@ const ScheduleForm = () => {
   const navigate = useNavigate();
   const selectedService = appointmentInfo?.service;
 
-  const dateRange = [18, 19, 20];
-
   useEffect(() => {
     if (!appointmentInfo) {
       navigate('/booking/service');
@@ -58,18 +56,44 @@ const ScheduleForm = () => {
   };
 
   const handleDataChange = (date, field, form) => {
-    const month = new Date(date).getMonth();
-    const dayNumber = new Date(date).getDate();
+    const day = new Date(date).getDay();
 
-    if (dateRange.includes(dayNumber) && month === 9) {
-      toast('October 18-20 open for Vancouver bookings only.', {
-        icon: '👏',
-        style: {
-          borderRadius: '10px',
-          background: 'red',
-          color: '#fff',
-        },
-      });
+    if (day === 5) {
+      toast(
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <span
+            style={{
+              fontSize: '24px',
+              color: '#0f0e0e',
+              fontWeight: 'bold',
+              marginBottom: '10px',
+            }}
+          >
+            👏 Promo Friday!
+          </span>
+          <span style={{ marginBottom: '10px' }}>
+            Get <span style={{ fontWeight: 'bold' }}>2</span> tattoos (1-inch
+            size) for just <span style={{ fontWeight: 'bold' }}>$100!</span>
+          </span>
+          <p style={{ fontSize: '12px', marginBottom: '10px' }}>
+            *Black ink, simple designs only. No finger, face, inner lip, or
+            intimate areas.
+          </p>
+        </div>,
+        {
+          style: {
+            borderRadius: '10px',
+            background: 'red',
+            color: '#fff',
+          },
+        }
+      );
     }
 
     form.setFieldValue(field.name, date);
@@ -103,7 +127,11 @@ const ScheduleForm = () => {
     const month = new Date(date).getMonth();
     const dayNumber = new Date(date).getDate();
 
-    if (dayNumber === 17 && month === 9) return false;
+    if (
+      (dayNumber === 17 || dayNumber === 18 || dayNumber === 19) &&
+      month === 9
+    )
+      return false;
     if (
       (dayNumber === 15 || dayNumber === 22 || dayNumber === 29) &&
       month === 9
