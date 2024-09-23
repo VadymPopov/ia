@@ -6,6 +6,8 @@ import { getAvailableSlots } from 'api';
 import { isTimeWithinLastHour } from 'utils/timeComparison';
 import { validationSchemaTime, FormError } from 'utils/formik';
 import { pickDuration } from 'utils/helpers';
+import { isNotMonTueWed } from 'utils/isNotMonTueWed';
+import { findNextAvailableDate } from 'utils/findNextAvailableDate';
 import useGlobalState from 'hooks/useGlobalState';
 import Button from 'components/Button';
 import {
@@ -21,7 +23,7 @@ import { Input, Legend } from '../WaiverForm/WaiverForm.styled';
 import toast from 'react-hot-toast';
 
 const ScheduleForm = () => {
-  const minDate = new Date();
+  const minDate = findNextAvailableDate();
   const maxDate = new Date(2024, 9, 31);
   const [, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
@@ -120,24 +122,6 @@ const ScheduleForm = () => {
 
     setAppointmentInfo(info);
     navigate('/booking/payment');
-  };
-
-  const isNotMonTueWed = date => {
-    const day = date.getDay();
-    const month = new Date(date).getMonth();
-    const dayNumber = new Date(date).getDate();
-
-    if (
-      (dayNumber === 17 || dayNumber === 18 || dayNumber === 19) &&
-      month === 9
-    )
-      return false;
-    if (
-      (dayNumber === 15 || dayNumber === 22 || dayNumber === 29) &&
-      month === 9
-    )
-      return true;
-    return day !== 1 && day !== 2 && day !== 3;
   };
 
   return (
