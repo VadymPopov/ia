@@ -24,7 +24,7 @@ import toast from 'react-hot-toast';
 
 const ScheduleForm = () => {
   const minDate = findNextAvailableDate();
-  const maxDate = new Date(2024, 9, 31);
+  const maxDate = new Date(2024, 10, 20);
   const [, setSelectedSlot] = useState(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [selectedDate, setSelectedDate] = useState(minDate);
