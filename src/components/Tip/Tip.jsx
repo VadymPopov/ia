@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import { SubTitle } from 'components/CommonStyles';
 import useGlobalState from 'hooks/useGlobalState';
-import { calculateTip } from 'utils/helpers';
+import { calculateTip, formatCurrency } from 'utils/helpers';
 import CustomTipForm from 'components/CustomTipForm';
 import {
   Container,
@@ -28,7 +28,10 @@ export default function Tip() {
   const navigate = useNavigate();
   const amount = paymentInfo?.amount || 0;
   const taxes = useMemo(() => Number((amount * 0.16).toFixed(2)), [amount]);
-  const total = useMemo(() => amount + taxes + tip, [amount, taxes, tip]);
+  const total = useMemo(
+    () => Number((amount + taxes + tip).toFixed(2)),
+    [amount, taxes, tip]
+  );
 
   useEffect(() => {
     if (!amount) {
@@ -74,14 +77,18 @@ export default function Tip() {
     <Container>
       <SubTitle>Select the tip amount:</SubTitle>
       <TipsContainer>
-        {tipsArray.map(tip => (
+        {tipsArray.map(tipPercentage => (
           <TipsItem
-            key={tip}
-            onClick={() => handleTipClick(tip)}
-            active={selectedTipPercentage === tip ? tip : null}
+            key={tipPercentage}
+            onClick={() => handleTipClick(tipPercentage)}
+            active={
+              selectedTipPercentage === tipPercentage ? tipPercentage : null
+            }
           >
-            <p>{tip}%</p>
-            {selectedTipPercentage === tip && <Price>CA$ {tip}</Price>}
+            <p>{tipPercentage}%</p>
+            {selectedTipPercentage === tipPercentage && (
+              <Price>{formatCurrency(tip)}</Price>
+            )}
           </TipsItem>
         ))}
         <TipsItem
@@ -89,7 +96,7 @@ export default function Tip() {
           active={customTip === 'custom' ? 'custom' : null}
         >
           <p>Custom</p>
-          {tip !== 0 && customTip && <Price>CA$ {tip}</Price>}
+          {tip !== 0 && customTip && <Price>{formatCurrency(tip)}</Price>}
         </TipsItem>
       </TipsContainer>
 
@@ -105,19 +112,19 @@ export default function Tip() {
         <tbody>
           <Row>
             <TableCell>Amount due</TableCell>
-            <TableCell>CA${amount}</TableCell>
+            <TableCell>{formatCurrency(amount)}</TableCell>
           </Row>
           <Row>
             <TableCell>Tips</TableCell>
-            <TableCell>CA${tip}</TableCell>
+            <TableCell>{formatCurrency(tip)}</TableCell>
           </Row>
           <Row>
             <TableCell>Taxes & Fees</TableCell>
-            <TableCell>CA${taxes}</TableCell>
+            <TableCell>{formatCurrency(taxes)}</TableCell>
           </Row>
           <LastRow>
             <TableCell>Total</TableCell>
-            <TableCell>CA${total}</TableCell>
+            <TableCell>{formatCurrency(total)}</TableCell>
           </LastRow>
         </tbody>
       </SummaryTable>
