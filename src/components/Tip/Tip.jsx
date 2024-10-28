@@ -16,7 +16,7 @@ import {
   TableCell,
 } from './Tip.styled';
 
-const tipsArray = [15, 20, 25, 30];
+const TIPS_ARRAY = [15, 20, 25, 30];
 
 export default function Tip() {
   const { paymentInfo, setPaymentInfo } = useGlobalState();
@@ -77,7 +77,7 @@ export default function Tip() {
     <Container>
       <SubTitle>Select the tip amount:</SubTitle>
       <TipsContainer>
-        {tipsArray.map(tipPercentage => (
+        {TIPS_ARRAY.map(tipPercentage => (
           <TipsItem
             key={tipPercentage}
             onClick={() => handleTipClick(tipPercentage)}
