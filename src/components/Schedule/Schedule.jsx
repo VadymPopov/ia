@@ -20,7 +20,6 @@ import {
   FieldSet,
 } from './Schedule.styled';
 import { Input, Legend } from '../WaiverForm/WaiverForm.styled';
-import toast from 'react-hot-toast';
 
 const ScheduleForm = () => {
   const minDate = findNextAvailableDate();
@@ -58,46 +57,6 @@ const ScheduleForm = () => {
   };
 
   const handleDataChange = (date, field, form) => {
-    const day = new Date(date).getDay();
-
-    if (day === 5) {
-      toast(
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <span
-            style={{
-              fontSize: '24px',
-              color: '#0f0e0e',
-              fontWeight: 'bold',
-              marginBottom: '10px',
-            }}
-          >
-            👏 Promo Friday!
-          </span>
-          <span style={{ marginBottom: '10px' }}>
-            Get <span style={{ fontWeight: 'bold' }}>2</span> tattoos (1-inch
-            size) for just <span style={{ fontWeight: 'bold' }}>$100!</span>
-          </span>
-          <p style={{ fontSize: '12px', marginBottom: '10px' }}>
-            *Black ink, simple designs only. No finger, face, inner lip, or
-            intimate areas.
-          </p>
-        </div>,
-        {
-          style: {
-            borderRadius: '10px',
-            background: 'red',
-            color: '#fff',
-          },
-        }
-      );
-    }
-
     form.setFieldValue(field.name, date);
     setSelectedDate(date);
   };

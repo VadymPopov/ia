@@ -9,9 +9,9 @@ import {
   Description,
   Container,
   ToastContainer,
-  ToastSpan,
 } from './Home.styled.js';
 import { Text, Title, Suptitle, Section } from 'components/CommonStyles';
+import { CgClose } from 'react-icons/cg';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -28,19 +28,31 @@ export default function Home() {
       toast(
         t => (
           <ToastContainer>
+            <button
+              onClick={() => {
+                toast.dismiss(t.id);
+              }}
+              style={{
+                position: 'absolute',
+                top: '2px',
+                right: '2px',
+                border: 'none',
+                background: 'transparent',
+                cursor: 'pointer',
+              }}
+            >
+              <CgClose />
+            </button>
             <span>
               <b style={{ fontSize: '24px', color: 'rgba(255, 108, 0, 1)' }}>
-                Promo Friday!
+                Last Call!
               </b>
             </span>
-            <p>Get 2 tattoos (1-inch size) for just $100!</p>
-            <ToastSpan>
-              {' '}
-              <b>For one person only.</b>
-            </ToastSpan>
+            <p style={{ textAlign: 'center' }}>
+              Limited spots in Toronto until <b>November 18th</b>!
+            </p>
             <p style={{ fontSize: '12px', marginBottom: '10px', color: 'red' }}>
-              *Black ink, simple designs only. No finger, face, inner lip, or
-              intimate areas.
+              *No finger, face, inner lip, or intimate areas.
             </p>
             <Button
               onClick={() => {
