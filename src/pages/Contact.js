@@ -21,20 +21,22 @@ export default function Contact() {
       <FlexContainer>
         <FlexItem>
           <Flex>
-            <Label>Toronto</Label>
+            <Label>San Francisco</Label>
           </Flex>
           <Flex>
-            <Label>Lara Jade Beauty</Label>
+            <Label>La Rosa Tattoo</Label>
           </Flex>
           <Flex>
             <StyledIcon as={FiMapPin} />
-            <Label>689 St Clair Ave W 2nd Floor, Toronto, ON M6C 1B2</Label>
+            <Label>
+              693 14th Street, San Francisco, CA 94114, United States
+            </Label>
           </Flex>
           <FlexItem>
             <EmbeddedMap
-              latitude="43.682014043129215"
-              longitude="-79.42608935396728"
-              query="Lara+Jade+Beauty+StClair+Toronto"
+              latitude="37.76792182235917"
+              longitude="-122.42869104099746"
+              query="La+Rosa+Tattoo+14th+Street+San+Francisco"
             />
           </FlexItem>
           <br />
@@ -50,7 +52,7 @@ export default function Contact() {
           <Flex>
             <StyledIcon as={SiInstagram} />
             <Link
-              href="https://www.instagram.com/ivenko.alinaaa/"
+              href="https://www.instagram.com/ivenko.alinaa/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="instagram-page"

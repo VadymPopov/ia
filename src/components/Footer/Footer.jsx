@@ -34,7 +34,7 @@ const Footer = () => {
       </FlexContainer>
       <LinksContainer>
         <Link
-          href="https://www.tiktok.com/@ivenko.alinaaa"
+          href="https://www.tiktok.com/@alinaaa.ivenko1"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="tiktok-page"
@@ -42,7 +42,7 @@ const Footer = () => {
           <SiTiktok></SiTiktok>
         </Link>
         <Link
-          href="https://www.instagram.com/ivenko.alinaaa/"
+          href="https://www.instagram.com/ivenko.alinaa/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="instagram-page"

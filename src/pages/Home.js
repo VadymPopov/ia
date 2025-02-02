@@ -45,23 +45,37 @@ export default function Home() {
             </button>
             <span>
               <b style={{ fontSize: '24px', color: 'rgba(255, 108, 0, 1)' }}>
-                Last Call!
+                San Francisco!
               </b>
             </span>
-            <p style={{ textAlign: 'center' }}>
-              Limited spots in Toronto until <b>November 18th</b>!
+            <p style={{ textAlign: 'center', marginBottom: '10px' }}>
+              Book via <b>Instagram DMs</b> or <b>Email</b>!
             </p>
-            <p style={{ fontSize: '12px', marginBottom: '10px', color: 'red' }}>
-              *No finger, face, inner lip, or intimate areas.
-            </p>
-            <Button
-              onClick={() => {
-                navigate('/booking/service');
-                toast.dismiss(t.id);
+            <p
+              style={{
+                textAlign: 'justify',
+                fontSize: '14px',
+                marginBottom: '10px',
               }}
             >
-              Book your spot now!
-            </Button>
+              Our booking system is under maintenance. In the meantime, please
+              send us a direct message on Instagram or Email to book your
+              appointment.
+            </p>
+            <div
+              style={{ display: 'flex', justifyContent: 'center', gap: '6px' }}
+            >
+              <a
+                href="https://www.instagram.com/ivenko.alinaa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button>Instagram</Button>
+              </a>
+              <a href="mailto:InkedbyAlina@gmail.com">
+                <Button>Email</Button>
+              </a>
+            </div>
           </ToastContainer>
         ),
         { duration: 10000, position: 'bottom-center' }
